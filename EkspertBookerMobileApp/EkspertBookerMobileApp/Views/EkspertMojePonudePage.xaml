@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Moje ponude"
+             x:Class="EkspertBookerMobileApp.Views.EkspertMojePonudePage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout>
+                <Button Text="PRIHVAĆENE PONUDE" TextColor="White" BackgroundColor="ForestGreen" Command="{Binding PrihvacenePonudeCommand}"></Button>
+                <ListView IsEnabled="True" ItemsSource="{Binding PrihvacenePonudeList}" RowHeight="100" ItemSelected="PrihvacenaPonuda_ItemSelected" PropertyChanged="PrihvacenePonudeListView_PropertyChanged" IsVisible="{Binding PrihvacenePonudeVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naslov}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Cijena, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding OpisPonude}" MaxLines="1"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="AKTIVNE PONUDE" TextColor="White" BackgroundColor="#1d80cf" Command="{Binding AktivnePonudeCommand}"></Button>
+                <ListView x:Name="AktivnePonudeListView" IsEnabled="True" ItemsSource="{Binding AktivnePonudeList}" ItemSelected="AktivnaPonuda_ItemSelected" RowHeight="100" PropertyChanged="AktivnePonudeListView_PropertyChanged" IsVisible="{Binding AktivnePonudeVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naslov}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Cijena, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding OpisPonude}" MaxLines="1"></Label>
+                                    <Label Text="Ime i naslov projekta..."></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="ODBIJENE PONUDE" TextColor="White" BackgroundColor="DarkRed" Command="{Binding OdbijenePonudeCommand}"></Button>
+                <ListView IsEnabled="True" ItemsSource="{Binding PrihvacenePonudeList}" RowHeight="100" ItemSelected="OdbijenaPonuda_ItemSelected" PropertyChanged="OdbijenePonudeListView_PropertyChanged" IsVisible="{Binding OdbijenePonudeVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naslov}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Cijena, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding OpisPonude}" MaxLines="1"></Label>
+                                    <Label Text="Ime i naslov projekta..."></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

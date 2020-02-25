@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:EkspertBookerMobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.PoslodavciPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Lista poslodavaca"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding PoslodavciList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HeightRequest="100">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Korisnik}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding BrojZavrsenihProjekata, StringFormat='Završeni projekti: {0}'}" />
+                                    <Label Text="{Binding ProsjecnaOcjena, StringFormat='Ocjena: {0}'}" />
+                                </StackLayout>
+                                <Image HorizontalOptions="EndAndExpand" Aspect="AspectFit" Source="{Binding Korisnik.KorisnikSlika.ProfilnaSlika, Converter={StaticResource imgConv}}"></Image>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

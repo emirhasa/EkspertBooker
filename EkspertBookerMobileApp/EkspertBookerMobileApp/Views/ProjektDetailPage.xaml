@@ -3,13 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ViewModels="clr-namespace:EkspertBookerMobileApp.ViewModels"
              mc:Ignorable="d"
+             Title="O projektu"
              x:Class="EkspertBookerMobileApp.Views.ProjektDetailPage">
+    
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Text="DOSTAVI PONUDU" Clicked="DostaviPonudu_Clicked" Order="Primary" />-->
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Projekt!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BindingContext="{Binding Projekt}" Padding="10">
+            <Grid x:Name="ToolbarPoslodavacAktivanProjekt">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Text="UREDI PROJEKT" FontAttributes="Bold" BackgroundColor="DarkOrange" TextColor="White"  WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True" Clicked="UrediProjekatButton_Clicked"></Button>
+                <Button Grid.Row="0" Grid.Column="1" Text="PRIKAŽI DETALJNO" FontAttributes="Bold" BackgroundColor="ForestGreen" TextColor="White" HorizontalOptions="CenterAndExpand" IsVisible="True"></Button>
+                <Button Grid.Row="0" Grid.Column="2" Text="EKSPERT PONUDE" FontAttributes="Bold" BackgroundColor="IndianRed" TextColor="White" HorizontalOptions="CenterAndExpand" Clicked="PrikaziPonude_Clicked" IsVisible="True"></Button>
+            </Grid>
+            <Grid x:Name="ToolbarEkspertProjekt" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Text="DOSTAVI PONUDU" FontAttributes="Bold" BackgroundColor="#1d80cf" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True" Clicked="DostaviPonudu_Clicked"></Button>
+                <Button Grid.Row="0" Grid.Column="1" Text="PRIKAŽI DETALJNO" FontAttributes="Bold" BackgroundColor="ForestGreen" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True"></Button>
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Naziv}" FontSize="25" HorizontalTextAlignment="Start" Margin="0,3,0,0"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Kategorija.Naziv}" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+                    <Label HorizontalOptions="EndAndExpand" Text="Budzet: "></Label>
+                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Budzet}"></Label>
+                    <Label HorizontalOptions="EndAndExpand" Text="KM"></Label>
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1"></BoxView>
+            <StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Kratki opis" MinimumWidthRequest="150"></Label>
+                    <Label Text="{Binding KratkiOpis}"  HorizontalOptions="Start" LineBreakMode="WordWrap"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Detaljni opis" MinimumWidthRequest="150"></Label>
+                    <Label Text="{Binding DetaljniOpis}" LineBreakMode="WordWrap"></Label>
+                </StackLayout>
+            </StackLayout>
+            <BoxView HorizontalOptions="CenterAndExpand" HeightRequest="1"></BoxView>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Datum objave" MinimumWidthRequest="150"></Label>
+                    <Label Text="{Binding DatumObjave}"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Datum pocetka" MinimumWidthRequest="150"></Label>
+                    <Label Text="{Binding DatumPocetka}"></Label>
+                    <Label Text="Trajanje" MinimumWidthRequest="150"></Label>
+                    <Label Text="{Binding TrajanjeDana}"></Label>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,11 +14,12 @@ namespace EkspertBooker.Model
         public int ProjektId { get; set; }
         public Projekt Projekt { get; set; }
 
+        public string Naslov { get; set; }
         public string OpisPonude { get; set; }
 
         public int? Cijena { get; set; }
         public DateTime VrijemePonude { get; set; }
-        public bool Status { get; set; }
+        public int Status { get; set; }
 
     }
 }

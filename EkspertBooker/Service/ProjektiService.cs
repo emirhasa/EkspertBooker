@@ -39,6 +39,16 @@ namespace EkspertBooker.WebAPI.Service
                 query = query.Where(p => p.Hitan == request.Hitan);
             }
 
+            if(request.PoslodavacId != null)
+            {
+                query = query.Where(p => p.PoslodavacId == request.PoslodavacId);
+            }
+
+            if(request.EkspertId != null)
+            {
+                query = query.Where(p => p.EkspertId == request.EkspertId);
+            }
+
             var result = query.Include(p=>p.Kategorija).Include(p=>p.ProjektDetalji).Include(p=>p.Poslodavac).ThenInclude(p=>p.Korisnik).ToList();
             return _mapper.Map<List<Model.Projekt>>(result);
         }

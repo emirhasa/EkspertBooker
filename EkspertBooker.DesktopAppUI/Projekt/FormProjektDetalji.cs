@@ -196,7 +196,7 @@ namespace EkspertBooker.DesktopAppUI.Projekt
                 {
                     //insert
                     //default Poslodavac
-                    insert.PoslodavacId = 3;
+                    insert.PoslodavacId = 2;
                     try
                     {
                         var result = await _serviceProjekti.Insert<Model.Projekt>(insert);

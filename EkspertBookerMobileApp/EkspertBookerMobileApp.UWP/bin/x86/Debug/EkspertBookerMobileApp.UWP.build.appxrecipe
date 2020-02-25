@@ -565,8 +565,8 @@
     <AppxPackagedFile Include="C:\Users\pacma\.nuget\packages\xamarin.forms\4.4.0.991537\lib\uap10.0\Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml">
       <PackagePath>Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\add_small.png">
+      <PackagePath>add_small.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
@@ -687,6 +687,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\cancel.png">
       <PackagePath>cancel.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBookerMobileApp.UWP.xr.xml">
       <PackagePath>EkspertBookerMobileApp.UWP.xr.xml</PackagePath>

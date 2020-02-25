@@ -20,8 +20,11 @@ namespace EkspertBooker.WebAPI.Database
         public string KorisnickoIme { get; set; }
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
+        public DateTime? DatumRegistracije { get; set; }
         public ICollection<KorisnikUloga> KorisnikUloge { get; set; }
         public ICollection<KorisnikKategorija> KorisnikKategorije { get; set; }
         public KorisnikSlika KorisnikSlika { get; set; }
+        public Poslodavac Poslodavac { get; set; }
+        public Ekspert Ekspert { get; set; }
     }
 }

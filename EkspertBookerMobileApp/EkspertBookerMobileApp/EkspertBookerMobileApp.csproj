@@ -12,8 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>  
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +25,87 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\EkspertMainPage.xaml.cs">
+      <DependentUpon>EkspertMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\EkspertMenuPage.xaml.cs">
+      <DependentUpon>EkspertMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MojProfilPoslodavacPage.xaml.cs">
+      <DependentUpon>MojProfilPoslodavacPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProjektUpsertPage.xaml.cs">
+      <DependentUpon>ProjektUpsertPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PoslodavacMainPage.xaml.cs">
+      <DependentUpon>PoslodavacMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PoslodavacMenuPage.xaml.cs">
+      <DependentUpon>PoslodavacMenuPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ContentViews\CVImageButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EkspertiPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EkspertMojePonudePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EkspertSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MojiProjektiPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MojProfilEkspertPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MojProfilPoslodavacPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PonudaDetaljiPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PonudaInsertPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PonudaUpdatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PoslodavacSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProjektPonudePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProjektUpsertPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PoslodavciPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ProjektDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProjektiPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\ProjektDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 </Project>

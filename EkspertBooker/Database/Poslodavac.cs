@@ -13,8 +13,9 @@ namespace EkspertBooker.WebAPI.Database
             RecenzijeOEksperti = new HashSet<RecenzijaOEkspert>();
             RecenzijeOPoslodavci = new HashSet<RecenzijaOPoslodavac>();
         }
-        public int PoslodavacId { get; set; }
-        public int KorisnikUlogaId { get; set; }
+        public int KorisnikId { get; set; }
+        public Korisnik Korisnik { get; set; }
+        public int? KorisnikUlogaId { get; set; }
         public KorisnikUloga KorisnikUloga { get; set; }
         public float? ProsjecnaOcjena { get; set; }
         public int BrojZavrsenihProjekata { get; set; }
@@ -23,6 +24,5 @@ namespace EkspertBooker.WebAPI.Database
         public ICollection<Projekt> Projekti { get; set; }
         public ICollection<RecenzijaOEkspert> RecenzijeOEksperti { get; set; }
         public ICollection<RecenzijaOPoslodavac> RecenzijeOPoslodavci { get; set; }
-        public Korisnik Korisnik { get; set; }
     }
 }

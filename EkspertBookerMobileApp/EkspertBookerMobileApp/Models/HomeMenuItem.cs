@@ -8,7 +8,9 @@ namespace EkspertBookerMobileApp.Models
     {
         Browse,
         About,
-        Projekti
+        Projekti,
+        Eksperti,
+        Poslodavci
     }
     public class HomeMenuItem
     {

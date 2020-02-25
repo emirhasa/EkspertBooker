@@ -21,17 +21,17 @@ namespace EkspertBooker.WebAPI.Service
             {
                 if(search.BrojZavrsenihProjekata.HasValue)
                 {
-                    var result_alt = _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e => e.KorisnikUloga).Where(e=>e.BrojZavrsenihProjekata>=search.BrojZavrsenihProjekata).ToList());
+                    var result_alt = _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e => e.KorisnikUloga).Include(e=>e.Korisnik).ThenInclude(k=>k.KorisnikSlika).Where(e=>e.BrojZavrsenihProjekata>=search.BrojZavrsenihProjekata).ToList());
                     return result_alt;
                 }
             } 
-            var result =  _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e=>e.Korisnik).ToList());
+            var result =  _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e=>e.Korisnik).ThenInclude(k => k.KorisnikSlika).ToList());
             return result;
         }
 
         public override Model.Ekspert GetById(int id)
         {
-            return _mapper.Map<Model.Ekspert >(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e => e.Korisnik).First(e => e.EkspertId == id));
+            return _mapper.Map<Model.Ekspert>(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e => e.Korisnik).ThenInclude(k => k.KorisnikSlika).Where(e => e.KorisnikId == id).SingleOrDefault());
         }
 
     }

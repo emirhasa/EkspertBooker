@@ -10,6 +10,9 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Core\AppxManifest.xml
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Core\EkspertBookerMobileApp.UWP.exe
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBookerMobileApp.UWP.build.appxrecipe
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Flurl.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Flurl.Http.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Newtonsoft.Json.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\clrcompression.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.CSharp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.VisualBasic.dll
@@ -142,7 +145,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.ServiceModel.Web.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.ServiceModel.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.ServiceProcess.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Text.Encoding.CodePages.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Text.Encoding.Extensions.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Text.Encoding.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Text.RegularExpressions.dll
@@ -174,6 +176,8 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\WindowsBase.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\mscorlib.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\netstandard.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Text.Encoding.CodePages.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.Graphics.Canvas.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.Graphics.Canvas.winmd
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Xamarin.Essentials.dll
@@ -187,7 +191,9 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBookerMobileApp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.UI.Xaml.Markup.winmd
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBooker.Model.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBookerMobileApp.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBooker.Model.pdb
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\EkspertBookerMobileApp.UWP.csprojAssemblyReference.cache
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\App.g.i.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\App.g.cs
@@ -285,7 +291,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Security.Cryptography.Primitives.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Security.Cryptography.X509Certificates.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Security.Principal.Windows.SR.resw
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Text.Encoding.CodePages.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Text.RegularExpressions.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Threading.Overlapped.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Threading.Tasks.Dataflow.SR.resw
@@ -294,6 +299,7 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Threading.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Transactions.Local.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.ValueTuple.SR.resw
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\FxResources.System.Text.Encoding.CodePages.SR.resw
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\priconfig.xml
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\priconfig.xml.intermediate
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\unfiltered.layout.resfiles
@@ -312,9 +318,3 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\.winmd_cache\$Microsoft.Graphics.Canvas.winmd_636160679180000000.json
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636885274160000000.json
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Flurl.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Flurl.Http.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Newtonsoft.Json.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBooker.Model.dll
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBooker.Model.pdb

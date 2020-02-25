@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.PonudaDetaljiPage">
+    <ContentPage.Content>
+        <ScrollView>
+            
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="55"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Projekt.Naziv}" FontSize="17" VerticalOptions="End"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Projekt.KratkiOpis}"></Label>
+
+                <Label Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" Text="Naslov ponude" VerticalOptions="Start" FontSize="17"></Label>
+                <Label Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="3" Text="{Binding Ponuda.Naslov}"  VerticalOptions="Start" FontSize="15"></Label>
+               
+                <Label Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="3" Text="Opis ponude" VerticalOptions="Start" FontSize="17"></Label>
+                <Label Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" Text="{Binding Ponuda.OpisPonude}" VerticalOptions="Start" FontSize="15"></Label>
+
+                <Label Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="3"  Text="Cijena" VerticalOptions="Start" FontSize="17"></Label>
+                <Label Grid.Row="7" Grid.Column="0" Text="{Binding Ponuda.Cijena}"   VerticalOptions="Start" FontSize="15"></Label>
+                <Label Grid.Row="7" Grid.Column="1" Text="KM" VerticalOptions="Center"></Label>
+
+                <Button Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Text="SUBMIT" BackgroundColor="#1d80cf" TextColor="White" Command="{Binding SubmitCommand}"></Button>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

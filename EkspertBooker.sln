@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EkspertBookerMobileApp.Andr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EkspertBookerMobileApp.iOS", "EkspertBookerMobileApp\EkspertBookerMobileApp.iOS\EkspertBookerMobileApp.iOS.csproj", "{162F4589-269C-40EC-9C60-26DA1800D64C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EkspertBookerMobileApp", "EkspertBookerMobileApp\EkspertBookerMobileApp\EkspertBookerMobileApp.csproj", "{FD9601B9-082A-490B-B1C5-C8133DB2A9D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EkspertBookerMobileApp", "EkspertBookerMobileApp\EkspertBookerMobileApp\EkspertBookerMobileApp.csproj", "{FD9601B9-082A-490B-B1C5-C8133DB2A9D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{D42FA623-EB03-4A03-BFD7-62FEE532EE28}"
 EndProject

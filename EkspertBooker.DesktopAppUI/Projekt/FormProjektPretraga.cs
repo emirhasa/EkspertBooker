@@ -47,7 +47,7 @@ namespace EkspertBooker.DesktopAppUI.Projekt
             }
             else request.Hitan = null;
             
-            var projekt_lista = await _projektiService.Get<List<Model.Projekt>>(request);
+            var projekt_lista = await _projektiService.Get<List<Model.Projekt>>(null);
             dataGridViewProjekti.AutoGenerateColumns = false;
             dataGridViewProjekti.DataSource = projekt_lista;
 

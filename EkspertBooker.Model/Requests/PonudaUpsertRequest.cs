@@ -10,10 +10,12 @@ namespace EkspertBooker.Model.Requests
 
         public int ProjektId { get; set; }
 
+        public string Naslov { get; set; }
+
         public string OpisPonude { get; set; }
 
         public DateTime? VrijemePonude { get; set; }
         public int? Cijena { get; set; }
-        public bool Status { get; set; }
+        public int Status { get; set; }
     }
 }

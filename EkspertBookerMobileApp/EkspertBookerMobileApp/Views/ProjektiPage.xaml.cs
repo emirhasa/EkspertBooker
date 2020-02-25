@@ -34,8 +34,7 @@ namespace EkspertBookerMobileApp.Views
             if (item == null)
                 return;
 
-            await DisplayAlert("test", item.Naziv, "OK");
-            await Navigation.PushAsync(new ProjektDetailPage(item));
+            await Navigation.PushAsync(new ProjektDetailPage(new ProjektDetailViewModel(item)));
 
             // Manually deselect item.
             ProjektiListView.SelectedItem = null;

@@ -12,7 +12,7 @@ namespace EkspertBooker.Model.Requests
         }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-
+        public string Username { get; set; }
         public bool Administratori { get; set; } 
         public bool Poslodavci { get; set; } 
         public bool Eksperti { get; set; }

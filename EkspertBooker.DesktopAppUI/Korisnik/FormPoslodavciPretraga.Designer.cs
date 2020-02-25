@@ -35,13 +35,13 @@
             this.buttonPrikazi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewRecenzije = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewPoslodavci = new System.Windows.Forms.DataGridView();
             this.PoslodavacId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProsjecnaOcjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojZavrsenihProjekata = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrojProjekata)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -125,43 +125,6 @@
             this.dataGridViewRecenzije.Size = new System.Drawing.Size(446, 403);
             this.dataGridViewRecenzije.TabIndex = 0;
             // 
-            // dataGridViewPoslodavci
-            // 
-            this.dataGridViewPoslodavci.AllowUserToAddRows = false;
-            this.dataGridViewPoslodavci.AllowUserToDeleteRows = false;
-            this.dataGridViewPoslodavci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPoslodavci.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PoslodavacId,
-            this.ProsjecnaOcjena,
-            this.BrojZavrsenihProjekata});
-            this.dataGridViewPoslodavci.Location = new System.Drawing.Point(13, 79);
-            this.dataGridViewPoslodavci.Name = "dataGridViewPoslodavci";
-            this.dataGridViewPoslodavci.ReadOnly = true;
-            this.dataGridViewPoslodavci.Size = new System.Drawing.Size(353, 360);
-            this.dataGridViewPoslodavci.TabIndex = 9;
-            this.dataGridViewPoslodavci.Click += new System.EventHandler(this.dataGridViewPoslodavci_Click);
-            // 
-            // PoslodavacId
-            // 
-            this.PoslodavacId.DataPropertyName = "PoslodavacId";
-            this.PoslodavacId.HeaderText = "PoslodavacId";
-            this.PoslodavacId.Name = "PoslodavacId";
-            this.PoslodavacId.ReadOnly = true;
-            // 
-            // ProsjecnaOcjena
-            // 
-            this.ProsjecnaOcjena.DataPropertyName = "ProsjecnaOcjena";
-            this.ProsjecnaOcjena.HeaderText = "Prosjecna Ocjena";
-            this.ProsjecnaOcjena.Name = "ProsjecnaOcjena";
-            this.ProsjecnaOcjena.ReadOnly = true;
-            // 
-            // BrojZavrsenihProjekata
-            // 
-            this.BrojZavrsenihProjekata.DataPropertyName = "BrojZavrsenihProjekata";
-            this.BrojZavrsenihProjekata.HeaderText = "Broj Zavrsenih Projekata";
-            this.BrojZavrsenihProjekata.Name = "BrojZavrsenihProjekata";
-            this.BrojZavrsenihProjekata.ReadOnly = true;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Komentar";
@@ -184,6 +147,43 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "Datum";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewPoslodavci
+            // 
+            this.dataGridViewPoslodavci.AllowUserToAddRows = false;
+            this.dataGridViewPoslodavci.AllowUserToDeleteRows = false;
+            this.dataGridViewPoslodavci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPoslodavci.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PoslodavacId,
+            this.ProsjecnaOcjena,
+            this.BrojZavrsenihProjekata});
+            this.dataGridViewPoslodavci.Location = new System.Drawing.Point(13, 79);
+            this.dataGridViewPoslodavci.Name = "dataGridViewPoslodavci";
+            this.dataGridViewPoslodavci.ReadOnly = true;
+            this.dataGridViewPoslodavci.Size = new System.Drawing.Size(353, 360);
+            this.dataGridViewPoslodavci.TabIndex = 9;
+            this.dataGridViewPoslodavci.Click += new System.EventHandler(this.dataGridViewPoslodavci_Click);
+            // 
+            // PoslodavacId
+            // 
+            this.PoslodavacId.DataPropertyName = "KorisnikId";
+            this.PoslodavacId.HeaderText = "PoslodavacId";
+            this.PoslodavacId.Name = "PoslodavacId";
+            this.PoslodavacId.ReadOnly = true;
+            // 
+            // ProsjecnaOcjena
+            // 
+            this.ProsjecnaOcjena.DataPropertyName = "ProsjecnaOcjena";
+            this.ProsjecnaOcjena.HeaderText = "Prosjecna Ocjena";
+            this.ProsjecnaOcjena.Name = "ProsjecnaOcjena";
+            this.ProsjecnaOcjena.ReadOnly = true;
+            // 
+            // BrojZavrsenihProjekata
+            // 
+            this.BrojZavrsenihProjekata.DataPropertyName = "BrojZavrsenihProjekata";
+            this.BrojZavrsenihProjekata.HeaderText = "Broj Zavrsenih Projekata";
+            this.BrojZavrsenihProjekata.Name = "BrojZavrsenihProjekata";
+            this.BrojZavrsenihProjekata.ReadOnly = true;
             // 
             // FormPoslodavciPretraga
             // 
@@ -216,11 +216,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridViewRecenzije;
         private System.Windows.Forms.DataGridView dataGridViewPoslodavci;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PoslodavacId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProsjecnaOcjena;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrojZavrsenihProjekata;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PoslodavacId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProsjecnaOcjena;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojZavrsenihProjekata;
     }
 }

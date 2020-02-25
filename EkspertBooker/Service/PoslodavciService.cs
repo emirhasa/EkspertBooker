@@ -21,17 +21,17 @@ namespace EkspertBooker.WebAPI.Service
             {
                 if(search.BrojZavrsenihProjekata.HasValue)
                 {
-                    var result_alt = _mapper.Map<List<Model.Poslodavac>>(_context.Poslodavci.Include(p => p.KorisnikUloga).Where(p=>p.BrojZavrsenihProjekata>=search.BrojZavrsenihProjekata).ToList());
+                    var result_alt = _mapper.Map<List<Model.Poslodavac>>(_context.Poslodavci.Include(p => p.KorisnikUloga).Include(p=>p.Korisnik).ThenInclude(k=>k.KorisnikSlika).Where(p=>p.BrojZavrsenihProjekata>=search.BrojZavrsenihProjekata).ToList());
                     return result_alt;
                 }
             } 
-            var result =  _mapper.Map<List<Model.Poslodavac>>(_context.Poslodavci.Include(p=>p.KorisnikUloga).Include(p=>p.Korisnik).ToList());
+            var result =  _mapper.Map<List<Model.Poslodavac>>(_context.Poslodavci.Include(p=>p.KorisnikUloga).Include(p=>p.Korisnik).ThenInclude(k => k.KorisnikSlika).ToList());
             return result;
         }
 
         public override Model.Poslodavac GetById(int id)
         {
-            return _mapper.Map<Model.Poslodavac>(_context.Poslodavci.Include(p => p.KorisnikUloga.Korisnik).First(p => p.PoslodavacId == id));
+            return _mapper.Map<Model.Poslodavac>(_context.Poslodavci.Include(p => p.KorisnikUloga.Korisnik).ThenInclude(k=>k.KorisnikSlika).First(p => p.KorisnikId == id));
         }
     }
 }

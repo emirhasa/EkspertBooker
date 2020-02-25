@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:EkspertBookerMobileApp.Helper"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.ProjektUpsertPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid x:Name="ProjektUpsertGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackLayout Padding="30" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label Text="{Binding Title}" FontSize="Large"></Label>
+                </StackLayout>
+                <StackLayout Padding="30" Grid.Row="1" Grid.Column="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+
+                    <StackLayout Margin="0,0,0,20">
+                        <Label Text="Naziv projekta" TextColor="#919191"></Label>
+                        <Entry Text="{Binding Naziv, Mode=TwoWay}" TextChanged="Naziv_TextChanged"></Entry>
+                        <Label x:Name="NazivErrorLabel" Text="Unesite naziv!" IsVisible="{Binding NazivErrorVisible}" TextColor="Red" FontSize="10"></Label>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,0,0,40">
+                        <Label Text="Kratki opis" TextColor="#919191"></Label>
+                        <Entry Text="{Binding KratkiOpis, Mode=TwoWay}" TextChanged="KratkiOpis_TextChanged"></Entry>
+                        <Label x:Name="KratkiOpisErrorLabel" Text="Unesite kratki opis!" IsVisible="{Binding KratkiOpisErrorVisible}" TextColor="Red" FontSize="10"></Label>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,0,0,25">
+                        <Label Text="Datum početka(ca.)" TextColor="#919191"></Label>
+                        <DatePicker TextColor="#454545" WidthRequest="100" MinimumDate="{Binding MinDatumPocetka}"
+                                MaximumDate="{Binding MaxDatumPocetka}"
+                                Date="{Binding SelectedDatumPocetka}">
+                            <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                        </DatePicker>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,0,0,40" Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Trajanje" TextColor="#919191"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Entry Text="{Binding Trajanje}" TextChanged="Trajanje_TextChanged" Keyboard="Numeric" WidthRequest="100">
+                                    <Entry.Behaviors>
+                                        <local:NumericValidationBehavior></local:NumericValidationBehavior>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Label Text="dana" VerticalOptions="End" Margin="0,0,0,6" TextColor="#b4c6d4"></Label>
+                            </StackLayout>
+                            <Label x:Name="TrajanjeErrorLabel" Text="Unesite trajanje!" IsVisible="{Binding TrajanjeErrorVisible}" TextColor="Red" FontSize="10"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Margin="20,0,0,15">
+                                <Label Text="Budžet" TextColor="#454545"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry Text="{Binding Budzet}" TextChanged="Budzet_TextChanged" Keyboard="Numeric" WidthRequest="100" MaxLength="100000" BackgroundColor="IndianRed" TextColor="White">
+                                        <!--<Entry.Behaviors>
+                                            <local:BudzetValidationBehavior></local:BudzetValidationBehavior>
+                                        </Entry.Behaviors>-->
+                                    </Entry>
+                                    <Label Text="KM" VerticalOptions="End" Margin="0,0,0,6" TextColor="#b4c6d4"></Label>
+                                </StackLayout>
+                                <Label x:Name="BudzetErrorLabel" Text="Unesite budžet!" IsVisible="{Binding BudzetErrorVisible}" TextColor="Red" FontSize="10"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                    <StackLayout Margin="0,0,0,15">
+                        <Label Text="Kategorija" TextColor="#919191"></Label>
+                        <Picker x:Name="KategorijaPicker" ItemsSource="{Binding KategorijeList}" SelectedItem="{Binding SelectedKategorija}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+                        <Label x:Name="KategorijaErrorLabel" Text="Izaberite kategoriju!" IsVisible="{Binding KategorijaErrorVisible}" TextColor="Red" FontSize="10"></Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
+                      <Label Text="Hitan" TextColor="#919191" Margin="0,20" VerticalOptions="End"></Label>
+                       <CheckBox CheckedChanged="CheckBox_HitanChanged" Color="IndianRed" IsChecked="{Binding Hitan}"></CheckBox>
+                    </StackLayout>
+            
+                    <BoxView WidthRequest="1" HeightRequest="1" BackgroundColor="LightGray"></BoxView>
+                    <Label Text="Detaljni opis" TextColor="#919191" VerticalOptions="End" Padding="0,0"></Label>
+                    <Editor Text="{Binding DetaljniOpis}" HeightRequest="100" Margin="0,0,0,15"></Editor>
+
+                    <Button FontSize="20" Text="SUBMIT" BackgroundColor="#1d80cf" TextColor="White" Clicked="Submit_Clicked"></Button>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

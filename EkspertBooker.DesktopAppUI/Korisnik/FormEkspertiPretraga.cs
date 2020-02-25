@@ -34,7 +34,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                         BrojZavrsenihProjekata = broj_zavrsenih
                     };
                     var result = await _serviceEksperti.Get<List<Model.Ekspert>>(request);
-                    if (result != null)
+                    if (result.Count > 0)
                     {
                         dataGridViewEksperti.DataSource = result;
                     }
@@ -43,7 +43,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
             } else
             {
                 var result = await _serviceEksperti.Get<List<Model.Ekspert>>(null);
-                if (result != null)
+                if (result.Count > 0)
                 {
                     dataGridViewEksperti.AutoGenerateColumns = false;
                     dataGridViewEksperti.DataSource = result;

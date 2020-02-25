@@ -26,5 +26,10 @@ namespace EkspertBooker.Model
 
         public ICollection<Ponuda> Ponude { get; set; }
 
+        public override string ToString()
+        {
+            return Naziv + KratkiOpis;
+        }
+
     }
 }

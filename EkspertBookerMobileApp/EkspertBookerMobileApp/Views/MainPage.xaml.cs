@@ -39,6 +39,12 @@ namespace EkspertBookerMobileApp.Views
                     case (int)MenuItemType.Projekti:
                         MenuPages.Add(id, new NavigationPage(new ProjektiPage()));
                         break;
+                    case (int)MenuItemType.Eksperti:
+                        MenuPages.Add(id, new NavigationPage(new EkspertiPage()));
+                        break;
+                    case (int)MenuItemType.Poslodavci:
+                        MenuPages.Add(id, new NavigationPage(new PoslodavciPage()));
+                        break;
                 }
             }
 

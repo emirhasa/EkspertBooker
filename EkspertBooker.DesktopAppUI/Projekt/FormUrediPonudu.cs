@@ -57,7 +57,7 @@ namespace EkspertBooker.DesktopAppUI.Projekt
             PonudaUpsertRequest request = new PonudaUpsertRequest
             {
                 Cijena = int.Parse(numericUpDownCijena.Value.ToString()),
-                EkspertId = ekspert.EkspertId,
+                EkspertId = ekspert.KorisnikId,
                 OpisPonude = textBoxOpis.Text,
                 ProjektId = ponuda.ProjektId,
                 VrijemePonude = ponuda.VrijemePonude,

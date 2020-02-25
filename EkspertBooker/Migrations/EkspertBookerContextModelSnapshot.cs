@@ -21,9 +21,7 @@ namespace EkspertBooker.WebAPI.Migrations
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Ekspert", b =>
                 {
-                    b.Property<int>("EkspertId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("KorisnikId");
 
                     b.Property<int>("BrojRecenzija")
                         .ValueGeneratedOnAdd()
@@ -33,17 +31,15 @@ namespace EkspertBooker.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(0);
 
-                    b.Property<int?>("KorisnikId");
-
-                    b.Property<int>("KorisnikUlogaId");
+                    b.Property<int?>("KorisnikUlogaId");
 
                     b.Property<float?>("ProsjecnaOcjena");
 
-                    b.HasKey("EkspertId");
+                    b.HasKey("KorisnikId");
 
-                    b.HasIndex("KorisnikId");
-
-                    b.HasIndex("KorisnikUlogaId");
+                    b.HasIndex("KorisnikUlogaId")
+                        .IsUnique()
+                        .HasFilter("[KorisnikUlogaId] IS NOT NULL");
 
                     b.ToTable("Eksperti");
                 });
@@ -66,6 +62,8 @@ namespace EkspertBooker.WebAPI.Migrations
                     b.Property<int>("KorisnikId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("DatumRegistracije");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -171,11 +169,13 @@ namespace EkspertBooker.WebAPI.Migrations
 
                     b.Property<int>("EkspertId");
 
+                    b.Property<string>("Naslov");
+
                     b.Property<string>("OpisPonude");
 
                     b.Property<int>("ProjektId");
 
-                    b.Property<bool>("Status");
+                    b.Property<int>("Status");
 
                     b.Property<DateTime>("VrijemePonude");
 
@@ -190,9 +190,7 @@ namespace EkspertBooker.WebAPI.Migrations
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Poslodavac", b =>
                 {
-                    b.Property<int>("PoslodavacId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("KorisnikId");
 
                     b.Property<int>("BrojRecenzija")
                         .ValueGeneratedOnAdd()
@@ -202,17 +200,15 @@ namespace EkspertBooker.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(0);
 
-                    b.Property<int?>("KorisnikId");
-
-                    b.Property<int>("KorisnikUlogaId");
+                    b.Property<int?>("KorisnikUlogaId");
 
                     b.Property<float?>("ProsjecnaOcjena");
 
-                    b.HasKey("PoslodavacId");
+                    b.HasKey("KorisnikId");
 
-                    b.HasIndex("KorisnikId");
-
-                    b.HasIndex("KorisnikUlogaId");
+                    b.HasIndex("KorisnikUlogaId")
+                        .IsUnique()
+                        .HasFilter("[KorisnikUlogaId] IS NOT NULL");
 
                     b.ToTable("Poslodavci");
                 });
@@ -397,13 +393,14 @@ namespace EkspertBooker.WebAPI.Migrations
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Ekspert", b =>
                 {
                     b.HasOne("EkspertBooker.WebAPI.Database.Korisnik", "Korisnik")
-                        .WithMany()
-                        .HasForeignKey("KorisnikId");
+                        .WithOne("Ekspert")
+                        .HasForeignKey("EkspertBooker.WebAPI.Database.Ekspert", "KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EkspertBooker.WebAPI.Database.KorisnikUloga", "KorisnikUloga")
-                        .WithMany()
-                        .HasForeignKey("KorisnikUlogaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Ekspert")
+                        .HasForeignKey("EkspertBooker.WebAPI.Database.Ekspert", "KorisnikUlogaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.KorisnikKategorija", b =>
@@ -458,13 +455,14 @@ namespace EkspertBooker.WebAPI.Migrations
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Poslodavac", b =>
                 {
                     b.HasOne("EkspertBooker.WebAPI.Database.Korisnik", "Korisnik")
-                        .WithMany()
-                        .HasForeignKey("KorisnikId");
+                        .WithOne("Poslodavac")
+                        .HasForeignKey("EkspertBooker.WebAPI.Database.Poslodavac", "KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EkspertBooker.WebAPI.Database.KorisnikUloga", "KorisnikUloga")
-                        .WithMany()
-                        .HasForeignKey("KorisnikUlogaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Poslodavac")
+                        .HasForeignKey("EkspertBooker.WebAPI.Database.Poslodavac", "KorisnikUlogaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Projekt", b =>

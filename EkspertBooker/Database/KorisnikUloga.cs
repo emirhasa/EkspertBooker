@@ -7,5 +7,7 @@
         public Korisnik Korisnik { get; set; }
         public int UlogaId { get; set; }
         public Uloga Uloga { get; set; }
+        public Ekspert Ekspert { get; set; }
+        public Poslodavac Poslodavac { get; set; }
     }
 }

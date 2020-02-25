@@ -2,7 +2,6 @@
 {
     public class Poslodavac
     {
-        public int PoslodavacId { get; set; }
         public int KorisnikId { get; set; }
         public Korisnik Korisnik { get; set; }
         public int KorisnikUlogaId { get; set; }

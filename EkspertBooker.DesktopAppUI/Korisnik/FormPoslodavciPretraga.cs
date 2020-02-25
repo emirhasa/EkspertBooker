@@ -34,7 +34,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                         BrojZavrsenihProjekata = broj_zavrsenih
                     };
                     var result = await _servicePoslodavci.Get<List<Model.Poslodavac>>(request);
-                    if (result != null)
+                    if (result.Count > 0)
                     {
                         dataGridViewPoslodavci.DataSource = result;
                     }
@@ -45,7 +45,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
             else
             {
                 var result = await _servicePoslodavci.Get<List<Model.Poslodavac>>(null);
-                if (result != null)
+                if (result.Count > 0)
                 {
                     dataGridViewPoslodavci.DataSource = result;
                 }
@@ -68,6 +68,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
 
         private async void dataGridViewPoslodavci_Click(object sender, EventArgs e)
         {
+
             if (int.TryParse(dataGridViewPoslodavci.CurrentRow.Cells[0].Value.ToString(), out int poslodavac_id))
             {
                 //uspjesno parsan ekspert id, ucitaj recenzije

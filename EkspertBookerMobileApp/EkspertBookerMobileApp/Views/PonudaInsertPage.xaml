@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Nova ponuda"
+             x:Class="EkspertBookerMobileApp.Views.PonudaInsertPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="55"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Projekt.Naziv}" FontSize="17" VerticalOptions="End"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Projekt.KratkiOpis}"></Label>
+                
+                <Label Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3" Text="Naslov ponude" VerticalOptions="Start" FontSize="17"></Label>
+                <Entry Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="3" Text="{Binding Naslov}" TextChanged="Naslov_TextChanged"  Placeholder="stavite kratak naslov..." VerticalOptions="Start" FontSize="15"></Entry>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="NaslovErrorLabel" Text="Polje je obavezno!" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding NaslovErrorVisible}" ></Label>
+                
+                <Label Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" Text="Opis ponude" VerticalOptions="Start" FontSize="17"></Label>
+                <Entry Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="3" Text="{Binding OpisPonude}" TextChanged="OpisPonude_TextChanged" Placeholder="opišite vašu ponudu..." VerticalOptions="Start" FontSize="15"></Entry>
+                <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" x:Name="OpisPonudeErrorLabel" Text="Polje je obavezno!" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding OpisPonudeErrorVisible}" ></Label>
+                
+                <Label Grid.Row="8" Grid.Column="0"  Grid.ColumnSpan="3"  Text="Cijena" VerticalOptions="Start" FontSize="17"></Label>
+                <Entry Grid.Row="9" Grid.Column="0" Text="{Binding Cijena}" TextChanged="Cijena_TextChanged" VerticalOptions="Start" FontSize="15" Keyboard="Numeric"></Entry>
+                <Label Grid.Row="9" Grid.Column="1" Text="KM" VerticalOptions="Center"></Label>
+                <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Text="Polje je obavezno!" x:Name="CijenaErrorLabel" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding CijenaErrorVisible}" ></Label>
+                
+                <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="SUBMIT" BackgroundColor="#1d80cf" TextColor="White" Command="{Binding SubmitCommand}"></Button>
+            
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

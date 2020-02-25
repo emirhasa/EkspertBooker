@@ -50,7 +50,7 @@ namespace EkspertBooker.WebAPI
             AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<IBaseCRUDService<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>, BaseCRUDService<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest, Database.Kategorija>>();
+            services.AddScoped<IBaseCRUDService<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>, KategorijeService>();
             services.AddScoped<IBaseCRUDService<Model.Projekt, ProjektiSearchRequest, ProjektUpsertRequest, ProjektUpsertRequest>, ProjektiService>();
             services.AddScoped<IBaseCRUDService<Model.Korisnik, KorisniciSearchRequest, KorisnikUpsertRequest, KorisnikUpsertRequest>, KorisniciService>();
             services.AddScoped<IBaseCRUDService<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest>, BaseCRUDService<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest, Database.ProjektDetalji>>();

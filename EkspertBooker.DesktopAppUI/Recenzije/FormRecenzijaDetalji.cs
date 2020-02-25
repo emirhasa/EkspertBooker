@@ -105,10 +105,10 @@ namespace EkspertBooker.DesktopAppUI.Recenzije
                     request.ProjektId = selected_projekt.ProjektId;
 
                     Model.Poslodavac selected_poslodavac = (Model.Poslodavac)comboBoxPoslodavci.SelectedItem;
-                    request.PoslodavacId = selected_poslodavac.PoslodavacId;
+                    request.PoslodavacId = selected_poslodavac.KorisnikId;
 
                     Model.Ekspert selected_ekspert = (Model.Ekspert)comboBoxEksperti.SelectedItem;
-                    request.EkspertId = selected_ekspert.EkspertId;
+                    request.EkspertId = selected_ekspert.KorisnikId;
 
                     APIService recenzije = new APIService("RecenzijeOEksperti");
                     bool uspio = false;
@@ -141,10 +141,10 @@ namespace EkspertBooker.DesktopAppUI.Recenzije
                     request.ProjektId = selected_projekt.ProjektId;
 
                     Model.Poslodavac selected_poslodavac = (Model.Poslodavac)comboBoxPoslodavci.SelectedItem;
-                    request.PoslodavacId = selected_poslodavac.PoslodavacId;
+                    request.PoslodavacId = selected_poslodavac.KorisnikId;
 
                     Model.Ekspert selected_ekspert = (Model.Ekspert)comboBoxEksperti.SelectedItem;
-                    request.EkspertId = selected_ekspert.EkspertId;
+                    request.EkspertId = selected_ekspert.KorisnikId;
 
                     bool uspio = false;
                     APIService recenzije = new APIService("RecenzijeOPoslodavci");

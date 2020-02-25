@@ -23,73 +23,84 @@ namespace EkspertBooker.WebAPI.Service
 
         public override List<Model.Korisnik> Get(KorisniciSearchRequest request)
         {
-            var query = _context.Korisnici.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(request?.Ime))
+            if (string.IsNullOrWhiteSpace(request.Username))
             {
-                query = query.Where(k => k.Ime.Contains(request.Ime));
-            }
+                var query = _context.Korisnici.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(request?.Prezime))
-            {
-                query = query.Where(k => k.Prezime.Contains(request.Prezime));
-            }
-
-            List<Database.Korisnik> list = query.Include(k => k.KorisnikUloge).ToList();
-
-            List<Database.Korisnik> filtered_list = new List<Database.Korisnik>();
-
-            if(request.Administratori)
-            {
-                for(int i = 0; i < list.Count; i++ )
+                if (!string.IsNullOrWhiteSpace(request?.Ime))
                 {
-                    foreach(Database.KorisnikUloga uloga in list[i].KorisnikUloge)
+                    query = query.Where(k => k.Ime.Contains(request.Ime));
+                }
+
+                if (!string.IsNullOrWhiteSpace(request?.Prezime))
+                {
+                    query = query.Where(k => k.Prezime.Contains(request.Prezime));
+                }
+
+                List<Database.Korisnik> list = query.Include(k => k.KorisnikUloge).ToList();
+
+                List<Database.Korisnik> filtered_list = new List<Database.Korisnik>();
+
+                if (request.Administratori)
+                {
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        if (uloga.UlogaId == 1)
+                        foreach (Database.KorisnikUloga uloga in list[i].KorisnikUloge)
                         {
-                            filtered_list.Add(list[i]);
-                            break;
+                            if (uloga.UlogaId == 1)
+                            {
+                                filtered_list.Add(list[i]);
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            if (request.Poslodavci)
-            {
-                for (int i = 0; i < list.Count; i++)
+                if (request.Poslodavci)
                 {
-                    foreach (Database.KorisnikUloga uloga in list[i].KorisnikUloge)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        if (uloga.UlogaId == 2)
+                        foreach (Database.KorisnikUloga uloga in list[i].KorisnikUloge)
                         {
-                            filtered_list.Add(list[i]);
-                            break;
+                            if (uloga.UlogaId == 2)
+                            {
+                                filtered_list.Add(list[i]);
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            if (request.Eksperti)
-            {
-                for (int i = 0; i < list.Count; i++)
+                if (request.Eksperti)
                 {
-                    foreach (Database.KorisnikUloga uloga in list[i].KorisnikUloge)
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        if (uloga.UlogaId == 3)
+                        foreach (Database.KorisnikUloga uloga in list[i].KorisnikUloge)
                         {
-                            filtered_list.Add(list[i]);
-                            break;
+                            if (uloga.UlogaId == 3)
+                            {
+                                filtered_list.Add(list[i]);
+                                break;
+                            }
                         }
                     }
                 }
-            }
-            if (request.Administratori || request.Eksperti || request.Poslodavci)
-            {
-                filtered_list = filtered_list.GroupBy(fl => fl.KorisnikId).Select(i => i.First()).ToList();
-                return _mapper.Map<List<Model.Korisnik>>(filtered_list);
+                if (request.Administratori || request.Eksperti || request.Poslodavci)
+                {
+                    filtered_list = filtered_list.GroupBy(fl => fl.KorisnikId).Select(i => i.First()).ToList();
+                    return _mapper.Map<List<Model.Korisnik>>(filtered_list);
+                }
+                else
+                {
+                    return _mapper.Map<List<Model.Korisnik>>(list);
+                }
             } else
             {
-                return _mapper.Map<List<Model.Korisnik>>(list);
+                //if search by username just return 1 user if found
+                var korisnik = _mapper.Map<Model.Korisnik>(_context.Korisnici.Where(k => k.KorisnickoIme == request.Username).Include(k=>k.KorisnikUloge).SingleOrDefault());
+                var list = new List<Model.Korisnik>();
+                list.Add(korisnik);
+                return list;
             }
         }
 
@@ -113,7 +124,7 @@ namespace EkspertBooker.WebAPI.Service
 
             entity.LozinkaHash = lozinka_hash;
             entity.LozinkaSalt = lozinka_salt;
-
+            entity.DatumRegistracije = DateTime.Now;
             _context.Korisnici.Add(entity);
             _context.SaveChanges();
 

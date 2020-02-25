@@ -267,6 +267,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
             mStream.Dispose();
             return bm;
         }
+
         private void buttonSlika_Click(object sender, EventArgs e)
         {
             int size = -1;

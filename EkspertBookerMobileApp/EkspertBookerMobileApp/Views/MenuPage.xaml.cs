@@ -23,6 +23,8 @@ namespace EkspertBookerMobileApp.Views
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" },
                 new HomeMenuItem {Id = MenuItemType.Projekti, Title="Projekti" },
+                new HomeMenuItem {Id = MenuItemType.Eksperti, Title="Eksperti" },
+                new HomeMenuItem {Id = MenuItemType.Poslodavci, Title="Poslodavci" },
             };
 
             ListViewMenu.ItemsSource = menuItems;

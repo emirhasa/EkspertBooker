@@ -16,18 +16,29 @@ namespace EkspertBooker.WebAPI.Service
 
         public override List<Model.Ponuda> Get(PonudeSearchRequest search)
         {
-            if(search.EkspertId.HasValue || search.ProjektId.HasValue)
+            var query = _context.Ponude.AsQueryable();
+
+            if(search.EkspertId.HasValue )
             {
-                if (search.EkspertId.HasValue)
-                {
-                    return _mapper.Map<List<Model.Ponuda>>(_context.Ponude.Where(p => p.EkspertId == search.EkspertId).ToList());
-                }
-                else return _mapper.Map<List<Model.Ponuda>>(_context.Ponude.Where(p => p.ProjektId == search.ProjektId).ToList());
-            } else
-            {
-                return _mapper.Map<List<Model.Ponuda>>(_context.Ponude.ToList());
+                query = query.Where(p => p.EkspertId == search.EkspertId);
             }
+
+            if(search.ProjektId.HasValue)
+            {
+                query = query.Where(p => p.ProjektId == search.ProjektId);
+            }
+
+            if(search.Status.HasValue)
+            {
+                query = query.Where(p => p.Status == search.Status);
+            }
+
+            var result = query.ToList();
+
+            return _mapper.Map<List<Model.Ponuda>>(result);
         }
+
+
 
         public override Model.Ponuda Update(int id, PonudaUpsertRequest request)
         {
@@ -37,7 +48,7 @@ namespace EkspertBooker.WebAPI.Service
             _context.SaveChanges();
             try
             {
-                if (request.Status == true)
+                if (request.Status == 2)
                 {
                     //ako je ponuda prihvacena projekat je sada aktivan, a odbij sve ostale ponude
                     var projekt = _context.Projekti.Find(request.ProjektId);
@@ -49,22 +60,12 @@ namespace EkspertBooker.WebAPI.Service
                     var ostale_ponude = _context.Ponude.Where(p => p.PonudaId != id).ToList();
                     foreach (var item in ostale_ponude)
                     {
-                        item.Status = false;
+                        item.Status = 0;
                     }
                     _context.SaveChanges();
-                    var prihvacena_ponuda = _context.Ponude.Find(id);
-                    prihvacena_ponuda.Status = true;
-                    _context.SaveChanges();
-                    return _mapper.Map<Model.Ponuda>(prihvacena_ponuda);
+                    return _mapper.Map<Model.Ponuda>(request);
                 }
-                else
-                {
-                    //samo odbij ponudu
-                    var odbijena_ponuda = _context.Ponude.Find(id);
-                    odbijena_ponuda.Status = false;
-                    _context.SaveChanges();
-                    return _mapper.Map<Model.Ponuda>(odbijena_ponuda);
-                }
+                return _mapper.Map<Model.Ponuda>(request);
             }
             catch
             {

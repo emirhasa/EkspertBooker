@@ -15,7 +15,6 @@ namespace EkspertBooker.WebAPI.Database
         }
 
         public DbSet<Projekt> Projekti { get; set; }
-
         public DbSet<Ponuda> Ponude { get; set; }
         public DbSet<Kategorija> Kategorije { get; set; }
         public DbSet<KorisnikKategorija> KorisniciKategorije { get; set; }
@@ -61,7 +60,6 @@ namespace EkspertBooker.WebAPI.Database
                 .WithMany(e => e.Projekti)
                 .HasForeignKey(e => e.PoslodavacId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-    
            });
 
 
@@ -138,10 +136,15 @@ namespace EkspertBooker.WebAPI.Database
 
             modelBuilder.Entity<Ekspert>(entity =>
             {
+                entity.HasKey(e => e.KorisnikId);
+                entity.HasOne(e => e.Korisnik).WithOne(e => e.Ekspert);
+
                 entity.HasMany(e => e.Projekti)
                 .WithOne(e => e.Ekspert)
                 .HasForeignKey(e => e.EkspertId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(e => e.KorisnikUloga).WithOne(e => e.Ekspert).OnDelete(DeleteBehavior.Restrict);
 
                 entity.Property(e => e.BrojZavrsenihProjekata).HasDefaultValue(0);
                 entity.Property(e => e.BrojRecenzija).HasDefaultValue(0);
@@ -149,10 +152,15 @@ namespace EkspertBooker.WebAPI.Database
 
             modelBuilder.Entity<Poslodavac>(entity =>
             {
+                entity.HasKey(e => e.KorisnikId);
+                entity.HasOne(e => e.Korisnik).WithOne(e => e.Poslodavac);
+
                 entity.HasMany(e => e.Projekti)
                 .WithOne(e => e.Poslodavac)
                 .HasForeignKey(e => e.PoslodavacId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(e => e.KorisnikUloga).WithOne(e => e.Poslodavac).OnDelete(DeleteBehavior.Restrict);
 
                 entity.Property(e => e.BrojZavrsenihProjekata).HasDefaultValue(0);
                 entity.Property(e => e.BrojRecenzija).HasDefaultValue(0);

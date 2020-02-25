@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace EkspertBookerMobileApp
@@ -13,8 +14,8 @@ namespace EkspertBookerMobileApp
     {
         private readonly string _route;
 
-        public static string Username { get; set; } = "ekspert";
-        public static string Password { get; set; } = "test";
+        public static string Username { get; set; }
+        public static string Password { get; set; }
 
 #if DEBUG
         private string _apiUrl = "http://localhost:55518/api";
@@ -22,14 +23,23 @@ namespace EkspertBookerMobileApp
 #if RELEASE
     private string _apiUrl = "https://test.com";
 #endif
-#if __ANDROID__
-// Android-specific code
-        _apiUrl = "http://10.0.0.2/api";
-#endif
-        //error handling
+
         public APIService(string route)
         {
             _route = route;
+            if(DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                if (DeviceInfo.DeviceType == DeviceType.Physical)
+                {
+                    //android device
+                    _apiUrl = "http://192.168.0.11:55518/api";
+                }
+                else
+                {
+                    //android emulator
+                    _apiUrl = "http://10.0.2.2:55518/api";
+                }
+            }
         }
 
         public async Task<T> Get<T>(object search)
@@ -51,7 +61,7 @@ namespace EkspertBookerMobileApp
                 if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
                 {
                     //MessageBox.Show("Niste authentificirani");
-                    await Application.Current.MainPage.DisplayAlert("Greška", "Niste authentificirani", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Greška", "Niste authentificirani/pogrešan Username ili Lozinka", "OK");
                 }
                 else
                 {
@@ -60,6 +70,7 @@ namespace EkspertBookerMobileApp
                 throw;
             }
         }
+
 
         public async Task<T> Insert<T>(object insert)
         {

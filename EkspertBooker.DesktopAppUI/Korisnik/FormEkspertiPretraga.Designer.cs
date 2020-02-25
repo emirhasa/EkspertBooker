@@ -33,15 +33,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxUkljuciFilter = new System.Windows.Forms.CheckBox();
             this.dataGridViewEksperti = new System.Windows.Forms.DataGridView();
-            this.EkspertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProsjecnaOcjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrojZavrsenihProjekata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonPrikazi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridViewRecenzije = new System.Windows.Forms.DataGridView();
             this.Komentar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ocjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatumRecenzije = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EkspertId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProsjecnaOcjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrojZavrsenihProjekata = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrojProjekata)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEksperti)).BeginInit();
@@ -106,27 +106,6 @@
             this.dataGridViewEksperti.TabIndex = 3;
             this.dataGridViewEksperti.Click += new System.EventHandler(this.dataGridViewEksperti_Click);
             // 
-            // EkspertId
-            // 
-            this.EkspertId.DataPropertyName = "EkspertId";
-            this.EkspertId.HeaderText = "EkspertId";
-            this.EkspertId.Name = "EkspertId";
-            this.EkspertId.ReadOnly = true;
-            // 
-            // ProsjecnaOcjena
-            // 
-            this.ProsjecnaOcjena.DataPropertyName = "ProsjecnaOcjena";
-            this.ProsjecnaOcjena.HeaderText = "Prosjecna Ocjena";
-            this.ProsjecnaOcjena.Name = "ProsjecnaOcjena";
-            this.ProsjecnaOcjena.ReadOnly = true;
-            // 
-            // BrojZavrsenihProjekata
-            // 
-            this.BrojZavrsenihProjekata.DataPropertyName = "BrojZavrsenihProjekata";
-            this.BrojZavrsenihProjekata.HeaderText = "Broj Zavrsenih Projekata";
-            this.BrojZavrsenihProjekata.Name = "BrojZavrsenihProjekata";
-            this.BrojZavrsenihProjekata.ReadOnly = true;
-            // 
             // buttonPrikazi
             // 
             this.buttonPrikazi.Location = new System.Drawing.Point(295, 12);
@@ -187,6 +166,27 @@
             this.DatumRecenzije.Name = "DatumRecenzije";
             this.DatumRecenzije.ReadOnly = true;
             // 
+            // EkspertId
+            // 
+            this.EkspertId.DataPropertyName = "KorisnikId";
+            this.EkspertId.HeaderText = "EkspertId";
+            this.EkspertId.Name = "EkspertId";
+            this.EkspertId.ReadOnly = true;
+            // 
+            // ProsjecnaOcjena
+            // 
+            this.ProsjecnaOcjena.DataPropertyName = "ProsjecnaOcjena";
+            this.ProsjecnaOcjena.HeaderText = "Prosjecna Ocjena";
+            this.ProsjecnaOcjena.Name = "ProsjecnaOcjena";
+            this.ProsjecnaOcjena.ReadOnly = true;
+            // 
+            // BrojZavrsenihProjekata
+            // 
+            this.BrojZavrsenihProjekata.DataPropertyName = "BrojZavrsenihProjekata";
+            this.BrojZavrsenihProjekata.HeaderText = "Broj Zavrsenih Projekata";
+            this.BrojZavrsenihProjekata.Name = "BrojZavrsenihProjekata";
+            this.BrojZavrsenihProjekata.ReadOnly = true;
+            // 
             // FormEkspertiPretraga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,13 +216,13 @@
         private System.Windows.Forms.DataGridView dataGridViewEksperti;
         private System.Windows.Forms.Button buttonPrikazi;
         private System.Windows.Forms.CheckBox checkBoxUkljuciFilter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EkspertId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProsjecnaOcjena;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BrojZavrsenihProjekata;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridViewRecenzije;
         private System.Windows.Forms.DataGridViewTextBoxColumn Komentar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ocjena;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumRecenzije;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EkspertId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProsjecnaOcjena;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojZavrsenihProjekata;
     }
 }

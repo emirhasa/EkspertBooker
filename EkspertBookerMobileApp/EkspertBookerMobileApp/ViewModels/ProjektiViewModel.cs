@@ -17,8 +17,9 @@ namespace EkspertBookerMobileApp.ViewModels
             InitCommand = new Command(async () => await Init());
         }
 
+
+
         private readonly APIService _projektiService = new APIService("Projekti");
-        private readonly APIService _korisniciService = new APIService("Korisnici");
         private readonly APIService _kategorijeService = new APIService("Kategorije");
 
         public ObservableCollection<Projekt> ProjektiList { get; set; } = new ObservableCollection<Projekt>();
@@ -64,6 +65,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 foreach (var item in lista)
                 {
                     ProjektiList.Add(item);
+
                 }
             }
             else

@@ -8,5 +8,6 @@ namespace EkspertBooker.Model.Requests
     {
         public int? EkspertId { get; set; }
         public int? ProjektId { get; set; }
+        public int? Status { get; set; }
     }
 }
