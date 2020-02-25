@@ -19,7 +19,7 @@
                 <StackLayout Padding="30" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Label Text="{Binding Title}" FontSize="Large"></Label>
                 </StackLayout>
-                <StackLayout Padding="30" Grid.Row="1" Grid.Column="0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="30" Grid.Row="1" Grid.Column="0" Orientation="Vertical" HorizontalOptions="FillAndExpand"> 
 
                     <StackLayout Margin="0,0,0,20">
                         <Label Text="Naziv projekta" TextColor="#919191"></Label>
