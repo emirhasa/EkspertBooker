@@ -14,7 +14,7 @@ namespace EkspertBookerMobileApp.ContentViews
     {
 
         public static BindableProperty ButtonTextProperty =
-            BindableProperty.Create("ButtonText", typeof(string), typeof(ImageButton), default(string));
+            BindableProperty.Create("ButtonText", typeof(string), typeof(CVImageButton), default(string));
 
         public string ButtonText
         {
@@ -25,7 +25,7 @@ namespace EkspertBookerMobileApp.ContentViews
         public event EventHandler Clicked;
 
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(ImageButton), null);
+            BindableProperty.Create("Command", typeof(ICommand), typeof(CVImageButton), null);
 
         public ICommand Command
         {
@@ -33,8 +33,8 @@ namespace EkspertBookerMobileApp.ContentViews
             set { SetValue(CommandProperty, value); }
         }
 
-        public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(ImageButton), null);
+    public static readonly BindableProperty CommandParameterProperty =
+            BindableProperty.Create("CommandParameter", typeof(object), typeof(CVImageButton), null);
 
         public object CommandParameter
         {
@@ -43,12 +43,30 @@ namespace EkspertBookerMobileApp.ContentViews
         }
 
         public static readonly BindableProperty ImageSourceProperty =
-            BindableProperty.Create("Source", typeof(ImageSource), typeof(ImageButton), default(ImageSource));
+            BindableProperty.Create("Source", typeof(ImageSource), typeof(CVImageButton), default(ImageSource));
 
         public ImageSource Source
         {
             get { return (ImageSource)GetValue(ImageSourceProperty); }
             set { SetValue(ImageSourceProperty, value); }
+        }
+
+       /* public static readonly BindableProperty BgColorProperty =
+            BindableProperty.Create("BgColor", typeof(Color), typeof(CVImageButton), default(Color));
+
+        public Color BgColor
+        {
+            get { return (Color)GetValue(BgColorProperty); }
+            set { SetValue(BgColorProperty, value); }
+        }*/
+
+        public static BindableProperty BgColorProperty =
+                  BindableProperty.Create("BgColor", typeof(Color), typeof(CVImageButton), default(Color));
+
+        public Color BgColor
+        {
+            get { return (Color)GetValue(BgColorProperty); }
+            set { SetValue(BgColorProperty, value); }
         }
 
         public CVImageButton()
@@ -57,6 +75,7 @@ namespace EkspertBookerMobileApp.ContentViews
 
             innerLabel.SetBinding(Label.TextProperty, new Binding("ButtonText", source: this));
             innerImage.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
+            CVImageButtonFrame.SetBinding(Frame.BackgroundColorProperty, new Binding("BgColor", source:this));
 
             this.GestureRecognizers.Add(new TapGestureRecognizer
             {

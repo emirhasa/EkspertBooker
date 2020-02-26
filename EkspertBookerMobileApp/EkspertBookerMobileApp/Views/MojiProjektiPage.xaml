@@ -8,16 +8,17 @@
              Title="Moji projekti"
              x:Class="EkspertBookerMobileApp.Views.MojiProjektiPage">
     <ContentPage.Content>
-        <StackLayout>   
+        <StackLayout>     
             <StackLayout HorizontalOptions="StartAndExpand">
-                <contentviews:CVImageButton Padding="10" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
-                                            ButtonText="CLICK ME " Source="add_small.png" 
+                <contentviews:CVImageButton x:Name="ButtonUredi" Padding="8" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
+                                            ButtonText="NOVI PROJEKAT " Source="add_small.png" Clicked="CVImageButton_Clicked"
+                                            BgColor="#1d80cf"
                                             Command="{Binding MyCommand}"
                                             />
             </StackLayout>
             <ListView x:Name="MojiProjektiListView" HasUnevenRows="True" VerticalOptions="FillAndExpand" ItemsSource="{Binding MojiProjektiList}" ItemSelected="OnItemSelected"  SelectedItem="{Binding SelectedItem}" >
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate> 
                         <ViewCell >
                             <StackLayout Padding="10" Orientation="Horizontal" BackgroundColor="#ffffff">
                                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">

@@ -1,4 +1,5 @@
 ﻿using EkspertBooker.Model;
+using EkspertBookerMobileApp.ContentViews;
 using EkspertBookerMobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,17 +34,22 @@ namespace EkspertBookerMobileApp.Views
             viewModel.Init();
         }
 
-        private void DostaviPonudu_Clicked(object sender, EventArgs e)
+        private async void DostaviPonudu_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PonudaInsertPage(viewModel.Projekt.ProjektId));
         }
 
-        private void UrediProjekatButton_Clicked(object sender, EventArgs e)
+        private async void UrediProjekatButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ProjektUpsertPage(viewModel.Projekt.ProjektId));
+            CVImageButton button = sender as CVImageButton;
+            await Task.Delay(80);
+            await button.FadeTo(0, 125);
+            await Task.Delay(80);
+            await button.FadeTo(1, 125);
+            await Navigation.PushModalAsync(new ProjektUpsertPage(viewModel.Projekt.ProjektId));
         }
 
-        private void PrikaziPonude_Clicked(object sender, EventArgs e)
+        private async void PrikaziPonude_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new ProjektPonudePage(viewModel.Projekt.ProjektId));
         }

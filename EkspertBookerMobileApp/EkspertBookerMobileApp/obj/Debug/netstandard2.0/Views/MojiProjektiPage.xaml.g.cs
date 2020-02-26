@@ -17,11 +17,15 @@ namespace EkspertBookerMobileApp.Views {
     public partial class MojiProjektiPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButton ButtonUredi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.ListView MojiProjektiListView;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MojiProjektiPage));
+            ButtonUredi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonUredi");
             MojiProjektiListView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "MojiProjektiListView");
         }
     }

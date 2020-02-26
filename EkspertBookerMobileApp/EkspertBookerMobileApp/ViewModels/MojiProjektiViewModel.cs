@@ -35,7 +35,7 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public async Task Command()
         {
-            Application.Current.MainPage.DisplayAlert("Clicked", "CV image clicked", "Great!");
+            //Application.Current.MainPage.DisplayAlert("Clicked", "CV image clicked", "Great!");
         }
         
     }

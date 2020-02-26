@@ -5,11 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="EkspertBookerMobileApp.ContentViews.CVImageButton">
-
-    <Frame CornerRadius="4" HasShadow="True" OutlineColor="Silver" BackgroundColor="RED" HorizontalOptions="CenterAndExpand">
-        <StackLayout Orientation="Horizontal">
-            <Image x:Name="innerImage" WidthRequest="17" HeightRequest="17" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" />
-            <Label x:Name="innerLabel" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
-        </StackLayout>        
+ 
+    <Frame x:Name="CVImageButtonFrame" CornerRadius="4" HasShadow="True" Padding="11" OutlineColor="Silver" HorizontalOptions="CenterAndExpand">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Image x:Name="innerImage" WidthRequest="17" HeightRequest="17" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="innerLabel" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
     </Frame>
 </ContentView>

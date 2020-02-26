@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
-
-
+using EkspertBookerMobileApp.ContentViews;
 
 namespace EkspertBookerMobileApp.Views
 {
@@ -40,8 +39,11 @@ namespace EkspertBookerMobileApp.Views
 
         private async void CVImageButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.DisplayAlert("Test", "test", "test");
-            await model.Command();
+            CVImageButton button = sender as CVImageButton;
+            await Task.Delay(80);
+            await button.FadeTo(0, 125);
+            await Task.Delay(80);
+            await button.FadeTo(1, 125);
         }
     }
 }
