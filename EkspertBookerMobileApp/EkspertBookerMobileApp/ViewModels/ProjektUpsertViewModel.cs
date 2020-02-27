@@ -115,6 +115,13 @@ namespace EkspertBookerMobileApp.ViewModels
         {
             get { return DateTime.Now.AddDays(365); }
         }
+
+        public DateTime? _datumObjave;
+        public DateTime? DatumObjave
+        {
+            get { return _datumObjave; }
+            set { SetProperty(ref _datumObjave, value); }
+        }
         public DateTime? SelectedDatumPocetka
         {
             get { return _selectedDatumPocetka; }
@@ -196,6 +203,7 @@ namespace EkspertBookerMobileApp.ViewModels
             DetaljniOpis = p.DetaljniOpis;
             Trajanje = p.TrajanjeDana;
             Budzet = p.Budzet;
+            DatumObjave = p.DatumObjave;
             SelectedDatumPocetka = p.DatumPocetka;
             if (p.Hitan == true) Hitan = true; else Hitan = false;
             SelectedKategorija = await _kategorijeService.GetById<Kategorija>(p.KategorijaId);
@@ -216,6 +224,7 @@ namespace EkspertBookerMobileApp.ViewModels
                     KategorijaId = SelectedKategorija.KategorijaId,
                     Hitan = Hitan,
                     PoslodavacId = LoggedUser.logovaniKorisnik.KorisnikId,
+                    DatumObjave = DatumObjave,
                     StanjeId = "Licitacija"
                 };
                 if (!string.IsNullOrWhiteSpace(DetaljniOpis)) submit_projekt.DetaljniOpis = DetaljniOpis;
@@ -255,27 +264,46 @@ namespace EkspertBookerMobileApp.ViewModels
         {
             _validationTriggered = true;
             bool pronadjena_greska = false;
+
             if(!ValidationRules.IsNullOrEmptyRule(_naziv))
             {
                 NazivErrorVisible = true;
                 pronadjena_greska = true;
             }
+
             if(!ValidationRules.IsNullOrEmptyRule(_kratkiOpis))
             {
                 KratkiOpisErrorVisible = true;
                 pronadjena_greska = true;
             }
+
             if(!ValidationRules.IsNullOrEmptyRule(_trajanje.ToString()))
             {
                 TrajanjeErrorVisible = true;
                 pronadjena_greska = true;
             }
+
             if(!ValidationRules.IsNullOrEmptyRule(_budzet.ToString()))
             {
                 BudzetErrorVisible = true;
                 pronadjena_greska = true;
             }
-            if(_selectedKategorija == null )
+
+            if (int.TryParse(Budzet.ToString(), out int budzet))
+            {
+                if (budzet < 10 || budzet > 500000)
+                {
+                    BudzetErrorVisible = true;
+                    pronadjena_greska = true;
+                }
+            }
+            else
+            {
+                BudzetErrorVisible = true;
+                pronadjena_greska = true;
+            }
+
+            if (_selectedKategorija == null )
             {
                 KategorijaErrorVisible = true;
                 pronadjena_greska = true;           

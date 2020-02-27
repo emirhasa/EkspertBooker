@@ -13,24 +13,50 @@ namespace EkspertBookerMobileApp.ViewModels
     {
         private readonly APIService _projektiService = new APIService("Projekti");
         Projekt _projekt;
+        int projektId;
         public Projekt Projekt
         {
             get { return _projekt; }
             set { SetProperty(ref _projekt, value); }
         }
-        public ProjektDetailViewModel(Projekt projekt)
+
+        bool _detaljniOpisVisible = false;
+        public bool DetaljniOpisVisible
         {
-            if (projekt != null)
-            {
-                Title = projekt.Naziv;
-                Projekt = projekt;
-            } 
+            get { return _detaljniOpisVisible; }
+            set { SetProperty(ref _detaljniOpisVisible, value); }
+        }
+
+        bool _datumPocetkaVisible = false;
+        public bool DatumPocetkaVisible
+        {
+            get { return _datumPocetkaVisible; }
+            set { SetProperty(ref _datumPocetkaVisible, value); }
+        }
+
+        bool _datumPocetkaAlternateVisible = false;
+        public bool DatumPocetkaAlternateVisible
+        {
+            get { return _datumPocetkaAlternateVisible; }
+            set { SetProperty(ref _datumPocetkaAlternateVisible, value); }
+        }
+
+        public ProjektDetailViewModel(int _projektId)
+        {
+            projektId = _projektId;
+            InitCommand = new Command(async () => await Init());
         }
 
         public ICommand InitCommand { get; set; }
         public async Task Init()
         {
-            Projekt = await _projektiService.GetById<Projekt>(Projekt.ProjektId);
+            Projekt = await _projektiService.GetById<Projekt>(projektId);
+            DetaljniOpisVisible = !string.IsNullOrWhiteSpace(Projekt.DetaljniOpis);
+            DatumPocetkaVisible = !string.IsNullOrWhiteSpace(Projekt.DatumPocetka.ToString());
+            if(!DatumPocetkaVisible)
+            {
+                DatumPocetkaAlternateVisible = true;
+            }
         }
 
     }

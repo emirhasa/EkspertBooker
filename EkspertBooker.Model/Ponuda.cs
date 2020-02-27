@@ -19,6 +19,9 @@ namespace EkspertBooker.Model
 
         public int? Cijena { get; set; }
         public DateTime VrijemePonude { get; set; }
+        public DateTime? VrijemePrihvatanja { get; set; }
+        public DateTime? VrijemeOdbijanja { get; set; }
+        public string PoslodavacKomentar { get; set; }
         public int Status { get; set; }
 
     }

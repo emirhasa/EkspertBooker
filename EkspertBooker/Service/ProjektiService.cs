@@ -55,7 +55,8 @@ namespace EkspertBooker.WebAPI.Service
 
         public override Model.Projekt GetById(int id)
         {
-            return _mapper.Map<Model.Projekt>(_context.Projekti.Include(p => p.ProjektDetalji).Include(p => p.Poslodavac).Where(p=>p.ProjektId == id).SingleOrDefault());
+            var entity = _mapper.Map<Model.Projekt>(_context.Projekti.Include(p => p.ProjektDetalji).Include(p=>p.Kategorija).Include(p => p.Poslodavac).Where(p=>p.ProjektId == id).SingleOrDefault());
+            return entity;
         }
     }
 }

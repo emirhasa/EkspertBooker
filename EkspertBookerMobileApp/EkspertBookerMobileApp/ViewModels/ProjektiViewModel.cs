@@ -17,8 +17,6 @@ namespace EkspertBookerMobileApp.ViewModels
             InitCommand = new Command(async () => await Init());
         }
 
-
-
         private readonly APIService _projektiService = new APIService("Projekti");
         private readonly APIService _kategorijeService = new APIService("Kategorije");
 

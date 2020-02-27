@@ -144,6 +144,20 @@ namespace EkspertBookerMobileApp.ViewModels
                 pronadjena_greska = true;
             }
 
+            if (int.TryParse(Cijena.ToString(), out int cijena))
+            {
+                if (cijena < 10 || cijena > 500000)
+                {
+                    CijenaErrorVisible = true;
+                    pronadjena_greska = true;
+                }
+            }
+            else
+            {
+                CijenaErrorVisible = true;
+                pronadjena_greska = true;
+            }
+
             return !pronadjena_greska;
 
         }

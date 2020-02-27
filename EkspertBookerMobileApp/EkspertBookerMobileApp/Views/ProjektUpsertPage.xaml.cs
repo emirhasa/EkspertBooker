@@ -99,50 +99,53 @@ namespace EkspertBookerMobileApp.Views
 
         private void Budzet_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (model._validationTriggered)
+            var budzet = e.NewTextValue;
+            if (!e.NewTextValue.ToCharArray().All(c => char.IsDigit(c)))
             {
-                //remove any forward 0s if necessary
-                var budzet = e.NewTextValue;
-                if (!string.IsNullOrWhiteSpace(budzet))
+                budzet = budzet.Remove(budzet.Length - 1);
+                ((Entry)sender).Text = budzet;
+            }
+
+            
+            //remove any forward 0s if necessary
+            if (!string.IsNullOrWhiteSpace(budzet))
+            {
+                while (budzet[0] == '0')
                 {
-                    while (budzet[0] == '0')
-                    {
-                        budzet = budzet.Remove(0, 1);
-                        if (budzet.Length == 0) break;
-                    }
-                    if (!ValidationRules.IsNullOrEmptyRule(budzet))
-                    {
-                        BudzetErrorLabel.IsVisible = true;
-                        BudzetErrorLabel.Text = "Unesite budžet!";
-                        return;
-                    }
-                    ((Entry)sender).Text = budzet;
-                    if (int.Parse(budzet) < 10 || int.Parse(budzet) > 500000)
-                    {
-                        BudzetErrorLabel.IsVisible = true;
-                        BudzetErrorLabel.Text = "Budžet treba biti veći od 10 ili manji od 500000!";
-                        if (int.Parse(budzet) > 500000)
-                        {
-                            budzet = 500000.ToString();
-                        }
-                        ((Entry)sender).Text = budzet;
-                        return;
-                    }
-                    BudzetErrorLabel.IsVisible = false;
-                } else
+                    budzet = budzet.Remove(0, 1);
+                    if (budzet.Length == 0) break;
+                }
+                if (!ValidationRules.IsNullOrEmptyRule(budzet))
                 {
                     BudzetErrorLabel.IsVisible = true;
+                    BudzetErrorLabel.Text = "Unesite budžet!";
                     return;
                 }
-
+                ((Entry)sender).Text = budzet;
+                if (int.Parse(budzet) < 10 || int.Parse(budzet) > 500000)
+                {
+                    BudzetErrorLabel.IsVisible = true;
+                    BudzetErrorLabel.Text = "Budžet treba biti veći od 10 ili manji od 500000!";
+                    if (int.Parse(budzet) > 500000)
+                    {
+                        budzet = 500000.ToString();
+                    }
+                    ((Entry)sender).Text = budzet;
+                    return;
+                }
+                BudzetErrorLabel.IsVisible = false;
+            } else
+            {
+                BudzetErrorLabel.IsVisible = true;
+                return;
             }
             return;
         }
 
         private async void Submit_Clicked(object sender, EventArgs e)
         {
-            await model.SubmitProjekt();
-            await Navigation.PopModalAsync();
+            bool uspio = await model.SubmitProjekt();
+            if(uspio)  await Navigation.PopModalAsync();
         }
     }
 }

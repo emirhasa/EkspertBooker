@@ -42,7 +42,7 @@
                 <Label Grid.Row="8" Grid.Column="0"  Grid.ColumnSpan="3"  Text="Cijena" VerticalOptions="Start" FontSize="17"></Label>
                 <Entry Grid.Row="9" Grid.Column="0" Text="{Binding Cijena}" TextChanged="Cijena_TextChanged" VerticalOptions="Start" FontSize="15" Keyboard="Numeric"></Entry>
                 <Label Grid.Row="9" Grid.Column="1" Text="KM" VerticalOptions="Center"></Label>
-                <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Text="Polje je obavezno!" x:Name="CijenaErrorLabel" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding CijenaErrorVisible}" ></Label>
+                <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Text="Cijena mora biti veća od 10 i manja od 500000!!" x:Name="CijenaErrorLabel" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding CijenaErrorVisible}" ></Label>
                 
                 <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="SUBMIT" BackgroundColor="#1d80cf" TextColor="White" Command="{Binding SubmitCommand}"></Button>
             

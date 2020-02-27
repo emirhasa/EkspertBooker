@@ -32,7 +32,9 @@ EkspertBookerMobileApp.UWP.xr.xml
 MainPage.xbf
 Microsoft.UI.Xaml\DensityStyles\Compact.xbf
 cancel.png
+icon_details.png
 icon_edit.png
+icon_ponude.png
 Properties\Default.rd.xml
 save.png
 xamarin_logo.png

@@ -1,4 +1,5 @@
-﻿using EkspertBookerMobileApp.ViewModels;
+﻿using EkspertBooker.Model;
+using EkspertBookerMobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,16 @@ namespace EkspertBookerMobileApp.Views
         {
             base.OnAppearing();
             await model.Init();
+        }
+
+        private async void Ponuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Ponuda ponuda = e.SelectedItem as Ponuda;
+            if (ponuda == null) return;
+
+            await Navigation.PushAsync(new PonudaDetaljiPage(ponuda.PonudaId));
+
+            PonudeListView.SelectedItem = null;
         }
     }
 }

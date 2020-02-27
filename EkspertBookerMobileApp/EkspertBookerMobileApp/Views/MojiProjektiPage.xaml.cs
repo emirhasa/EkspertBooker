@@ -34,7 +34,7 @@ namespace EkspertBookerMobileApp.Views
             var item = args.SelectedItem as Projekt;
             if (item == null) return;
 
-            await Navigation.PushAsync(new ProjektDetailPage(new ProjektDetailViewModel(item)));
+            await Navigation.PushAsync(new ProjektDetailPage(item.ProjektId));
         }
 
         private async void CVImageButton_Clicked(object sender, EventArgs e)

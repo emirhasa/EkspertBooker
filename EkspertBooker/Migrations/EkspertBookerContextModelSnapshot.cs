@@ -173,11 +173,17 @@ namespace EkspertBooker.WebAPI.Migrations
 
                     b.Property<string>("OpisPonude");
 
+                    b.Property<string>("PoslodavacKomentar");
+
                     b.Property<int>("ProjektId");
 
                     b.Property<int>("Status");
 
+                    b.Property<DateTime?>("VrijemeOdbijanja");
+
                     b.Property<DateTime>("VrijemePonude");
+
+                    b.Property<DateTime?>("VrijemePrihvatanja");
 
                     b.HasKey("PonudaId");
 

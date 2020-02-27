@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EkspertBooker.Model.Requests;
 using EkspertBooker.WebAPI.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace EkspertBooker.WebAPI.Service
     {
         public PonudeService(EkspertBookerContext context, IMapper mapper) :base(context, mapper)
         {
+        }
+
+        public override Model.Ponuda GetById(int id)
+        {
+            var ponuda = _context.Ponude.Include(p => p.Ekspert).ThenInclude(e => e.Korisnik).Where(p => p.PonudaId == id).SingleOrDefault();
+            return _mapper.Map<Model.Ponuda>(ponuda);
         }
 
         public override List<Model.Ponuda> Get(PonudeSearchRequest search)
@@ -33,7 +40,7 @@ namespace EkspertBooker.WebAPI.Service
                 query = query.Where(p => p.Status == search.Status);
             }
 
-            var result = query.ToList();
+            var result = query.Include(p=>p.Ekspert).ThenInclude(e=>e.Korisnik).ToList();
 
             return _mapper.Map<List<Model.Ponuda>>(result);
         }
@@ -57,11 +64,11 @@ namespace EkspertBooker.WebAPI.Service
                     {
                         StanjeId = "Aktivan"
                     };
-                    var ostale_ponude = _context.Ponude.Where(p => p.PonudaId != id).ToList();
+                    /*var ostale_ponude = _context.Ponude.Where(p => p.PonudaId != id).ToList();
                     foreach (var item in ostale_ponude)
                     {
                         item.Status = 0;
-                    }
+                    }*/
                     _context.SaveChanges();
                     return _mapper.Map<Model.Ponuda>(request);
                 }

@@ -45,10 +45,15 @@ namespace EkspertBookerMobileApp.Views
 
         private void Cijena_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var cijena = e.NewTextValue;
+            if (!e.NewTextValue.ToCharArray().All(c => char.IsDigit(c)))
+            {
+                cijena = cijena.Remove(cijena.Length - 1);
+                ((Entry)sender).Text = cijena;
+            }
             if (model.ValidationTriggered)
             {
                 //remove any forward 0s if necessary
-                var cijena = e.NewTextValue;
                 if (!string.IsNullOrWhiteSpace(cijena))
                 {
                     while (cijena[0] == '0')
