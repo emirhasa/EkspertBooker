@@ -30,13 +30,13 @@ namespace EkspertBooker.WebAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public override ActionResult<Model.Korisnik> Update(int id, KorisnikUpsertRequest request)
         {
             return _service.Update(id, request);
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public override ActionResult<bool> Delete(int id)
         {
             return _service.Delete(id);

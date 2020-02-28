@@ -82,10 +82,12 @@ namespace EkspertBookerMobileApp.Views
             }
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void PrihvacenaPonuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Ponuda prihvacena = e.SelectedItem as Ponuda;
+            if (prihvacena == null) return;
             Navigation.PushAsync(new PonudaDetaljiPage(prihvacena.PonudaId));
+            PrihvacenaPonudaListView.SelectedItem = null;
         }
 
     }

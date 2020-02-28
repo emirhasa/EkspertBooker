@@ -50,7 +50,8 @@ namespace EkspertBooker.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Naziv");
+                    b.Property<string>("Naziv")
+                        .HasMaxLength(100);
 
                     b.HasKey("KategorijaId");
 
@@ -78,17 +79,19 @@ namespace EkspertBooker.WebAPI.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("LozinkaHash")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.Property<string>("LozinkaSalt")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.Property<string>("Prezime")
                         .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("Telefon")
-                        .HasMaxLength(50);
+                        .HasMaxLength(30);
 
                     b.HasKey("KorisnikId");
 
@@ -130,7 +133,8 @@ namespace EkspertBooker.WebAPI.Migrations
 
                     b.Property<byte[]>("ProfilnaSlika");
 
-                    b.Property<string>("SlikaNaziv");
+                    b.Property<string>("SlikaNaziv")
+                        .HasMaxLength(300);
 
                     b.HasKey("KorisnikSlikaId");
 

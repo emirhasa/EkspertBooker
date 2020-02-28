@@ -172,7 +172,7 @@ namespace EkspertBooker.WebAPI.Service
             return _mapper.Map<Model.Korisnik>(entity);
         }
 
-        [Authorize(Roles = "Administrator")]
+
         public override Model.Korisnik Update(int id, KorisnikUpsertRequest request)
         {
             var entity = _context.Korisnici.Include(k=>k.KorisnikSlika).Where(k=>k.KorisnikId == id).SingleOrDefault();

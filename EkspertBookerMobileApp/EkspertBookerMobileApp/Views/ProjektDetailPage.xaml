@@ -33,12 +33,12 @@
                                                 />
 
                         <contentviews:CVImageButton x:Name="ButtonDetaljno" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="DETALJI" Source="icon_details.png" Clicked="Ponude_Clicked"
+                                                ButtonText="DETALJI" Source="icon_details.png" Clicked="Detaljno_Clicked"
                                                 BgColor="ForestGreen"
                                                 />
 
                         <contentviews:CVImageButton x:Name="ButtonPonude" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="PONUDE" Source="icon_ponude.png" Clicked="Detaljno_Clicked"
+                                                ButtonText="PONUDE" Source="icon_ponude.png" Clicked="Ponude_Clicked"
                                                 BgColor="IndianRed"
                                                 />
 

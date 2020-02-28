@@ -62,6 +62,10 @@ namespace EkspertBooker.WebAPI.Database
                 .OnDelete(DeleteBehavior.ClientSetNull);
            });
 
+            modelBuilder.Entity<Kategorija>(entity =>
+            {
+                entity.Property(e => e.Naziv).HasMaxLength(100);
+            });
 
             modelBuilder.Entity<ProjektDetalji>(entity =>
             {
@@ -71,6 +75,7 @@ namespace EkspertBooker.WebAPI.Database
             modelBuilder.Entity<KorisnikSlika>(entity =>
             {
                 entity.HasOne(e => e.Korisnik).WithOne(e => e.KorisnikSlika);
+                entity.Property(e => e.SlikaNaziv).HasMaxLength(300);
                 entity.HasIndex(e => e.KorisnikId).IsUnique();
             });
 
@@ -89,7 +94,9 @@ namespace EkspertBooker.WebAPI.Database
                 entity.Property(e => e.Ime).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.Prezime).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(50);
-                entity.Property(e => e.Telefon).HasMaxLength(50);
+                entity.Property(e => e.Telefon).HasMaxLength(30);
+                entity.Property(e => e.LozinkaHash).HasMaxLength(200);
+                entity.Property(e => e.LozinkaSalt).HasMaxLength(200);
                 entity.Property(e => e.KorisnickoIme).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.LozinkaHash).IsRequired();
                 entity.Property(e => e.LozinkaSalt).IsRequired();
