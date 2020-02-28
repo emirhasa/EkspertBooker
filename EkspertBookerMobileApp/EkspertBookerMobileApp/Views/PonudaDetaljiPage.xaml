@@ -10,51 +10,13 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <!--<Grid x:Name="ToolbarPoslodavacAktivanProjekt" ColumnSpacing="0" RowSpacing="0">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <StackLayout Margin="0,8,0,0" x:Name="PoslodavacToolbarLicitacija" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="StartAndExpand" Orientation="Horizontal" IsVisible="True">
-                        <contentviews:CVImageButton x:Name="ButtonUredi" Padding="8, 0, 0, 0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="PRIHVATI" Source="icon_accept.png" Clicked="ButtonPrihvati_Clicked"
-                                                BgColor="ForestGreen"
-                                                />
-
-                        <contentviews:CVImageButton x:Name="ButtonDetaljno" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="ODBIJ" Source="icon_reject.png" Clicked="ButtonOdbij_Clicked"
-                                                BgColor="Red"
-                                                />
-
-                        <contentviews:CVImageButton x:Name="ButtonPonude" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                            ButtonText="PONUDE" Source="icon_ponude.png" Clicked="Ponude_Clicked"
-                                                        BgColor="IndianRed"
-                                            Command="{Binding MyCommand}"
-                                            />
-
-                    </StackLayout>
-
-                </Grid>-->
 
                 <Frame x:Name="FinalPrihvatiForm" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE"
-                       Opacity="0.8">
+                       Opacity="0.8" IsVisible="{Binding FormPrihvatiVisible}">
                     <StackLayout Spacing="0">
                         <Label Text="Komentar: (nije obavezno)" Opacity="0.7"></Label>
                         <Entry x:Name="KomentarEntry" Text="{Binding PoslodavacKomentar}"></Entry>
-                        <!--<contentviews:CVImageButton x:Name="ButtonPrihvatiFinal" Padding="8, 0, 0, 0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="POTVRDI" Source="icon_accept.png" Clicked="ButtonPrihvatiFinal_Clicked"
-                                                BgColor="ForestGreen"
-                                                />
-                        <contentviews:CVImageButton x:Name="ButtonPrihvatiCancel" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="NAZAD" Source="icon_reject.png" Clicked="ButtonPrihvatiCancel_Clicked"
-                                                BgColor="Red"
-                                                />-->
+                        
                         <StackLayout Spacing="0" Orientation="Horizontal">
                             <contentviews:CVImageButton x:Name="ButtonUredi" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"
                                                 ButtonText="PRIHVATI" Source="icon_accept.png" Clicked="ButtonPrihvati_Clicked"
@@ -70,29 +32,12 @@
                     </StackLayout>
                 </Frame> 
 
-                <!--<Frame x:Name="FinalOdbijForm" Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE"
-                        Opacity="0" IsVisible="False">
-                    <StackLayout Spacing="0">
-                        <Label Text="Komentar: (nije obavezno)" Opacity="0.7"></Label>
-                        <Entry Text="{Binding PoslodavacKomentarOdbij}"></Entry>
-                        <contentviews:CVImageButton x:Name="ButtonOdbijFinal" Padding="8, 0, 0, 0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="POTVRDI" Source="icon_accept.png" Clicked="ButtonOdbijFinal_Clicked"
-                                                BgColor="ForestGreen"
-                                                />
-                        <contentviews:CVImageButton x:Name="ButtonOdbijCancel" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="NAZAD" Source="icon_reject.png" Clicked="ButtonOdbijCancel_Clicked"
-                                                BgColor="Red"
-                                                />
-                    </StackLayout>
-                </Frame>-->
-
                 <Frame Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
 
                     <StackLayout>
 
-                        <!--<StackLayout Orientation="Horizontal">
-                            <Label Text="Ekspert info" FontSize="25" HorizontalTextAlignment="Start" Margin="0,3,0,0"></Label>
-                        </StackLayout>-->
+                        <Label Text="{Binding PonudaStanjeText, StringFormat='Status: {0}'}" TextColor="{Binding PonudaStanjeColor}" FontAttributes="Bold" FontSize="25"></Label>
+                        
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="60"></RowDefinition>
@@ -127,7 +72,21 @@
                         <StackLayout>
                             <StackLayout Orientation="Vertical" Margin="0,0,0,10">
                                 <Label Text="Vrijeme ponude:" Opacity="0.7"></Label>
-                                <Label Text="{Binding Ponuda.VrijemePonude, StringFormat='{0:dd.MM.yyyy HH:mm:ss}'}"></Label>
+                                <Label Text="{Binding Ponuda.VrijemePonude, StringFormat='{0:dd.MM.yyyy HH:mm}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" IsVisible="{Binding PoslodavacAkcijaVrijemeVisible}">
+                            <StackLayout Orientation="Vertical" Margin="0,0,0,10">
+                                <Label Text="{Binding PoslodavacAkcijaText}" Opacity="0.7"></Label>
+                                <Label Text="{Binding VrijemePoslodavacAkcije, StringFormat='{0:dd.MM.yyyy HH:mm}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" IsVisible="{Binding PoslodavacKomentarVisible}">
+                            <StackLayout Orientation="Vertical" Margin="0,0,0,10">
+                                <Label Text="Komentar poslodavca:" Opacity="0.7"></Label>
+                                <Label Text="{Binding Ponuda.PoslodavacKomentar}"></Label>
                             </StackLayout>
                         </StackLayout>
 

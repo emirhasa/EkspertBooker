@@ -25,16 +25,68 @@ namespace EkspertBookerMobileApp.Views
         {
             base.OnAppearing();
             await model.Init();
+            await model.UcitajOdbijenePonude();
+            await model.UcitajAktivnePonude();
+            
+            if (PonudeFilterPicker.Items.Count == 0)
+            {
+                PonudeFilterPicker.Items.Add("Aktivne");
+                PonudeFilterPicker.Items.Add("Odbijene");
+                PonudeFilterPicker.SelectedItem = "Aktivne";
+            }
+
+            if(PonudeFilterPicker.SelectedItem == "Aktivne")
+            {
+                AktivnePonude.IsVisible = true;
+                OdbijenePonude.IsVisible = false;
+            } else
+            {
+                AktivnePonude.IsVisible = false;
+                OdbijenePonude.IsVisible = true;
+            }
         }
 
-        private async void Ponuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void AktivnaPonuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Ponuda ponuda = e.SelectedItem as Ponuda;
             if (ponuda == null) return;
 
             await Navigation.PushAsync(new PonudaDetaljiPage(ponuda.PonudaId));
 
-            PonudeListView.SelectedItem = null;
+            AktivnePonudeListView.SelectedItem = null;
         }
+
+
+        private async void OdbijenaPonuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Ponuda ponuda = e.SelectedItem as Ponuda;
+            if (ponuda == null) return;
+            await Navigation.PushAsync(new PonudaDetaljiPage(ponuda.PonudaId));
+
+            AktivnePonudeListView.SelectedItem = null;
+        }
+
+        private async void PonudeFilterPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker filter = sender as Picker;
+            if (filter.SelectedItem == "Aktivne")
+            {
+                await model.UcitajAktivnePonude();
+                AktivnePonude.IsVisible = true;
+                OdbijenePonude.IsVisible = false;
+            } else
+            {
+                await model.UcitajOdbijenePonude();
+                AktivnePonude.IsVisible = false;
+                OdbijenePonude.IsVisible = true;
+            }
+        }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Ponuda prihvacena = e.SelectedItem as Ponuda;
+            Navigation.PushAsync(new PonudaDetaljiPage(prihvacena.PonudaId));
+        }
+
     }
 }

@@ -40,3 +40,5 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\EkspertBookerMobileApp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\ref\EkspertBookerMobileApp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\EkspertBookerMobileApp.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\EkspertUrediProfilPage.xaml.g.cs
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavacUrediProfilPage.xaml.g.cs

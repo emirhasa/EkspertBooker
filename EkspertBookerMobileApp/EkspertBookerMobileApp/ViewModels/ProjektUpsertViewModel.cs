@@ -84,7 +84,7 @@ namespace EkspertBookerMobileApp.ViewModels
         //perhaps could be modelled into a project object insect
         string _naziv = null;
         string _kratkiOpis = null;
-        DateTime? _selectedDatumPocetka = DateTime.Now;
+        DateTime? _selectedDatumPocetka = null;
         int? _trajanje = null;
         int? _budzet = null;
         Kategorija _selectedKategorija = null;

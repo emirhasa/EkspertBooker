@@ -35,7 +35,7 @@
                     
                     <StackLayout Margin="0,0,0,25">
                         <Label Text="Datum početka(ca.)" TextColor="#919191"></Label>
-                        <DatePicker TextColor="#454545" WidthRequest="100" MinimumDate="{Binding MinDatumPocetka}"
+                        <DatePicker TextColor="#454545" WidthRequest="100" MinimumDate="{Binding MinDatumPocetka}" 
                                 MaximumDate="{Binding MaxDatumPocetka}"
                                 Date="{Binding SelectedDatumPocetka}">
                             <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>

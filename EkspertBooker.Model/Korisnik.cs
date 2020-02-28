@@ -13,6 +13,7 @@ namespace EkspertBooker.Model
         public string Telefon { get; set; }
         public string KorisnickoIme { get; set; }
         public bool? Status { get; set; }
+        public DateTime? DatumRegistracije { get; set; }
 
         public ICollection<KorisnikUloga> KorisnikUloge { get; set; }
 

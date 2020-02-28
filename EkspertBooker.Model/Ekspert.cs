@@ -8,6 +8,7 @@
         public Korisnik Korisnik { get; set; }
         public float ProsjecnaOcjena { get; set; }
         public int BrojZavrsenihProjekata { get; set; }
+        public int BrojRecenzija { get; set; }
 
     }
 }

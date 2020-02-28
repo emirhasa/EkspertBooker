@@ -109,8 +109,10 @@
     <Content Include="icon_accept.png" />
     <Content Include="icon_details.png" />
     <Content Include="icon_edit.png" />
+    <Content Include="icon_ekspert_request.png" />
     <Content Include="icon_ponude.png" />
     <Content Include="icon_reject.png" />
+    <Content Include="icon_review.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />

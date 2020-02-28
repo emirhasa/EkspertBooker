@@ -7,7 +7,9 @@
              mc:Ignorable="d"
              x:Class="EkspertBookerMobileApp.Views.ProjektPonudePage">
     <ContentPage.Content>
+        
         <ScrollView>
+            
             <StackLayout Padding="8"> 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{Binding Projekt.Naziv}" FontSize="25" HorizontalTextAlignment="Start" Margin="0,3,0,0"></Label>
@@ -17,53 +19,30 @@
                         <Label Text="{Binding Projekt.KratkiOpis}"  HorizontalOptions="Start" LineBreakMode="WordWrap"></Label>
                     </StackLayout>
                 </StackLayout>
-                <BoxView HorizontalOptions="StartAndExpand" BackgroundColor="LightGray" WidthRequest="500" HeightRequest="1"></BoxView>
-                <Label Text="Lista ponuda" FontSize="17" ></Label>
-                <ListView x:Name="PonudeListView" ItemsSource="{Binding PonudeList}" HasUnevenRows="True" ItemSelected="Ponuda_ItemSelected" SelectionMode="Single" SeparatorVisibility="None">
-                    <ListView.ItemTemplate>
+
+                <Label Text="Nijedna ponuda još nije prihvaćena!" TextColor="Red" FontSize="15" FontAttributes="Bold"  IsVisible="{Binding NemaPrihvacena}"></Label>
+                <ListView ItemsSource="{Binding PrihvacenaPonudaList}" HeightRequest="150" HasUnevenRows="True" ItemSelected="ListView_ItemSelected" IsVisible="{Binding ImaPrihvacena}">
+                    <ListView.ItemTemplate> 
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Padding="10" CornerRadius="4" Margin="0,3" OutlineColor="LightGray">
+                                <Frame Padding="10" CornerRadius="4" Margin="0,3" OutlineColor="LightGray" BackgroundColor="ForestGreen">
                                     <StackLayout>
+                                        <Label Text="PRIHVAĆENA PONUDA" FontSize="25" FontAttributes="Bold" TextColor="White"></Label>
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="23"></RowDefinition>
+                                                <RowDefinition Height="23"></RowDefinition>
+                                                <RowDefinition Height="23"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="3*"></ColumnDefinition>
                                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding Ekspert.Korisnik}" HorizontalTextAlignment="Start"></Label>
+                                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding Ekspert.Korisnik}"  TextColor="White" HorizontalTextAlignment="Start"></Label>
 
-
-                                            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                                <Label HorizontalOptions="StartAndExpand" Text="Avg. ocjena: ">
-                                                </Label>
-                                                <Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.ProsjecnaOcjena, StringFormat='{0}'}" TextColor="Red"></Label>
-                                            </StackLayout>
-
-                                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Naslov}"></Label>
-                                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                                <Label HorizontalOptions="StartAndExpand" Text="Završio projekata: ">
-                                                </Label><Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.BrojZavrsenihProjekata, StringFormat='{0}'}" TextColor="Red"></Label>
-                                            </StackLayout>
-                                            <Label Grid.Row="2" Text="{Binding OpisPonude}"></Label>
-                                            <!--<StackLayout  Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" Orientation="Vertical">
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label HorizontalOptions="StartAndExpand" Text="Avg. ocjena: " Opacity="0.7"></Label>
-                                                    <Label HorizontalOptions="EndAndExpand" FontAttributes="Bold" Text="{Binding Ekspert.ProsjecnaOcjena}"></Label>
-                                                </StackLayout>
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label HorizontalOptions="StartAndExpand" Text="Završio projekata: " Opacity="0.7"></Label>
-                                                    <Label HorizontalOptions="EndAndExpand" FontAttributes="Bold" Text="{Binding Ekspert.BrojZavrsenihProjekata}"></Label>
-                                                </StackLayout>
-                                            </StackLayout>--> 
-
-                                            <!--<Label Text="{Binding Naslov}" FontSize="16"></Label>
-                                            <Label Text="{Binding OpisPonude}" FontSize="13"></Label>-->
+                                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Naslov}" TextColor="White"></Label>
+                                            <Label Grid.Row="2" Text="{Binding OpisPonude}" TextColor="White"></Label>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>
@@ -71,6 +50,102 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <BoxView BackgroundColor="LightGray" WidthRequest="500" HeightRequest="1"></BoxView>
+                <Label Text="Filter" FontSize="19"></Label>
+                
+                <Picker x:Name="PonudeFilterPicker" Title="Stanje ponude" SelectedIndexChanged="PonudeFilterPicker_SelectedIndexChanged">
+                </Picker> 
+
+                <StackLayout x:Name="AktivnePonude" IsVisible="True" Spacing="0"> 
+                    <Label Text="Lista aktivnih ponuda" FontSize="17" ></Label>
+                    <Label Text="Nema aktivnih ponuda!" IsVisible="{Binding NemaAktivnih}"></Label>
+                    <ListView x:Name="AktivnePonudeListView" ItemsSource="{Binding AktivnePonudeList}" IsVisible="True" HasUnevenRows="True" ItemSelected="AktivnaPonuda_ItemSelected" SelectionMode="Single" SeparatorVisibility="None">
+                        <ListView.ItemTemplate> 
+                            <DataTemplate>  
+                                <ViewCell>
+                                    <Frame Padding="10" CornerRadius="4" Margin="0,3" OutlineColor="LightGray" BackgroundColor="Yellow">  
+                                        <StackLayout> 
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="23"></RowDefinition>
+                                                    <RowDefinition Height="23"></RowDefinition> 
+                                                    <RowDefinition Height="23"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding Ekspert.Korisnik}" HorizontalTextAlignment="Start"></Label>
+
+
+                                                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label HorizontalOptions="StartAndExpand" Text="Avg. ocjena: ">
+                                                    </Label>
+                                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.ProsjecnaOcjena, StringFormat='{0}'}" FontAttributes="Bold" ></Label>
+                                                </StackLayout>
+
+                                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Naslov}"></Label>
+                                                <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label HorizontalOptions="StartAndExpand" Text="Završio projekata: ">
+                                                    </Label><Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.BrojZavrsenihProjekata, StringFormat='{0}'}" FontAttributes="Bold" ></Label>
+                                                </StackLayout>
+                                                <Label Grid.Row="2" Text="{Binding OpisPonude}"></Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate> 
+                        </ListView.ItemTemplate>
+                    </ListView> 
+                </StackLayout>
+
+                <StackLayout x:Name="OdbijenePonude" IsVisible="False" Spacing="0">
+                    <Label Text="Lista odbijenih ponuda" FontSize="17" ></Label>
+                    <Label Text="Nema odbijenih ponuda!" IsVisible="{Binding NemaOdbijenih}"></Label>
+                    <ListView x:Name="OdbijenePonudeListView" ItemsSource="{Binding OdbijenePonudeList}" IsVisible="True" HasUnevenRows="True" ItemSelected="OdbijenaPonuda_ItemSelected" SelectionMode="Single" SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="10" CornerRadius="4" Margin="0,3" OutlineColor="LightGray" BackgroundColor="IndianRed">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding Ekspert.Korisnik}" TextColor="White" HorizontalTextAlignment="Start"></Label>
+
+
+                                                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label HorizontalOptions="StartAndExpand" Text="Avg. ocjena: "  TextColor="White" >
+                                                    </Label>
+                                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.ProsjecnaOcjena, StringFormat='{0}'}" TextColor="White" ></Label>
+                                                </StackLayout>
+
+                                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Naslov}"  TextColor="White" ></Label>
+                                                <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label HorizontalOptions="StartAndExpand" Text="Završio projekata: "  TextColor="White" >
+                                                    </Label>
+                                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.BrojZavrsenihProjekata, StringFormat='{0}'}" TextColor="White" ></Label>
+                                                </StackLayout>
+                                                <Label Grid.Row="2" Text="{Binding OpisPonude}"  TextColor="White" ></Label>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

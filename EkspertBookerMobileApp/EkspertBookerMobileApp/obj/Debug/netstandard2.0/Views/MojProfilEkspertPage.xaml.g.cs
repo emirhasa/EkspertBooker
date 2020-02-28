@@ -17,8 +17,24 @@ namespace EkspertBookerMobileApp.Views {
     public partial class MojProfilEkspertPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Grid ToolbarPoslodavacAktivanProjekt;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButton ButtonUredi;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButton ButtonDetaljno;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButton ButtonPonude;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MojProfilEkspertPage));
+            ToolbarPoslodavacAktivanProjekt = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Grid>(this, "ToolbarPoslodavacAktivanProjekt");
+            ButtonUredi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonUredi");
+            ButtonDetaljno = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonDetaljno");
+            ButtonPonude = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonPonude");
         }
     }
 }

@@ -3,13 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contentviews="clr-namespace:EkspertBookerMobileApp.ContentViews"
+             Title="Moj profil"
              mc:Ignorable="d"
              x:Class="EkspertBookerMobileApp.Views.MojProfilEkspertPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Ekspert profil!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid x:Name="ToolbarPoslodavacAktivanProjekt" ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                    <contentviews:CVImageButton x:Name="ButtonUredi" Padding="8, 0, 0, 0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                            ButtonText="UREDI" Source="icon_edit.png" Clicked="Uredi_Clicked"
+                                            BgColor="Orange"
+                                            />
+
+                    <contentviews:CVImageButton x:Name="ButtonDetaljno" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                            ButtonText="RECENZIJE" Source="icon_review.png" Clicked="Recenzije_Clicked"
+                                            BgColor="ForestGreen"
+                                            />
+
+                    <contentviews:CVImageButton x:Name="ButtonPonude" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                        ButtonText="ZAHTJEV" Source="icon_ekspert_request.png" Clicked="ZahtjevZaRecenziju_Clicked"
+                                                    BgColor="#1d80cf"
+                                        />
+
+                </StackLayout>
+                
+            </Grid>
+
+            <Frame Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Korisnik info" FontSize="20" HorizontalTextAlignment="Start" Opacity="0.7" Margin="0,3,0,0"></Label>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout  Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" Spacing="0" Margin="0,8,0,0">
+                            <Label HorizontalOptions="Start" Text="Ime i prezime: " Opacity="0.7"  MaxLines="1" HorizontalTextAlignment="Start"></Label>
+                            <Label HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding TrenutniKorisnik}" MaxLines="3" Margin="0" Padding="0" HorizontalTextAlignment="Start"></Label>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" Orientation="Vertical" Spacing="0" Margin="0,8,0,0">
+                            <Label HorizontalOptions="StartAndExpand" Text="Telefon: " Opacity="0.7"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="{Binding TrenutniKorisnik.Telefon}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="1" Grid.Column="0" HorizontalOptions="StartAndExpand" Spacing="0" Margin="0,8,0,0">
+                            <Label HorizontalOptions="Start" Text="Email: " Opacity="0.7"  MaxLines="1" HorizontalTextAlignment="Start"></Label>
+                            <Label HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding TrenutniKorisnik.Email}" MaxLines="3" Margin="0" Padding="0" HorizontalTextAlignment="Start"></Label>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="1" Grid.Column="1" HorizontalOptions="StartAndExpand" Orientation="Vertical" Spacing="0" Margin="0,8,0,0">
+                            <Label HorizontalOptions="StartAndExpand" Text="Datum registracije: " Opacity="0.7"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="{Binding TrenutniKorisnik.DatumRegistracije, StringFormat='{0:dd.MM.yyyy}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="2" Grid.Column="0" HorizontalOptions="StartAndExpand" Orientation="Vertical" Spacing="0" Margin="0,8,0,0">
+                            <Label HorizontalOptions="StartAndExpand" Text="Username: " Opacity="0.7"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="{Binding TrenutniKorisnik.KorisnickoIme, StringFormat='{0:dd.MM.yyyy}'}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout Orientation="Horizontal" Margin="0,8,0,0" Spacing="0">
+                        <Label Text="Ekspert info" FontSize="20" HorizontalTextAlignment="Start" Opacity="0.7" Margin="0,25,0,0"></Label>
+                    </StackLayout>
+                    <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout  Grid.Row="0" Grid.Column="0" Spacing="0" HorizontalOptions="StartAndExpand" Margin="0,8,0,0">
+                            <Label HorizontalOptions="Start" Text="Završeno projekata: " Opacity="0.7"  MaxLines="1" HorizontalTextAlignment="Start"></Label>
+                            <Label HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding TrenutniEkspert.BrojZavrsenihProjekata}" MaxLines="3" Margin="0" Padding="0" HorizontalTextAlignment="Start"></Label>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="0" Grid.Column="1" Spacing="0" HorizontalOptions="StartAndExpand" Orientation="Vertical" Margin="0,8,0,0">
+                            <Label HorizontalOptions="StartAndExpand" Text="Prosječna ocjena: " Opacity="0.7"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="{Binding TrenutniEkspert.ProsjecnaOcjena}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout  Grid.Row="1" Grid.Column="0" Spacing="0" HorizontalOptions="StartAndExpand" Margin="0,8,0,0">
+                            <Label HorizontalOptions="Start" Text="Broj recenzija: " Opacity="0.7"  MaxLines="1" HorizontalTextAlignment="Start"></Label>
+                            <Label HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding TrenutniEkspert.BrojRecenzija}" MaxLines="3" Margin="0" Padding="0" HorizontalTextAlignment="Start"></Label>
+                        </StackLayout>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

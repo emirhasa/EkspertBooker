@@ -32,6 +32,8 @@ namespace EkspertBookerMobileApp.Views
             if(confirm)
             {
                 model.PotvrdiPonudu();
+                FinalPrihvatiForm.IsVisible = false;
+                Navigation.PopAsync();
             } else
             {
                 KomentarEntry.Text = null;
@@ -44,6 +46,8 @@ namespace EkspertBookerMobileApp.Views
             if (confirm)
             {
                 model.OdbijPonudu();
+                FinalPrihvatiForm.IsVisible = false;
+                Navigation.PopAsync();
             }
             else
             {

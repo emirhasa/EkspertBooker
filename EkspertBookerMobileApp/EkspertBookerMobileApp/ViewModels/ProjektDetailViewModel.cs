@@ -56,6 +56,9 @@ namespace EkspertBookerMobileApp.ViewModels
             if(!DatumPocetkaVisible)
             {
                 DatumPocetkaAlternateVisible = true;
+            } else
+            {
+                DatumPocetkaAlternateVisible = false;
             }
         }
 

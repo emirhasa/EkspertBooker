@@ -50,32 +50,32 @@ namespace EkspertBooker.WebAPI.Service
         public override Model.Ponuda Update(int id, PonudaUpsertRequest request)
         {
             var entity = _context.Set<Ponuda>().Find(id);
-
             _mapper.Map(request, entity);
-            _context.SaveChanges();
             try
             {
                 if (request.Status == 2)
                 {
                     //ako je ponuda prihvacena projekat je sada aktivan, a odbij sve ostale ponude
                     var projekt = _context.Projekti.Find(request.ProjektId);
-                    if (projekt.StanjeId == "Aktivan") throw new Exception("Projekat vec aktivan!");
-                    projekt.Stanje = new Stanje
-                    {
-                        StanjeId = "Aktivan"
-                    };
-                    /*var ostale_ponude = _context.Ponude.Where(p => p.PonudaId != id).ToList();
+                    if (projekt.StanjeId == "Aktivan") throw new Exception("Projekt vec aktivan!");
+                    projekt.StanjeId = "Aktivan";
+                    var ostale_ponude = _context.Ponude.Where(p => p.PonudaId != id).ToList();
                     foreach (var item in ostale_ponude)
                     {
                         item.Status = 0;
-                    }*/
+                    }
                     _context.SaveChanges();
                     return _mapper.Map<Model.Ponuda>(request);
                 }
-                return _mapper.Map<Model.Ponuda>(request);
+                else
+                {
+                    _context.SaveChanges();
+                    return _mapper.Map<Model.Ponuda>(request);
+                }
             }
-            catch
+            catch(Exception ex)
             {
+                var exception = ex;
                 throw new Exception();
             }
         }
