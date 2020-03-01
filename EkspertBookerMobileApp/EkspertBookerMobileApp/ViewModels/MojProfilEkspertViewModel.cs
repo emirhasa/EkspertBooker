@@ -15,6 +15,7 @@ namespace EkspertBookerMobileApp.ViewModels
     {
         private readonly APIService _ekspertiService = new APIService("Eksperti");
         private readonly APIService _korisniciService = new APIService("Korisnici");
+
         Korisnik _trenutniKorisnik;
         public Korisnik TrenutniKorisnik {
             get { return _trenutniKorisnik; }

@@ -11485,8 +11485,11 @@ namespace EkspertBookerMobileApp.Droid
 		public partial class Xml
 		{
 			
+			// aapt resource value: 0x7F100001
+			public const int xamarin_essentials_fileprovider_file_paths = 2131755009;
+			
 			// aapt resource value: 0x7F100000
-			public const int xamarin_essentials_fileprovider_file_paths = 2131755008;
+			public const int XMLFile1 = 2131755008;
 			
 			static Xml()
 			{

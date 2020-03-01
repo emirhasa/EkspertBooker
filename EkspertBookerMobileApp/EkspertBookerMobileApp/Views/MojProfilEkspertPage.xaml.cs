@@ -1,7 +1,13 @@
 ﻿
+using EkspertBooker.Model;
+using EkspertBooker.Model.Requests;
+using EkspertBookerMobileApp.Helper;
 using EkspertBookerMobileApp.ViewModels;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -16,6 +22,8 @@ namespace EkspertBookerMobileApp.Views
     public partial class MojProfilEkspertPage : ContentPage
     {
         private MojProfilEkspertViewModel model;
+        private MediaFile _profilnaSlika;
+        private APIService _korisniciSlikeService = new APIService("KorisniciSlike");
         public MojProfilEkspertPage()
         {
             InitializeComponent();
@@ -57,7 +65,8 @@ namespace EkspertBookerMobileApp.Views
                 EntryTelefon.Text = null;
                 model.ValidationTriggered = false;
                 UrediFormErrorLabel.IsVisible = false;
-
+                SlikaErrorLabel.IsVisible = false;
+                await PageScrollView.ScrollToAsync(PageScrollView, ScrollToPosition.Start, true);
             }
             
         }
@@ -98,5 +107,131 @@ namespace EkspertBookerMobileApp.Views
             }
         }
 
+        private async void ButtonUploadSlike_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await CrossMedia.Current.Initialize();
+
+
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert("Info", "Photo Picker nije dostupan na uređaju!", "OK");
+                    return;
+                }
+
+                _profilnaSlika = await CrossMedia.Current.PickPhotoAsync();
+
+                if (_profilnaSlika == null)
+                {
+                    UploadImagePrikaz.Source = null;
+                    ImageFrame.IsVisible = false;
+                    if (SlikaErrorLabel.IsVisible) SlikaErrorLabel.IsVisible = false;
+                    return;
+                }
+                else SlikaErrorLabel.IsVisible = false;
+                ImageFrame.IsVisible = true;
+                UploadImagePrikaz.Source = ImageSource.FromStream(() =>
+                {
+                    return _profilnaSlika.GetStream();
+                });
+            } 
+            catch(Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Greška", ex.Message, "OK");
+            }
+        }
+
+        private async void ButtonTakePhoto_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await CrossMedia.Current.Initialize();
+
+                if(!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    await DisplayAlert("Info", "No camera available!", "OK");
+                    return;
+                }
+
+                _profilnaSlika = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true,
+                    AllowCropping = true,
+                    PhotoSize = PhotoSize.Custom,
+                    CustomPhotoSize = 0,
+                    CompressionQuality = 60,
+                    Directory = "EkspertBookerProfilne",
+                    Name = "profilna.jpg" + LoggedUser.logovaniKorisnik.KorisnickoIme
+                });
+
+                if (_profilnaSlika == null)
+                {
+                    UploadImagePrikaz.Source = null;
+                    ImageFrame.IsVisible = false;
+                    if (SlikaErrorLabel.IsVisible) SlikaErrorLabel.IsVisible = false;
+                    return;
+                }
+                else SlikaErrorLabel.IsVisible = false;
+                ImageFrame.IsVisible = true;
+                UploadImagePrikaz.Source = ImageSource.FromStream(() =>
+                {
+                    return _profilnaSlika.GetStream();
+                });
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Greška", ex.Message, "OK");
+            }
+        }
+
+        private async void ButtonSubmitPhoto_Clicked(object sender, EventArgs e)
+        {
+            if (_profilnaSlika == null)
+            {
+                SlikaErrorLabel.IsVisible = true;
+            } else
+            {
+                //upload image
+                byte[] slika = MediaFileToByteArray.GetByteArray(_profilnaSlika);
+                KorisnikSlikaUpsertRequest request = new KorisnikSlikaUpsertRequest
+                {
+                    KorisnikId = LoggedUser.logovaniKorisnik.KorisnikId,
+                    ProfilnaSlika = slika
+                };
+                if (model.TrenutniKorisnik.KorisnikSlika != null)
+                {
+                    //put
+                    try
+                    {
+                        await _korisniciSlikeService.Update<KorisnikSlika>(model.TrenutniKorisnik.KorisnikSlika.KorisnikSlikaId, request);
+                    } 
+                    catch(Exception ex)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Greška", ex.Message, "OK");
+                        return;
+                    }
+                } else
+                {
+                    //post
+                    try
+                    {
+                        await _korisniciSlikeService.Insert<KorisnikSlika>(request);
+                    }
+                    catch (Exception ex)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Greška", ex.Message, "OK");
+                        return;
+                    }
+                }
+                OnAppearing();
+                await Application.Current.MainPage.DisplayAlert("Info", "Nova slika sačuvana!", "OK");
+                UrediFormErrorLabel.IsVisible = false;
+                _profilnaSlika = null;
+                SlikaErrorLabel.IsVisible = false;
+                ImageFrame.IsVisible = false;
+                await PageScrollView.ScrollToAsync(PageScrollView, ScrollToPosition.Start, true);
+            }
+        }
     }
 }

@@ -1,1 +1,0 @@
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\EkspertBookerMobileApp.UWP.csproj;x86

@@ -4,7 +4,8 @@ package crc644a6fabb3f65099ab;
 public class MainActivity
 	extends crc643f46942d9dd1fff9.FormsAppCompatActivity
 	implements
-		mono.android.IGCUserPeer
+		mono.android.IGCUserPeer,
+		android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback
 {
 /** @hide */
 	public static final String __md_methods;
