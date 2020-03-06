@@ -31,8 +31,8 @@
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="23"></RowDefinition>
-                                                <RowDefinition Height="23"></RowDefinition>
-                                                <RowDefinition Height="23"></RowDefinition>
+                                                <RowDefinition Height="33"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -42,7 +42,7 @@
                                             <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding Ekspert.Korisnik}"  TextColor="White" HorizontalTextAlignment="Start"></Label>
 
                                             <Label Grid.Row="1" Grid.Column="0" Text="{Binding Naslov}" TextColor="White"></Label>
-                                            <Label Grid.Row="2" Text="{Binding OpisPonude}" TextColor="White"></Label>
+                                            <Label Grid.Row="2" Text="{Binding OpisPonude}" MaxLines="3" TextColor="White" ></Label>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>
@@ -69,8 +69,8 @@
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="23"></RowDefinition>
-                                                    <RowDefinition Height="23"></RowDefinition> 
-                                                    <RowDefinition Height="23"></RowDefinition>
+                                                    <RowDefinition Height="33"></RowDefinition> 
+                                                    <RowDefinition Height="*"></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -91,7 +91,7 @@
                                                     <Label HorizontalOptions="StartAndExpand" Text="Završio projekata: ">
                                                     </Label><Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.BrojZavrsenihProjekata, StringFormat='{0}'}" FontAttributes="Bold" ></Label>
                                                 </StackLayout>
-                                                <Label Grid.Row="2" Text="{Binding OpisPonude}"></Label>
+                                                <Label Grid.Row="2" Text="{Binding OpisPonude}" MaxLines="3" ></Label>
                                             </Grid>
                                         </StackLayout>
                                     </Frame>
@@ -112,8 +112,8 @@
                                         <StackLayout>
                                             <Grid>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="23"></RowDefinition>
+                                                    <RowDefinition Height="33"></RowDefinition>
                                                     <RowDefinition Height="*"></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
@@ -136,7 +136,7 @@
                                                     </Label>
                                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Ekspert.BrojZavrsenihProjekata, StringFormat='{0}'}" TextColor="White" ></Label>
                                                 </StackLayout>
-                                                <Label Grid.Row="2" Text="{Binding OpisPonude}"  TextColor="White" ></Label>
+                                                <Label Grid.Row="2" Text="{Binding OpisPonude}" MaxLines="3" TextColor="White" ></Label>
                                             </Grid>
                                         </StackLayout>
                                     </Frame>

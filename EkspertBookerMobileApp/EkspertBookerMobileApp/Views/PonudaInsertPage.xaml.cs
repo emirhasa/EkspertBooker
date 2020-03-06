@@ -89,5 +89,14 @@ namespace EkspertBookerMobileApp.Views
                 }
             }
         }
+
+        private async void ButtonSubmit_Clicked(object sender, EventArgs e)
+        {
+            if (model.IsValid())
+            {
+                bool uspio = await model.Submit();
+                Navigation.PopModalAsync();
+            }
+        }
     }
 }

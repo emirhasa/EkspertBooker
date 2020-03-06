@@ -44,7 +44,7 @@
                 <Label Grid.Row="9" Grid.Column="1" Text="KM" VerticalOptions="Center"></Label>
                 <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Text="Cijena mora biti veća od 10 i manja od 500000!" x:Name="CijenaErrorLabel" VerticalOptions="Start" TextColor="Red" IsVisible="{Binding CijenaErrorVisible}" ></Label>
 
-                <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="SAČUVAJ PROMJENE" BackgroundColor="ForestGreen" TextColor="White" Command="{Binding SubmitCommand}"></Button>
+                <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Text="SAČUVAJ PROMJENE" BackgroundColor="ForestGreen" TextColor="White" Clicked="ButtonSubmit_Clicked"></Button>
 
             </Grid>
         </ScrollView>

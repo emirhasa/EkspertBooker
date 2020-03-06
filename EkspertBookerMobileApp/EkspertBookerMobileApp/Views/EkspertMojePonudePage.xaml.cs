@@ -75,9 +75,9 @@ namespace EkspertBookerMobileApp.Views
             Ponuda ponuda = e.SelectedItem as Ponuda;
             if (ponuda == null) return;
 
-            await Navigation.PushAsync(new PonudaDetaljiPage(ponuda.PonudaId));
+            await Navigation.PushAsync(new EkspertProjektDetailPage(ponuda.ProjektId));
 
-            AktivnePonudeListView.SelectedItem = null;
+            PrihvacenePonudeListView.SelectedItem = null;
         }
 
         private async void AktivnaPonuda_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -85,7 +85,7 @@ namespace EkspertBookerMobileApp.Views
             Ponuda ponuda = e.SelectedItem as Ponuda;
             if (ponuda == null) return;
 
-            await Navigation.PushAsync(new PonudaUpdatePage(ponuda.PonudaId));
+            await Navigation.PushAsync(new EkspertProjektDetailPage(ponuda.ProjektId));
 
             AktivnePonudeListView.SelectedItem = null;
         }
@@ -95,9 +95,9 @@ namespace EkspertBookerMobileApp.Views
             Ponuda ponuda = e.SelectedItem as Ponuda;
             if (ponuda == null) return;
 
-            await Navigation.PushAsync(new PonudaDetaljiPage(ponuda.PonudaId));
+            await Navigation.PushAsync(new EkspertProjektDetailPage(ponuda.ProjektId));
 
-            AktivnePonudeListView.SelectedItem = null;
+            OdbijenePonudeListView.SelectedItem = null;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using EkspertBookerMobileApp.ViewModels;
+﻿using EkspertBookerMobileApp.ContentViews;
+using EkspertBookerMobileApp.Helper;
+using EkspertBookerMobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +59,15 @@ namespace EkspertBookerMobileApp.Views
 
         private async void EkspertDetaljno_Clicked(object sender, EventArgs e)
         {
-            //prikazi detalje o ekspertu
+            CVImageButton button = sender as CVImageButton;
+            var actualColor = button.BgColor;
+            var newColor = Color.WhiteSmoke;
+
+            // Here is the effective use of the smooth background color change animation
+            await button.ChangeBackgroundColorTo(newColor, 100, Easing.CubicOut);
+            await button.ChangeBackgroundColorTo(actualColor, 80, Easing.SinOut);
+
+            await Navigation.PushModalAsync(new EkspertProfilPage(model.Ponuda.EkspertId));
         }
 
     }

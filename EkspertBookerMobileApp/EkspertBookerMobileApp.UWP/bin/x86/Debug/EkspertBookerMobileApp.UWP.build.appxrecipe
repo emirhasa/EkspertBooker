@@ -580,6 +580,9 @@
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_accept.png">
       <PackagePath>icon_accept.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_add.png">
+      <PackagePath>icon_add.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_attachment.png">
       <PackagePath>icon_attachment.png</PackagePath>
     </AppxPackagedFile>
@@ -597,6 +600,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_ekspert_request.png">
       <PackagePath>icon_ekspert_request.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_finish_project.png">
+      <PackagePath>icon_finish_project.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_gallery.png">
       <PackagePath>icon_gallery.png</PackagePath>

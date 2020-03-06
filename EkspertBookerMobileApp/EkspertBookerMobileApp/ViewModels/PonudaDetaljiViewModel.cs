@@ -51,6 +51,7 @@ namespace EkspertBookerMobileApp.ViewModels
             }
             if (Ponuda.Status == 1)
             {
+                if (LoggedUser.Role == "Poslodavac")
                 FormPrihvatiVisible = true;
                 PonudaStanjeText = "AKTIVNA";
                 PonudaStanjeColor = Color.Orange;

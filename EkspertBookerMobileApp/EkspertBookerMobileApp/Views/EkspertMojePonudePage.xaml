@@ -10,7 +10,7 @@
         <StackLayout Padding="20">
             <StackLayout>
                 <Button Text="PRIHVAĆENE PONUDE" TextColor="White" BackgroundColor="ForestGreen" Command="{Binding PrihvacenePonudeCommand}"></Button>
-                <ListView IsEnabled="True" ItemsSource="{Binding PrihvacenePonudeList}" RowHeight="100" ItemSelected="PrihvacenaPonuda_ItemSelected" PropertyChanged="PrihvacenePonudeListView_PropertyChanged" IsVisible="{Binding PrihvacenePonudeVisible}">
+                <ListView x:Name="PrihvacenePonudeListView" IsEnabled="True" ItemsSource="{Binding PrihvacenePonudeList}" RowHeight="100" ItemSelected="PrihvacenaPonuda_ItemSelected" PropertyChanged="PrihvacenePonudeListView_PropertyChanged" IsVisible="{Binding PrihvacenePonudeVisible}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -55,7 +55,7 @@
             </StackLayout>
             <StackLayout>
                 <Button Text="ODBIJENE PONUDE" TextColor="White" BackgroundColor="DarkRed" Command="{Binding OdbijenePonudeCommand}"></Button>
-                <ListView IsEnabled="True" ItemsSource="{Binding OdbijenePonudeList}" RowHeight="100" ItemSelected="OdbijenaPonuda_ItemSelected" PropertyChanged="OdbijenePonudeListView_PropertyChanged" IsVisible="{Binding OdbijenePonudeVisible}">
+                <ListView x:Name="OdbijenePonudeListView" IsEnabled="True" ItemsSource="{Binding OdbijenePonudeList}" RowHeight="100" ItemSelected="OdbijenaPonuda_ItemSelected" PropertyChanged="OdbijenePonudeListView_PropertyChanged" IsVisible="{Binding OdbijenePonudeVisible}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

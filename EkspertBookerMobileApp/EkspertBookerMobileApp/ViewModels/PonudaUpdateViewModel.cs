@@ -72,7 +72,7 @@ namespace EkspertBookerMobileApp.ViewModels
             Cijena = _ponuda.Cijena;
         }
 
-        public async Task Submit()
+        public async Task<bool> Submit()
         {
             if (IsValid())
             {
@@ -91,16 +91,18 @@ namespace EkspertBookerMobileApp.ViewModels
                 if (result != null)
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Sačuvane promjene!", "OK");
-                    Application.Current.MainPage = new EkspertMainPage();
+                    return true;
                 }
                 else
                 {
                     Application.Current.MainPage.DisplayAlert("Greška", "Greška prilikom spremanja promjena!", "Dalje...");
+                    return false;
                 }
             }
             else
             {
                 Application.Current.MainPage.DisplayAlert("Greška", "Unesite obavezna polja!", "Dalje...");
+                return false;
             }
         }
 

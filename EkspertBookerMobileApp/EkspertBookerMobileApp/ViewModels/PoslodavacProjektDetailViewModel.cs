@@ -70,6 +70,22 @@ namespace EkspertBookerMobileApp.ViewModels
             }
         }
 
+        public async Task<bool> ZavrsiProjekat()
+        {
+            try
+            {
+                Projekt zavrsen_projekt = Projekt;
+                zavrsen_projekt.StanjeId = "Zavrsen";
+                var result = await _projektiService.Update<Projekt>(projektId, zavrsen_projekt);
+                await Application.Current.MainPage.DisplayAlert("Uspjeh", "Projekt uspješno završen! Čestitamo...", "Hvala");
+                return true;
+            } catch
+            {
+                await Application.Current.MainPage.DisplayAlert("Greška", "Problem prilikom završavanja projekta!", "OK");
+                return false;
+            }
+        }
+
     }
 
 }

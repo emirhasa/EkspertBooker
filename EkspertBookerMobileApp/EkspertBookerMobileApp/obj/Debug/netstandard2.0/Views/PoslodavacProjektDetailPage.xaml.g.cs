@@ -26,11 +26,23 @@ namespace EkspertBookerMobileApp.Views {
         private global::EkspertBookerMobileApp.ContentViews.CVImageButton ButtonPonude;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonPoslodavacDetalji;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonZavrsiProjekat;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonOstaviRecenziju;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(PoslodavacProjektDetailPage));
             ButtonUredi = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonUredi");
             ButtonDetaljno = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonDetaljno");
             ButtonPonude = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonPonude");
+            ButtonPoslodavacDetalji = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonPoslodavacDetalji");
+            ButtonZavrsiProjekat = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonZavrsiProjekat");
+            ButtonOstaviRecenziju = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonOstaviRecenziju");
         }
     }
 }

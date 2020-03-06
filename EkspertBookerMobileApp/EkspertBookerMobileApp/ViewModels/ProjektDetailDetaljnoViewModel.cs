@@ -48,6 +48,19 @@ namespace EkspertBookerMobileApp.ViewModels
             set { SetProperty(ref _prilogPostoji, value); }
         }
 
+        bool _editable;
+        public bool Editable
+        {
+            get { return _editable; }
+            set { SetProperty(ref _editable, value); }
+        }
+
+        bool _notEditableTooltipVisible;
+        public bool NotEditableTooltipVisible
+        {
+            get { return _notEditableTooltipVisible; }
+            set { SetProperty(ref _notEditableTooltipVisible, value); }
+        }
 
         private readonly APIService _projektiService = new APIService("Projekti");
         private readonly APIService _projektDetaljiService = new APIService("ProjektDetalji");
@@ -68,6 +81,16 @@ namespace EkspertBookerMobileApp.ViewModels
             {
                 ProjektId = _projektId
             });
+            if (Projekt.StanjeId == "Aktivan")
+            {
+                //these kinds of things should be done on page itself methinks
+                Editable = true;
+                NotEditableTooltipVisible = false;
+            } else
+            {
+                Editable = false;
+                NotEditableTooltipVisible = true;
+            }
             ProjektDetalji = projekt_detalji[0];
             AktivanDetaljanOpis = ProjektDetalji.AktivanDetaljanOpis;
             Napomena = ProjektDetalji.Napomena;

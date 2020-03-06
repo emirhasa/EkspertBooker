@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-03-06T00:45:03.810</Modified>
+      <Modified>2020-03-06T22:56:13.749</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\EkspertBookerMobileApp.UWP.exe">
       <PackagePath>entrypoint\EkspertBookerMobileApp.UWP.exe</PackagePath>
-      <Modified>2020-03-06T00:45:01.297</Modified>
+      <Modified>2020-03-06T22:56:12.754</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\.nuget\packages\flurl\2.8.2\lib\netstandard2.0\Flurl.dll">
       <PackagePath>Flurl.dll</PackagePath>
@@ -748,11 +748,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\bin\Debug\netstandard2.0\EkspertBookerMobileApp.dll">
       <PackagePath>EkspertBookerMobileApp.dll</PackagePath>
-      <Modified>2020-03-06T00:55:04.351</Modified>
+      <Modified>2020-03-06T22:56:45.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\bin\Debug\netstandard2.0\EkspertBooker.Model.dll">
       <PackagePath>EkspertBooker.Model.dll</PackagePath>
-      <Modified>2020-03-05T23:37:14.533</Modified>
+      <Modified>2020-03-06T19:28:26.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Microsoft\Xamarin\NuGet\win2d.uwp\1.20.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -774,6 +774,10 @@
       <PackagePath>icon_accept.png</PackagePath>
       <Modified>2020-02-26T23:03:09.498</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_add.png">
+      <PackagePath>icon_add.png</PackagePath>
+      <Modified>2020-03-06T14:06:12.797</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_attachment.png">
       <PackagePath>icon_attachment.png</PackagePath>
       <Modified>2020-03-05T23:14:19.802</Modified>
@@ -792,11 +796,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_edit.png">
       <PackagePath>icon_edit.png</PackagePath>
-      <Modified>2020-02-26T00:31:12.844</Modified>
+      <Modified>2020-03-06T14:11:22.729</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_ekspert_request.png">
       <PackagePath>icon_ekspert_request.png</PackagePath>
       <Modified>2020-02-27T23:29:41.720</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_finish_project.png">
+      <PackagePath>icon_finish_project.png</PackagePath>
+      <Modified>2020-03-06T21:22:01.201</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\icon_gallery.png">
       <PackagePath>icon_gallery.png</PackagePath>
@@ -979,15 +987,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Microsoft.UI.Xaml\DensityStyles\Compact.xbf">
       <PackagePath>Microsoft.UI.Xaml\DensityStyles\Compact.xbf</PackagePath>
-      <Modified>2020-03-06T00:45:01.156</Modified>
+      <Modified>2020-03-06T22:56:12.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-03-06T00:45:01.156</Modified>
+      <Modified>2020-03-06T22:56:12.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-03-06T00:45:01.156</Modified>
+      <Modified>2020-03-06T22:56:12.618</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.18362.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -1003,11 +1011,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-03-05T23:53:34.581</Modified>
+      <Modified>2020-03-06T22:13:19.838</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.UWP\bin\x86\Debug\Core\EkspertBookerMobileApp.UWP.exe">
       <PackagePath>EkspertBookerMobileApp.UWP.exe</PackagePath>
-      <Modified>2020-03-06T00:45:03.806</Modified>
+      <Modified>2020-03-06T22:56:13.745</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

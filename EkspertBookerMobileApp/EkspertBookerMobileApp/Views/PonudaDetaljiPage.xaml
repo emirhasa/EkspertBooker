@@ -133,7 +133,7 @@
                             </StackLayout>
                         </StackLayout>
 
-                        <StackLayout Spacing="0">
+                        <!--<StackLayout Spacing="0">
                             <StackLayout Spacing="0">
                                 <Label Text="Kategorije: " Opacity="0.7"></Label>
                                 <Label Text="Kategorija 1" FontAttributes="Bold"></Label>
@@ -142,7 +142,7 @@
                                 <Label Text="Kategorija 4" FontAttributes="Bold"></Label>
                                 <Label Text="Kategorija 5" FontAttributes="Bold"></Label>
                             </StackLayout>
-                        </StackLayout>
+                        </StackLayout>-->
 
                     </StackLayout>
 

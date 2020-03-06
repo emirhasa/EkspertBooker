@@ -110,10 +110,12 @@
     <Content Include="icon_add.png" />
     <Content Include="icon_attachment.png" />
     <Content Include="icon_camera.png" />
+    <Content Include="icon_checkbox_checked.png" />
     <Content Include="icon_cog.png" />
     <Content Include="icon_details.png" />
     <Content Include="icon_edit.png" />
     <Content Include="icon_ekspert_request.png" />
+    <Content Include="icon_finish_project.png" />
     <Content Include="icon_gallery.png" />
     <Content Include="icon_ponude.png" />
     <Content Include="icon_profile.png" />

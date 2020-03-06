@@ -71,7 +71,7 @@ namespace EkspertBookerMobileApp.ViewModels
                     AktivniProjektiVisible = true;
                 } else
                 {
-                    Application.Current.MainPage.DisplayAlert("Info", "Još nemate aktivnih projekata!", "OK");
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate aktivnih projekata! Prihvatite ponudu na projektu da postane aktivan...", "OK");
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace EkspertBookerMobileApp.ViewModels
                     LicitacijaProjektiVisible = true;
                 } else
                 {
-                    Application.Current.MainPage.DisplayAlert("Info", "Još nemate licitacija(bidding - ponude) projekata", "OK");
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate licitacija(bidding - ponude) projekata, sačekajte da neki ekspert dostavi ponudu...", "OK");
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace EkspertBookerMobileApp.ViewModels
                     ZavrseniProjektiVisible = true;
                 } else
                 {
-                    Application.Current.MainPage.DisplayAlert("Info", "Još nemate završenih projekata!", "Dalje");
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate završenih projekata! Označite aktivan projekt završenim...", "Dalje");
                 }
             }
         }

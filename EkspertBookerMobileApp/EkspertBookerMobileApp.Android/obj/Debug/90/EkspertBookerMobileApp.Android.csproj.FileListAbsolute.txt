@@ -511,3 +511,5 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.Android\obj\Debug\90\res\drawable\icon_finish_project.png
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp.Android\obj\Debug\90\res\drawable\icon_checkbox_checked.png

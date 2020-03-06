@@ -58,10 +58,11 @@ namespace EkspertBookerMobileApp.ViewModels
             set { SetProperty(ref _datumPocetkaAlternateVisible, value); }
         }
 
-        public ObservableCollection<Ponuda> PonudeList { get; set; } = new ObservableCollection<Ponuda>();
+        public ObservableCollection<PonudaEPDListViewModel> PrethodnePonudeList { get; set; } = new ObservableCollection<PonudaEPDListViewModel>();
 
         public async Task Init()
         {
+            PrethodnePonudeList.Clear();
             //try - catch? if Projekt == null?
             Projekt = await _projektiService.GetById<Projekt>(_projektId);
             var ponude = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
@@ -69,20 +70,38 @@ namespace EkspertBookerMobileApp.ViewModels
                 EkspertId = LoggedUser.logovaniKorisnik.KorisnikId,
                 ProjektId = Projekt.ProjektId
             });
-            if(ponude.Count > 0)
+            if (Projekt.StanjeId == "Licitacija") NovaPonudaVisible = true; else NovaPonudaVisible = false;
+            foreach (Ponuda ponuda in ponude)
             {
-                foreach(Ponuda ponuda in ponude)
+                if (ponuda.Status != 1)
                 {
-                    if (ponuda.Status != 1)
-                        PonudeList.Add(ponuda);
-                    else AktivnaEkspertPonuda = ponuda;
+                    PonudaEPDListViewModel model = new PonudaEPDListViewModel();
+                    model.Ponuda = ponuda;
+                    if (ponuda.Status == 0)
+                    {
+                        model.StatusColor = "Red";
+                        model.StatusText = "Odbijena";
+                    }
+                    else
+                    {
+                        model.StatusColor = "ForestGreen";
+                        model.StatusText = "Prihvaćena";
+                    }
+                    PrethodnePonudeList.Add(model);
                 }
+                else AktivnaEkspertPonuda = ponuda;
             }
-            if(AktivnaEkspertPonuda != null)
+            if (PrethodnePonudeList.Count > 0)
+            {
+                NemaPrijasnjihPonuda = false;
+            }
+            else NemaPrijasnjihPonuda = true;
+            if (AktivnaEkspertPonuda != null)
             {
                 AktivnaPonudaVisible = true;
                 NemaPonudeVisible = false;
-            } else
+            }
+            else
             {
                 AktivnaPonudaVisible = false;
                 NemaPonudeVisible = true;
@@ -97,6 +116,7 @@ namespace EkspertBookerMobileApp.ViewModels
             {
                 DatumPocetkaAlternateVisible = false;
             }
+            
         }
 
         bool _aktivnaPonudaVisible;
@@ -113,6 +133,20 @@ namespace EkspertBookerMobileApp.ViewModels
             set { SetProperty(ref _nemaPonudeVisible, value); }
         }
 
+        bool _novaPonudaVisible;
+        public bool NovaPonudaVisible
+        {
+            get { return _novaPonudaVisible; }
+            set { SetProperty(ref _novaPonudaVisible, value); }
+        }
+
+        bool _nemaPrijasnjihPonuda;
+        public bool NemaPrijasnjihPonuda
+        {
+            get { return _nemaPrijasnjihPonuda; }
+            set { SetProperty(ref _nemaPrijasnjihPonuda, value); }
+        }
+
         public async Task<bool> ObrisiAktivnuPonudu()
         {
             if (AktivnaEkspertPonuda != null)
@@ -122,5 +156,13 @@ namespace EkspertBookerMobileApp.ViewModels
             }
             else return false;
         }
+
+        public class PonudaEPDListViewModel
+        {
+            public Ponuda Ponuda { get; set; }
+            public string StatusColor { get; set; }
+            public string StatusText { get; set; }
+        }
     }
 }
+

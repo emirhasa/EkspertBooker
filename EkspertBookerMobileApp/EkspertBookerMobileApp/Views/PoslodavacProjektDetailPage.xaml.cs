@@ -81,7 +81,50 @@ namespace EkspertBookerMobileApp.Views
             Navigation.PushAsync(new ProjektDetailDetaljnoPage(viewModel.Projekt.ProjektId));
             else
             {
-                Application.Current.MainPage.DisplayAlert("Info", "Detalji su dostupni kada projekt postane aktivan ili po završetku projekta!", "OK");
+                Application.Current.MainPage.DisplayAlert("Info", "Detalji su dostupni kada projekt postane aktivan ili po završetku projekta! Projekat će biti aktivan nakon prihvatanja jedne ponude.", "OK");
+            }
+        }
+
+        private async void PoslodavacDetalji_Clicked(object sender, EventArgs e)
+        {
+            CVImageButtonAlt button = sender as CVImageButtonAlt;
+
+            var actualColor = button.BgColor;
+            var newColor = Color.WhiteSmoke;
+
+            // Here is the effective use of the smooth background color change animation
+            await button.ChangeBackgroundColorTo(newColor, 100, Easing.CubicOut);
+            await button.ChangeBackgroundColorTo(actualColor, 80, Easing.SinOut);
+
+            await Navigation.PushModalAsync(new PoslodavacProfilPage(viewModel.Projekt.PoslodavacId));
+        }
+
+        private async void ZavrsiProjekat_Clicked(object sender, EventArgs e)
+        {
+            if(viewModel.Projekt.StanjeId == "Aktivan")
+            {
+                bool uspio = await viewModel.ZavrsiProjekat();
+                if(uspio)
+                {
+                    //this is probably just lazy refresh
+                    Navigation.InsertPageBefore(new PoslodavacProjektDetailPage(viewModel.Projekt.ProjektId), this);
+                    await Navigation.PopAsync();
+                }
+            } else
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "Samo aktivan projekat se može završiti! Da bi aktivirali projekt, prihvatite neku od ekspert ponuda!", "OK");
+            }
+        }
+
+        private async void OstaviRecenziju_Clicked(object sender, EventArgs e)
+        {
+            //poslodavac ostavlja recenziju za eksperta
+            if(viewModel.Projekt.StanjeId == "Zavrsen")
+            {
+                //otvori modal/page za ostavljanje recenzije
+            } else
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "Možete ostaviti recenziju o ekspertu nakon što se projekat završi...", "OK");
             }
         }
 

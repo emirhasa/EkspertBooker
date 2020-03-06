@@ -68,7 +68,7 @@ namespace EkspertBookerMobileApp.ViewModels
             Projekt = await _projektiService.GetById<Projekt>(projektId);
         }
 
-        public async Task Submit()
+        public async Task<bool> Submit()
         {
             if (IsValid())
             {
@@ -87,15 +87,17 @@ namespace EkspertBookerMobileApp.ViewModels
                 if (result != null)
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Ponuda uspješno dodana!", "OK");
-                    Application.Current.MainPage = new EkspertProjektDetailPage(projektId);
+                    return true;
                 }
                 else
                 {
                     Application.Current.MainPage.DisplayAlert("Greška", "Greška prilikom dodavanja ponude!", "Dalje...");
+                    return false;
                 }
             } else
             {
                 Application.Current.MainPage.DisplayAlert("Greška", "Unesite obavezna polja!", "Dalje...");
+                return false;
             }
         }
 

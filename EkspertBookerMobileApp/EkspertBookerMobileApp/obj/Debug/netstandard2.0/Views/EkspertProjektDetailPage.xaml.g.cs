@@ -38,7 +38,16 @@ namespace EkspertBookerMobileApp.Views {
         private global::Xamarin.Forms.StackLayout AktivnaPonudaInfo;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Label NemaPonuda;
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonAktivnaPonudaDetaljno;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonPoslodavacDetalji;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt ButtonOstaviRecenziju;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Frame PrethodnePonudeFrame;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
@@ -50,7 +59,10 @@ namespace EkspertBookerMobileApp.Views {
             ButtonObrisiPonudu = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonObrisiPonudu");
             NemaPonudeLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "NemaPonudeLabel");
             AktivnaPonudaInfo = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "AktivnaPonudaInfo");
-            NemaPonuda = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "NemaPonuda");
+            ButtonAktivnaPonudaDetaljno = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonAktivnaPonudaDetaljno");
+            ButtonPoslodavacDetalji = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonPoslodavacDetalji");
+            ButtonOstaviRecenziju = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButtonAlt>(this, "ButtonOstaviRecenziju");
+            PrethodnePonudeFrame = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "PrethodnePonudeFrame");
         }
     }
 }

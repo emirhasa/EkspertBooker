@@ -87,7 +87,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 PrihvacenePonudeVisible = !PrihvacenePonudeVisible;
             } else
             {
-                Application.Current.MainPage.DisplayAlert("Info", "Još nemate prihvaćenih ponuda... pošaljite ponudu na neki projekt, i sačekajte da je poslodavac odobri!", "OK");
+                Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate prihvaćenih ponuda... pošaljite ponudu na neki projekt i sačekajte da je poslodavac odobri!", "OK");
             }
         }
 
@@ -109,7 +109,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 AktivnePonudeVisible = !AktivnePonudeVisible;
             } else
             {
-                Application.Current.MainPage.DisplayAlert("Info", "Još nemate aktivnih ponuda... pošaljite ponudu na neki projekt i sačekajte odgovor poslodavca!", "OK");
+                Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate aktivnih ponuda... pošaljite ponudu na neki projekt i sačekajte odgovor poslodavca!", "OK");
             }
         }
 
@@ -131,7 +131,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 OdbijenePonudeVisible = !OdbijenePonudeVisible;
             } else
             {
-                Application.Current.MainPage.DisplayAlert("Info", "Nemate odbijenih ponuda...!", "OK");
+                Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate odbijenih ponuda...!", "OK");
             }
         }
     }
