@@ -80,9 +80,36 @@ namespace EkspertBooker.WebAPI.Service
             }
         }
 
+        public override Model.Ponuda Insert(PonudaUpsertRequest request)
+        {
+            var projekt = _context.Projekti.Find(request.ProjektId);
+            if (projekt != null)
+            {
+                projekt.BrojPonuda += 1;
+                _context.SaveChanges();
+                return base.Insert(request);
+            } else
+            {
+                throw new Exception("nema projekt za ponudu");
+            }
+        }
+
         public override bool Delete(int id)
         {
-            return base.Delete(id);
+            var ponuda = _context.Ponude.Find(id);
+            if (ponuda != null)
+            {
+                var projekt = _context.Projekti.Find(ponuda.ProjektId);
+                if(projekt.BrojPonuda > 0)
+                {
+                    projekt.BrojPonuda -= 1;
+                }
+                _context.SaveChanges();
+                return base.Delete(id);
+            } else
+            {
+                return false;
+            }
         }
     }
 }

@@ -34,6 +34,8 @@ namespace EkspertBooker.WebAPI.Database
 
         public int? Budzet { get; set; }
         public bool? Hitan { get; set; }
+
+        public int BrojPonuda { get; set; }
         public ProjektDetalji ProjektDetalji { get; set; }
         public RecenzijaOEkspert RecenzijaOEkspert { get; set; }
         public RecenzijaOPoslodavac RecenzijaOPoslodavac { get; set; }

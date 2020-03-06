@@ -9,6 +9,6 @@
         public float ProsjecnaOcjena { get; set; }
         public int BrojZavrsenihProjekata { get; set; }
         public int BrojRecenzija { get; set; }
-
+        public Kategorija EkspertStrucnaKategorija { get; set; }
     }
 }

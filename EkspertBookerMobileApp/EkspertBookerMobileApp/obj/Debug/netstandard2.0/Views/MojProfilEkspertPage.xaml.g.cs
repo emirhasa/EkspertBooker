@@ -50,6 +50,9 @@ namespace EkspertBookerMobileApp.Views {
         private global::Xamarin.Forms.Entry EntryTelefon;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Picker StrucnaKategorijaPicker;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Label UrediFormErrorLabel;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
@@ -87,6 +90,7 @@ namespace EkspertBookerMobileApp.Views {
             EntryEmail = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "EntryEmail");
             MailErrorLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "MailErrorLabel");
             EntryTelefon = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "EntryTelefon");
+            StrucnaKategorijaPicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "StrucnaKategorijaPicker");
             UrediFormErrorLabel = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Label>(this, "UrediFormErrorLabel");
             ButtonPotvrdiPromjene = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonPotvrdiPromjene");
             ButtonUploadSlike = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::EkspertBookerMobileApp.ContentViews.CVImageButton>(this, "ButtonUploadSlike");

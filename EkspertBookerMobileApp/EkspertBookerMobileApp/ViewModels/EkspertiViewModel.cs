@@ -11,8 +11,10 @@ namespace EkspertBookerMobileApp.ViewModels
 {
     public class EkspertiViewModel : BaseViewModel
     {
+
         public ObservableCollection<Ekspert> EkspertiList { get; set; }
         public APIService ekspertiService = new APIService("Eksperti");
+
         public EkspertiViewModel()
         {
             EkspertiList = new ObservableCollection<Ekspert>();
@@ -33,5 +35,6 @@ namespace EkspertBookerMobileApp.ViewModels
                 }
             }
         }
+
     }
 }

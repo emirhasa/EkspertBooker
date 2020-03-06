@@ -87,7 +87,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 if (result != null)
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Ponuda uspješno dodana!", "OK");
-                    Application.Current.MainPage = new EkspertMainPage();
+                    Application.Current.MainPage = new EkspertProjektDetailPage(projektId);
                 }
                 else
                 {

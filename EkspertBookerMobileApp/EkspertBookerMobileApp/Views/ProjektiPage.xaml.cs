@@ -33,8 +33,13 @@ namespace EkspertBookerMobileApp.Views
             var item = args.SelectedItem as Projekt;
             if (item == null)
                 return;
-
-            await Navigation.PushAsync(new ProjektDetailPage(item.ProjektId));
+            if (LoggedUser.Role == "Poslodavac")
+            {
+                await Navigation.PushAsync(new PoslodavacProjektDetailPage(item.ProjektId));
+            } else
+            {
+                await Navigation.PushAsync(new EkspertProjektDetailPage(item.ProjektId));
+            }
 
             // Manually deselect item.
             ProjektiListView.SelectedItem = null;

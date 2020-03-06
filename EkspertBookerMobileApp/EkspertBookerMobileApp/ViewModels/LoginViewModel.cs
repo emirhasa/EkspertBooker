@@ -102,12 +102,14 @@ namespace EkspertBookerMobileApp.ViewModels
                                 if (uloga.UlogaId == 2)
                                 {
                                     //to je poslodavac
+                                    LoggedUser.Role = "Poslodavac";
                                     Application.Current.MainPage = new PoslodavacMainPage();
                                     //LoggedUser.logovaniPoslodavac = await PoslodavciService.Get<List<Poslodavac>>(new PoslodavciSearchRequest { })
                                 }
                                 else if (uloga.UlogaId == 3)
                                 {
                                     //to je ekspert
+                                    LoggedUser.Role = "Ekspert";
                                     Application.Current.MainPage = new EkspertMainPage();
                                 }
                                 else await Application.Current.MainPage.DisplayAlert("Greška", "Pogrešan username/lozinka", "0K");

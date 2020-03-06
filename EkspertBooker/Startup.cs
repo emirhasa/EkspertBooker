@@ -53,7 +53,7 @@ namespace EkspertBooker.WebAPI
             services.AddScoped<IBaseCRUDService<Model.Kategorija, object, KategorijaUpsertRequest, KategorijaUpsertRequest>, KategorijeService>();
             services.AddScoped<IBaseCRUDService<Model.Projekt, ProjektiSearchRequest, ProjektUpsertRequest, ProjektUpsertRequest>, ProjektiService>();
             services.AddScoped<IBaseCRUDService<Model.Korisnik, KorisniciSearchRequest, KorisnikUpsertRequest, KorisnikUpsertRequest>, KorisniciService>();
-            services.AddScoped<IBaseCRUDService<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest>, BaseCRUDService<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest, Database.ProjektDetalji>>();
+            services.AddScoped<IBaseCRUDService<Model.ProjektDetalji, ProjektDetaljiSearchRequest, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest>, ProjektDetaljiService>();
             services.AddScoped<IBaseCRUDService<Model.Ekspert, EkspertiSearchRequest, EkspertUpsertRequest, EkspertUpsertRequest>, EkspertiService>();
             services.AddScoped<IBaseCRUDService<Model.Poslodavac, PoslodavciSearchRequest, PoslodavacUpsertRequest, PoslodavacUpsertRequest>, PoslodavciService>();
             services.AddScoped<IBaseCRUDService<Model.ProjektDetaljiPrilog, object, ProjektDetaljiPrilogUpsertRequest, ProjektDetaljiPrilogUpsertRequest>, BaseCRUDService<Model.ProjektDetaljiPrilog, object, ProjektDetaljiPrilogUpsertRequest, ProjektDetaljiPrilogUpsertRequest, Database.ProjektDetaljiPrilog>>();
@@ -66,7 +66,8 @@ namespace EkspertBooker.WebAPI
             services.AddScoped<IBaseGetService<Model.Stanje, object>, BaseGetService<Model.Stanje, object, Database.Stanje>>();
             services.AddScoped<IBaseGetService<Model.Uloga, object>, BaseGetService<Model.Uloga, object, Database.Uloga>>();
             services.AddScoped<IKorisniciService, KorisniciService>();
-            services.AddScoped<IKorisniciKategorijeService, KorisniciKategorijeService>();
+            services.AddScoped<IEkspertiKategorijePretplateService, EkspertiKategorijePretplateService>();
+            //services.AddScoped<IKorisniciKategorijeService, KorisniciKategorijeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

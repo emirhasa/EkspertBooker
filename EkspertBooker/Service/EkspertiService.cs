@@ -25,14 +25,23 @@ namespace EkspertBooker.WebAPI.Service
                     return result_alt;
                 }
             } 
-            var result =  _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e=>e.Korisnik).ThenInclude(k => k.KorisnikSlika).ToList());
+            var result =  _mapper.Map<List<Model.Ekspert>>(_context.Eksperti.Include(e=>e.EkspertStrucnaKategorija).Include(e=>e.KorisnikUloga).Include(e=>e.Korisnik).ThenInclude(k => k.KorisnikSlika).ToList());
             return result;
         }
 
         public override Model.Ekspert GetById(int id)
         {
-            return _mapper.Map<Model.Ekspert>(_context.Eksperti.Include(e=>e.KorisnikUloga).Include(e => e.Korisnik).ThenInclude(k => k.KorisnikSlika).Where(e => e.KorisnikId == id).SingleOrDefault());
+            return _mapper.Map<Model.Ekspert>(_context.Eksperti.Include(e => e.EkspertStrucnaKategorija).Include(e=>e.KorisnikUloga).Include(e => e.Korisnik).ThenInclude(k => k.KorisnikSlika).Where(e => e.KorisnikId == id).SingleOrDefault());
         }
 
+        public override Model.Ekspert Update(int id, EkspertUpsertRequest request)
+        {
+            var entity = _context.Eksperti.Find(id);
+            entity.EkspertStrucnaKategorijaId = request.EkspertStrucnaKategorijaId;
+
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Ekspert>(entity);
+        }
     }
 }

@@ -3,6 +3,7 @@ using Flurl.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -18,7 +19,7 @@ namespace EkspertBookerMobileApp
         public static string Password { get; set; }
 
 #if DEBUG
-        private string _apiUrl = "http://localhost:55518/api";
+        public static string _apiUrl = _apiUrl = Properties.Resources.API_URL_localhost;
 #endif
 #if RELEASE
     private string _apiUrl = "https://test.com";
@@ -32,12 +33,13 @@ namespace EkspertBookerMobileApp
                 if (DeviceInfo.DeviceType == DeviceType.Physical)
                 {
                     //android device
-                    _apiUrl = "http://192.168.0.11:55518/api";
+                    //setovati u properties - resources
+                    _apiUrl = Properties.Resources.API_URL_AndroidDevice;
                 }
                 else
                 {
                     //android emulator
-                    _apiUrl = "http://10.0.2.2:55518/api";
+                    _apiUrl = Properties.Resources.API_URL_AndroidEmulator;
                 }
             }
         }
@@ -71,7 +73,6 @@ namespace EkspertBookerMobileApp
             }
         }
 
-
         public async Task<T> Insert<T>(object insert)
         {
             var url = $"{_apiUrl}/{_route}";
@@ -82,7 +83,6 @@ namespace EkspertBookerMobileApp
         public async Task<T> GetById<T>(object id)
         {
             var url = $"{_apiUrl}/{_route}/{id}";
-            //url += id.ToQueryString(); //Dodavanje query parametara u GET request
             var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             return result;
         }
@@ -91,6 +91,20 @@ namespace EkspertBookerMobileApp
         {
             var url = $"{_apiUrl}/{_route}/{id}";
             var result = await url.WithBasicAuth(Username, Password).PutJsonAsync(update).ReceiveJson<T>();
+            return result;
+        }
+
+        public async Task<T> Delete<T>(object id)
+        {
+            var url = $"{_apiUrl}/{_route}/{id}";
+            var result = await url.WithBasicAuth(Username, Password).SendJsonAsync(HttpMethod.Delete, id).ReceiveJson<T>();
+            return result;
+        }
+
+        public async Task<string> DownloadFile(object id)
+        {
+            var url = $"{_apiUrl}/{_route}/{id}";
+            var result = await url.WithBasicAuth(Username, Password).DownloadFileAsync("C:\\FIT", "test");
             return result;
         }
     }

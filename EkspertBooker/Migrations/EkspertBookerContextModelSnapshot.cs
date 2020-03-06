@@ -31,17 +31,40 @@ namespace EkspertBooker.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(0);
 
+                    b.Property<int?>("EkspertStrucnaKategorijaId");
+
                     b.Property<int?>("KorisnikUlogaId");
 
                     b.Property<float?>("ProsjecnaOcjena");
 
                     b.HasKey("KorisnikId");
 
+                    b.HasIndex("EkspertStrucnaKategorijaId");
+
                     b.HasIndex("KorisnikUlogaId")
                         .IsUnique()
                         .HasFilter("[KorisnikUlogaId] IS NOT NULL");
 
                     b.ToTable("Eksperti");
+                });
+
+            modelBuilder.Entity("EkspertBooker.WebAPI.Database.EkspertKategorijaPretplata", b =>
+                {
+                    b.Property<int>("EkspertKategorijaPretplataId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EkspertId");
+
+                    b.Property<int>("KategorijaId");
+
+                    b.HasKey("EkspertKategorijaPretplataId");
+
+                    b.HasIndex("EkspertId");
+
+                    b.HasIndex("KategorijaId");
+
+                    b.ToTable("EkspertiKategorijePretplate");
                 });
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Kategorija", b =>
@@ -102,25 +125,6 @@ namespace EkspertBooker.WebAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Korisnici");
-                });
-
-            modelBuilder.Entity("EkspertBooker.WebAPI.Database.KorisnikKategorija", b =>
-                {
-                    b.Property<int>("KorisnikKategorijaId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("KategorijaId");
-
-                    b.Property<int>("KorisnikId");
-
-                    b.HasKey("KorisnikKategorijaId");
-
-                    b.HasIndex("KategorijaId");
-
-                    b.HasIndex("KorisnikId");
-
-                    b.ToTable("KorisniciKategorije");
                 });
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.KorisnikSlika", b =>
@@ -229,6 +233,8 @@ namespace EkspertBooker.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BrojPonuda");
+
                     b.Property<int?>("Budzet");
 
                     b.Property<DateTime?>("DatumObjave");
@@ -296,20 +302,17 @@ namespace EkspertBooker.WebAPI.Migrations
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.ProjektDetaljiPrilog", b =>
                 {
-                    b.Property<int>("ProjektDetaljiPrilogId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("ProjektDetaljiId");
 
                     b.Property<byte[]>("Prilog");
 
+                    b.Property<string>("PrilogEkstenzija");
+
                     b.Property<string>("PrilogNaziv");
 
-                    b.Property<int>("ProjektDetaljiId");
+                    b.Property<DateTime?>("UploadVrijeme");
 
-                    b.HasKey("ProjektDetaljiPrilogId");
-
-                    b.HasIndex("ProjektDetaljiId")
-                        .IsUnique();
+                    b.HasKey("ProjektDetaljiId");
 
                     b.ToTable("ProjektDetaljiPrilozi");
                 });
@@ -402,6 +405,10 @@ namespace EkspertBooker.WebAPI.Migrations
 
             modelBuilder.Entity("EkspertBooker.WebAPI.Database.Ekspert", b =>
                 {
+                    b.HasOne("EkspertBooker.WebAPI.Database.Kategorija", "EkspertStrucnaKategorija")
+                        .WithMany("EkspertiKategorijaStrucnosti")
+                        .HasForeignKey("EkspertStrucnaKategorijaId");
+
                     b.HasOne("EkspertBooker.WebAPI.Database.Korisnik", "Korisnik")
                         .WithOne("Ekspert")
                         .HasForeignKey("EkspertBooker.WebAPI.Database.Ekspert", "KorisnikId")
@@ -413,16 +420,16 @@ namespace EkspertBooker.WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("EkspertBooker.WebAPI.Database.KorisnikKategorija", b =>
+            modelBuilder.Entity("EkspertBooker.WebAPI.Database.EkspertKategorijaPretplata", b =>
                 {
-                    b.HasOne("EkspertBooker.WebAPI.Database.Kategorija", "Kategorija")
-                        .WithMany("KategorijaKorisnici")
-                        .HasForeignKey("KategorijaId")
+                    b.HasOne("EkspertBooker.WebAPI.Database.Ekspert", "Ekspert")
+                        .WithMany("EkspertKategorijePretplate")
+                        .HasForeignKey("EkspertId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EkspertBooker.WebAPI.Database.Korisnik", "Korisnik")
-                        .WithMany("KorisnikKategorije")
-                        .HasForeignKey("KorisnikId")
+                    b.HasOne("EkspertBooker.WebAPI.Database.Kategorija", "Kategorija")
+                        .WithMany("EkspertiKategorijaPretplate")
+                        .HasForeignKey("KategorijaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

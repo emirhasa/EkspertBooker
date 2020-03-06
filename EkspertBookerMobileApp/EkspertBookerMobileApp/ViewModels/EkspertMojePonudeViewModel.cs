@@ -62,11 +62,6 @@ namespace EkspertBookerMobileApp.ViewModels
             AktivnePonudeCommand = new Command(async () => await AktivnePonudeClick());
             OdbijenePonudeCommand = new Command(async () => await OdbijenePonudeClick());
             PonudaStatic ponuda = new PonudaStatic();
-            /*PrihvacenePonudeList.Add(ponuda);
-            PrihvacenePonudeList.Add(ponuda);
-            PrihvacenePonudeList.Add(ponuda);
-            PrihvacenePonudeList.Add(ponuda);
-            PrihvacenePonudeList.Add(ponuda);*/
         }
 
         public async Task Init()
@@ -83,11 +78,17 @@ namespace EkspertBookerMobileApp.ViewModels
                 Status = 2
             });
 
-            foreach (var ponuda in prihvacene_ponude_list)
+            if (prihvacene_ponude_list.Count > 0)
             {
-                PrihvacenePonudeList.Add(ponuda);
+                foreach (var ponuda in prihvacene_ponude_list)
+                {
+                    PrihvacenePonudeList.Add(ponuda);
+                }
+                PrihvacenePonudeVisible = !PrihvacenePonudeVisible;
+            } else
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "Još nemate prihvaćenih ponuda... pošaljite ponudu na neki projekt, i sačekajte da je poslodavac odobri!", "OK");
             }
-            PrihvacenePonudeVisible = !PrihvacenePonudeVisible;
         }
 
         public async Task AktivnePonudeClick()
@@ -99,11 +100,17 @@ namespace EkspertBookerMobileApp.ViewModels
                 Status = 1
             });
 
-            foreach (var ponuda in aktivne_ponude_list)
+            if (aktivne_ponude_list.Count > 0) 
             {
-                AktivnePonudeList.Add(ponuda);
+                foreach (var ponuda in aktivne_ponude_list)
+                {
+                    AktivnePonudeList.Add(ponuda);
+                }
+                AktivnePonudeVisible = !AktivnePonudeVisible;
+            } else
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "Još nemate aktivnih ponuda... pošaljite ponudu na neki projekt i sačekajte odgovor poslodavca!", "OK");
             }
-            AktivnePonudeVisible = !AktivnePonudeVisible;
         }
 
         public async Task OdbijenePonudeClick()
@@ -115,11 +122,17 @@ namespace EkspertBookerMobileApp.ViewModels
                 Status = 0
             });
 
-            foreach (var ponuda in odbijene_ponude_list)
+            if (odbijene_ponude_list.Count > 0)
             {
-                OdbijenePonudeList.Add(ponuda);
+                foreach (var ponuda in odbijene_ponude_list)
+                {
+                    OdbijenePonudeList.Add(ponuda);
+                }
+                OdbijenePonudeVisible = !OdbijenePonudeVisible;
+            } else
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "Nemate odbijenih ponuda...!", "OK");
             }
-            OdbijenePonudeVisible = !OdbijenePonudeVisible;
         }
     }
 }

@@ -32,8 +32,26 @@ namespace EkspertBookerMobileApp.Views
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
-            await model.Init();
+            try
+            {
+                base.OnAppearing();
+                await model.Init();
+            }
+            catch
+            {
+                Application.Current.MainPage.DisplayAlert("test", "test", "ok");
+            }
+            //if(model.TrenutniEkspert.EkspertStrucnaKategorija != null)
+            //{
+            //    Picker picker = StrucnaKategorijaPicker;
+            //    foreach(var kategorija in picker.Items)
+            //    {
+            //        if(kategorija == model.TrenutniEkspert.EkspertStrucnaKategorija.Naziv)
+            //        {
+            //            picker.SelectedIndex = picker.Items.IndexOf(kategorija);
+            //        }
+            //    }
+            //} 
         }
 
         private async void Uredi_Clicked(object sender, EventArgs e)
@@ -46,6 +64,10 @@ namespace EkspertBookerMobileApp.Views
 
         }
 
+        private async void Postavke_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EkspertSettingsPage());
+        }
         private void ZahtjevZaRecenziju_Clicked(object sender, EventArgs e)
         {
             
@@ -67,6 +89,9 @@ namespace EkspertBookerMobileApp.Views
                 UrediFormErrorLabel.IsVisible = false;
                 SlikaErrorLabel.IsVisible = false;
                 await PageScrollView.ScrollToAsync(PageScrollView, ScrollToPosition.Start, true);
+            } else
+            {
+                UrediFormErrorLabel.IsVisible = true;
             }
             
         }
@@ -79,6 +104,7 @@ namespace EkspertBookerMobileApp.Views
                     || !string.IsNullOrWhiteSpace(EntryEmail.Text) || !string.IsNullOrWhiteSpace(EntryTelefon.Text))
                 {
                     UrediFormErrorLabel.IsVisible = false;
+
                 } else
                 {
                     UrediFormErrorLabel.IsVisible = true;
@@ -120,7 +146,13 @@ namespace EkspertBookerMobileApp.Views
                     return;
                 }
 
-                _profilnaSlika = await CrossMedia.Current.PickPhotoAsync();
+                _profilnaSlika = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                {
+                    PhotoSize = PhotoSize.Custom,
+                    CustomPhotoSize = 50,
+                    CompressionQuality = 70,
+                    SaveMetaData = true
+                });
 
                 if (_profilnaSlika == null)
                 {
@@ -130,11 +162,28 @@ namespace EkspertBookerMobileApp.Views
                     return;
                 }
                 else SlikaErrorLabel.IsVisible = false;
+
+                if ((_profilnaSlika.GetStream().Length / 1024) > 1536)
+                {
+                    Application.Current.MainPage.DisplayAlert("Prevelika slika", "Vaša slika(iako kompresovana i smanjena)" +
+                        " ima " + _profilnaSlika.GetStream().Length / 1024 + " KB, molimo uploadujte sliku manje veličine", "OK");
+                    _profilnaSlika = null;
+                    ImageFrame.IsVisible = false;
+                    UploadImagePrikaz.Source = null;
+                    return;
+                }
+
                 ImageFrame.IsVisible = true;
                 UploadImagePrikaz.Source = ImageSource.FromStream(() =>
                 {
-                    return _profilnaSlika.GetStream();
+                    if (_profilnaSlika != null)
+                    {
+                        return _profilnaSlika.GetStream();
+                    }
+                    else
+                        return null;
                 });
+                
             } 
             catch(Exception ex)
             {
@@ -159,10 +208,10 @@ namespace EkspertBookerMobileApp.Views
                     SaveToAlbum = true,
                     AllowCropping = true,
                     PhotoSize = PhotoSize.Custom,
-                    CustomPhotoSize = 0,
-                    CompressionQuality = 60,
+                    CustomPhotoSize = 50,
+                    CompressionQuality = 70,
                     Directory = "EkspertBookerProfilne",
-                    Name = "profilna.jpg" + LoggedUser.logovaniKorisnik.KorisnickoIme
+                    Name = "profilna_ekspert_" + LoggedUser.logovaniKorisnik.KorisnickoIme + ".jpg"
                 });
 
                 if (_profilnaSlika == null)
@@ -173,10 +222,23 @@ namespace EkspertBookerMobileApp.Views
                     return;
                 }
                 else SlikaErrorLabel.IsVisible = false;
+                if ((_profilnaSlika.GetStream().Length / 1024) > 1536)
+                {
+                    Application.Current.MainPage.DisplayAlert("Prevelika slika", "Vaša slika(iako kompresovana i smanjena)" +
+                        " ima " + _profilnaSlika.GetStream().Length / 1024 + " KB, molimo uploadujte sliku manje veličine", "OK");
+                    _profilnaSlika = null;
+                    ImageFrame.IsVisible = false;
+                    UploadImagePrikaz.Source = null;
+                    return;
+                }
                 ImageFrame.IsVisible = true;
                 UploadImagePrikaz.Source = ImageSource.FromStream(() =>
                 {
-                    return _profilnaSlika.GetStream();
+                    if (_profilnaSlika != null)
+                    {
+                        return _profilnaSlika.GetStream();
+                    }
+                    else return null;
                 });
             }
             catch (Exception ex)
@@ -231,6 +293,22 @@ namespace EkspertBookerMobileApp.Views
                 SlikaErrorLabel.IsVisible = false;
                 ImageFrame.IsVisible = false;
                 await PageScrollView.ScrollToAsync(PageScrollView, ScrollToPosition.Start, true);
+            }
+        }
+
+        private void StrucnaKategorijaPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = StrucnaKategorijaPicker.SelectedItem as Kategorija;
+            if (selected == null) return;
+            if (model.TrenutniEkspert.EkspertStrucnaKategorija != null)
+            {
+                if (selected.KategorijaId != model.TrenutniEkspert.EkspertStrucnaKategorija.KategorijaId)
+                {
+                    UrediFormErrorLabel.IsVisible = false;
+                }
+            } else
+            {
+                UrediFormErrorLabel.IsVisible = false;
             }
         }
     }

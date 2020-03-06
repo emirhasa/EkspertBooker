@@ -55,7 +55,7 @@
             </StackLayout>
             <StackLayout>
                 <Button Text="ODBIJENE PONUDE" TextColor="White" BackgroundColor="DarkRed" Command="{Binding OdbijenePonudeCommand}"></Button>
-                <ListView IsEnabled="True" ItemsSource="{Binding PrihvacenePonudeList}" RowHeight="100" ItemSelected="OdbijenaPonuda_ItemSelected" PropertyChanged="OdbijenePonudeListView_PropertyChanged" IsVisible="{Binding OdbijenePonudeVisible}">
+                <ListView IsEnabled="True" ItemsSource="{Binding OdbijenePonudeList}" RowHeight="100" ItemSelected="OdbijenaPonuda_ItemSelected" PropertyChanged="OdbijenePonudeListView_PropertyChanged" IsVisible="{Binding OdbijenePonudeVisible}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

@@ -107,10 +107,16 @@
   <ItemGroup>
     <Content Include="add_small.png" />
     <Content Include="icon_accept.png" />
+    <Content Include="icon_add.png" />
+    <Content Include="icon_attachment.png" />
+    <Content Include="icon_camera.png" />
+    <Content Include="icon_cog.png" />
     <Content Include="icon_details.png" />
     <Content Include="icon_edit.png" />
     <Content Include="icon_ekspert_request.png" />
+    <Content Include="icon_gallery.png" />
     <Content Include="icon_ponude.png" />
+    <Content Include="icon_profile.png" />
     <Content Include="icon_reject.png" />
     <Content Include="icon_review.png" />
     <Content Include="Properties\Default.rd.xml" />

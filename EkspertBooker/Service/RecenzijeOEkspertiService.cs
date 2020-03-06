@@ -33,11 +33,12 @@ namespace EkspertBooker.WebAPI.Service
                 var result = base.Insert(request);
                 //update info o ekspertu, ponovo izracunati prosjecnu ocjenu
                 var ekspert = _context.Eksperti.Find(result.EkspertId);
-                ekspert.BrojRecenzija++;
+
                 if(ekspert.BrojZavrsenihProjekata > 0)
                 {
-                    ekspert.ProsjecnaOcjena = ((ekspert.ProsjecnaOcjena * ekspert.BrojRecenzija - 1) + request.Ocjena) / ekspert.BrojRecenzija;
+                    ekspert.ProsjecnaOcjena = ((ekspert.ProsjecnaOcjena * ekspert.BrojRecenzija) + request.Ocjena) / (ekspert.BrojRecenzija + 1);
                 }
+                ekspert.BrojRecenzija++;
                 _context.SaveChanges();
                 return result;
             } 

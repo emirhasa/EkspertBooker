@@ -17,7 +17,6 @@ namespace EkspertBooker.WebAPI.Database
         public DbSet<Projekt> Projekti { get; set; }
         public DbSet<Ponuda> Ponude { get; set; }
         public DbSet<Kategorija> Kategorije { get; set; }
-        public DbSet<KorisnikKategorija> KorisniciKategorije { get; set; }
         public DbSet<Stanje> Stanja { get; set; }
         public DbSet<ProjektDetalji> ProjektDetalji { get; set; }
         public DbSet<Korisnik> Korisnici { get; set; }
@@ -29,6 +28,7 @@ namespace EkspertBooker.WebAPI.Database
         public DbSet<RecenzijaOEkspert> RecenzijeOEksperti { get; set; }
         public DbSet<RecenzijaOPoslodavac> RecenzijeOPoslodavci { get; set; }
         public DbSet<ProjektDetaljiPrilog> ProjektDetaljiPrilozi { get; set; }
+        public DbSet<EkspertKategorijaPretplata> EkspertiKategorijePretplate { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -82,6 +82,7 @@ namespace EkspertBooker.WebAPI.Database
             modelBuilder.Entity<ProjektDetaljiPrilog>(entity =>
             {
                 entity.HasOne(e => e.ProjektDetalji).WithOne(e => e.ProjektDetaljiPrilog);
+                entity.HasKey(e => e.ProjektDetaljiId);
             });
 
             modelBuilder.Entity<Stanje>(entity =>
@@ -115,20 +116,20 @@ namespace EkspertBooker.WebAPI.Database
                 entity.HasKey(e => e.KorisnikUlogaId);
             });
 
-            modelBuilder.Entity<KorisnikKategorija>(entity =>
-            {
-                entity.HasOne(e => e.Korisnik)
-                .WithMany(e => e.KorisnikKategorije)
-                .HasForeignKey(e => e.KorisnikId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //modelBuilder.Entity<KorisnikKategorija>(entity =>
+            //{
+            //    entity.HasOne(e => e.Korisnik)
+            //    .WithMany(e => e.KorisnikKategorije)
+            //    .HasForeignKey(e => e.KorisnikId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne(e => e.Kategorija)
-                .WithMany(e => e.KategorijaKorisnici)
-                .HasForeignKey(e => e.KategorijaId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //    entity.HasOne(e => e.Kategorija)
+            //    .WithMany(e => e.KategorijaKorisnici)
+            //    .HasForeignKey(e => e.KategorijaId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasKey(e => e.KorisnikKategorijaId);
-            });
+            //    entity.HasKey(e => e.KorisnikKategorijaId);
+            //});
 
             modelBuilder.Entity<Uloga>(entity =>
             {
@@ -145,6 +146,7 @@ namespace EkspertBooker.WebAPI.Database
             {
                 entity.HasKey(e => e.KorisnikId);
                 entity.HasOne(e => e.Korisnik).WithOne(e => e.Ekspert);
+                entity.HasOne(e => e.EkspertStrucnaKategorija).WithMany(e => e.EkspertiKategorijaStrucnosti).OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasMany(e => e.Projekti)
                 .WithOne(e => e.Ekspert)
@@ -153,44 +155,86 @@ namespace EkspertBooker.WebAPI.Database
 
                 entity.HasOne(e => e.KorisnikUloga).WithOne(e => e.Ekspert).OnDelete(DeleteBehavior.Restrict);
 
-                entity.Property(e => e.BrojZavrsenihProjekata).HasDefaultValue(0);
-                entity.Property(e => e.BrojRecenzija).HasDefaultValue(0);
+                entity.Property(e => e.BrojZavrsenihProjekata)
+                .HasDefaultValue(0);
+
+                entity.Property(e => e.BrojRecenzija)
+                .HasDefaultValue(0);
             });
 
             modelBuilder.Entity<Poslodavac>(entity =>
             {
                 entity.HasKey(e => e.KorisnikId);
-                entity.HasOne(e => e.Korisnik).WithOne(e => e.Poslodavac);
+                entity.HasOne(e => e.Korisnik)
+                .WithOne(e => e.Poslodavac);
 
                 entity.HasMany(e => e.Projekti)
                 .WithOne(e => e.Poslodavac)
                 .HasForeignKey(e => e.PoslodavacId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-                entity.HasOne(e => e.KorisnikUloga).WithOne(e => e.Poslodavac).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.KorisnikUloga)
+                .WithOne(e => e.Poslodavac)
+                .OnDelete(DeleteBehavior.Restrict);
 
-                entity.Property(e => e.BrojZavrsenihProjekata).HasDefaultValue(0);
-                entity.Property(e => e.BrojRecenzija).HasDefaultValue(0);
+                entity.Property(e => e.BrojZavrsenihProjekata)
+                .HasDefaultValue(0);
+
+                entity.Property(e => e.BrojRecenzija)
+                .HasDefaultValue(0);
             });
 
             modelBuilder.Entity<RecenzijaOEkspert>(entity =>
             {
-                entity.HasOne(e => e.Projekt).WithOne(e => e.RecenzijaOEkspert);
-                entity.HasOne(e => e.Poslodavac).WithMany(e => e.RecenzijeOEksperti).OnDelete(DeleteBehavior.ClientSetNull);
-                entity.HasOne(e => e.Ekspert).WithMany(e => e.RecenzijeOEksperti).OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Projekt)
+                .WithOne(e => e.RecenzijaOEkspert);
+
+                entity.HasOne(e => e.Poslodavac)
+                .WithMany(e => e.RecenzijeOEksperti)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(e => e.Ekspert)
+                .WithMany(e => e.RecenzijeOEksperti)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<RecenzijaOPoslodavac>(entity =>
             {
-                entity.HasOne(e => e.Projekt).WithOne(e => e.RecenzijaOPoslodavac);
-                entity.HasOne(e => e.Poslodavac).WithMany(e => e.RecenzijeOPoslodavci).OnDelete(DeleteBehavior.ClientSetNull);
-                entity.HasOne(e => e.Ekspert).WithMany(e => e.RecenzijeOPoslodavci).OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Projekt)
+                .WithOne(e => e.RecenzijaOPoslodavac);
+
+                entity.HasOne(e => e.Poslodavac)
+                .WithMany(e => e.RecenzijeOPoslodavci)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(e => e.Ekspert)
+                .WithMany(e => e.RecenzijeOPoslodavci)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Ponuda>(entity =>
             {
-                entity.HasOne(e => e.Projekt).WithMany(e => e.Ponude).OnDelete(DeleteBehavior.Cascade);
-                entity.HasOne(e => e.Ekspert).WithMany(e => e.Ponude).OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(e => e.Projekt)
+                .WithMany(e => e.Ponude)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(e => e.Ekspert)
+                .WithMany(e => e.Ponude)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<EkspertKategorijaPretplata>(entity =>
+            {
+                //the name differences regarding the entity on many side are reflective of the cardinalities and relations 
+                entity.HasOne(e => e.Ekspert)
+                .WithMany(e => e.EkspertKategorijePretplate)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(e => e.Kategorija)
+                .WithMany(e => e.EkspertiKategorijaPretplate)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasKey(e => e.EkspertKategorijaPretplataId);
             });
         } 
 

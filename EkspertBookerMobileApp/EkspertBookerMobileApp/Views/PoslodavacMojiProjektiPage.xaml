@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contentviews="clr-namespace:EkspertBookerMobileApp.ContentViews"
+             mc:Ignorable="d"
+             Title="Moji projekti"
+             x:Class="EkspertBookerMobileApp.Views.PoslodavacMojiProjektiPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout>
+                <Button Text="AKTIVNI PROJEKTI" TextColor="White" BackgroundColor="ForestGreen" Command="{Binding AktivniProjektiCommand}"></Button>
+                <ListView x:Name="AktivniProjektiListView" IsEnabled="True" ItemsSource="{Binding AktivniProjektiList}" RowHeight="100" ItemSelected="AktivniProjekt_ItemSelected" IsVisible="{Binding AktivniProjektiVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naziv}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Budzet, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding KratkiOpis}" MaxLines="1"></Label>
+                                    <Label Text="{Binding BrojPonuda, StringFormat='Broj ponuda: {0}'}" FontAttributes="Bold" FontSize="15"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Button Text="PROJEKTI - LICITACIJA" TextColor="White" BackgroundColor="#1d80cf" Command="{Binding LicitacijaProjektiCommand}"></Button>
+                <ListView x:Name="LicitacijaProjektiListView" IsEnabled="True" ItemsSource="{Binding LicitacijaProjektiList}" ItemSelected="LicitacijaProjekt_ItemSelected" RowHeight="100" IsVisible="{Binding LicitacijaProjektiVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naziv}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Budzet, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding KratkiOpis}" MaxLines="1"></Label>
+                                    <Label Text="{Binding BrojPonuda, StringFormat='Broj ponuda: {0}'}" FontAttributes="Bold" FontSize="15"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView> 
+            </StackLayout>
+            <StackLayout>
+                <Button Text="ZAVRŠENI PROJEKTI" TextColor="White" BackgroundColor="DarkRed" Command="{Binding ZavrseniProjektiCommand}"></Button>
+                <ListView x:Name="ZavrseniProjektiListView" IsEnabled="True" ItemsSource="{Binding ZavrseniProjektiList}" RowHeight="100" ItemSelected="ZavrseniProjekt_ItemSelected" IsVisible="{Binding ZavrseniProjektiVisible}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
+                                            <Label Text="{Binding Naziv}" FontSize="17" MaxLines="1" HorizontalOptions="Start"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label Text="{Binding Budzet, StringFormat='{0} KM'}" FontSize="17" TextColor="DarkRed" MaxLines="1"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding KratkiOpis}" MaxLines="1"></Label>
+                                    <Label Text="{Binding BrojPonuda, StringFormat='Broj ponuda: {0}'}" FontAttributes="Bold" FontSize="15"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

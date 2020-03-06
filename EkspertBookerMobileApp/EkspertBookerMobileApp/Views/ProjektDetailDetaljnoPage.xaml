@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contentviews="clr-namespace:EkspertBookerMobileApp.ContentViews"
+             Title="Projekt vrlo detaljno"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.ProjektDetailDetaljnoPage">
+    <ContentPage.Content>
+        <ScrollView x:Name="PageScrollView">
+            <StackLayout>
+                <Grid x:Name="ToolbarProjektDetaljnoDetaljno" ColumnSpacing="0" RowSpacing="0" Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition> 
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="StartAndExpand" Spacing="0" Orientation="Horizontal">
+
+                        <contentviews:CVImageButton x:Name="ButtonUredi" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                                ButtonText="UREDI" Source="icon_edit.png" Clicked="UrediButton_Clicked" IsVisible="{Binding UrediButtonVisible}"
+                                                BgColor="Orange"
+                                                />
+
+                        <contentviews:CVImageButton x:Name="ButtonNoviPrilog" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                                ButtonText="NOVI PRILOG" Source="icon_attachment.png" Clicked="NoviPrilog_Clicked"
+                                                BgColor="Purple"
+                                                />
+
+                        <contentviews:CVImageButton x:Name="ButtonPrihvacenaPonuda" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                                                ButtonText="PONUDA" Source="icon_ponude.png" Clicked="PrihvacenaPonuda_Clicked"
+                                                BgColor="ForestGreen"
+                                                />
+
+                    </StackLayout>
+
+                </Grid>
+                <!--<Grid x:Name="ToolbarEkspertProjekt" IsVisible="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Text="DOSTAVI PONUDU" FontAttributes="Bold" BackgroundColor="#1d80cf" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True" Clicked="DostaviPonudu_Clicked"></Button>
+                    <Button Grid.Row="0" Grid.Column="1" Text="PRIKAŽI DETALJNO" FontAttributes="Bold" BackgroundColor="ForestGreen" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True"></Button>
+                </Grid>-->
+                <Frame Margin="8,0,8,8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
+
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Projekt.Naziv}" FontSize="25" HorizontalTextAlignment="Start" Margin="0,3,0,0"></Label>
+                        </StackLayout>
+                        <Label Text="Sav sadržaj ispod vidljiv samo poslodavcu i ekspertu kojemu je ponuda prihvaćena" FontSize="10" FontAttributes="Italic" Opacity="0.7"></Label>
+                        <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+
+                        <StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0" Margin="0,8,0,0">
+                                <Label Text="Aktivni detaljni opis:" Opacity="0.7"></Label>
+                                <Label Text="{Binding ProjektDetalji.AktivanDetaljanOpis}"  HorizontalOptions="Start" LineBreakMode="WordWrap"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0" Margin="0,15,0,20">
+                                <Label Text="Napomena: " Opacity="0.7"></Label>
+                                <Label Text="{Binding ProjektDetalji.Napomena}" LineBreakMode="WordWrap"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Prilog" Grid.Row="0" Grid.Column="0" FontSize="25" HorizontalTextAlignment="Start" Margin="0,20,0,0"></Label>
+                            <contentviews:CVImageButton Grid.Row="0" Grid.Column="1" x:Name="ButtonDownloadPrilog" Margin="0,20,0,0" VerticalOptions="Start" HorizontalOptions="StartAndExpand"
+                                            ButtonText="SKINI PRILOG" Source="icon_attachment.png" IsVisible="{Binding PrilogPostoji}"
+                                                        BgColor="#1d80cf" Opacity="0.8"
+                                                        Clicked="ButtonDownloadPrilog_Clicked"
+                                            />
+                        </Grid>
+
+
+
+                        <StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Label Text="Naziv priloga:" Opacity="0.7"></Label>
+                                <Label Text="{Binding PrilogNaziv}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame x:Name="UrediForm" Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
+
+                    <StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Uredi detalje" FontSize="20" HorizontalTextAlignment="Start" Opacity="0.7" Margin="0,3,0,0"></Label>
+                            <Label Text="Unesite nove podatke u polja koja želite promijeniti..." FontAttributes="Italic" FontSize="13" Opacity="0.7"></Label>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="145"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="22"></RowDefinition>
+                                <RowDefinition Height="44"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Padding="0" Spacing="0" Margin="0,8,0,0">
+                                <Label HorizontalOptions="Start" Text="Aktivan detaljni opis: " Opacity="0.7" HorizontalTextAlignment="Start"></Label>
+                                <Editor x:Name="EntryAktivanDetaljanOpis" HeightRequest="100" HorizontalOptions="StartAndExpand" WidthRequest="300" Keyboard="Text" Text="{Binding AktivanDetaljanOpis}" TextChanged="Entry_TextChanged" Margin="0" MaxLength="5000"></Editor>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Spacing="0" Margin="0,16,0,0">
+                                <Label HorizontalOptions="Start" Text="Napomena: " Opacity="0.7" HorizontalTextAlignment="Start"></Label>
+                                <Entry x:Name="EntryNapomena" HorizontalOptions="Start" Keyboard="Text" WidthRequest="300" Text="{Binding Napomena}" TextChanged="Entry_TextChanged" Margin="0" MaxLength="100"  HorizontalTextAlignment="Start"></Entry>
+                                <Label x:Name="MailErrorLabel" Text="Unijeti validan email format!" TextColor="Red" FontSize="10" IsVisible="False"></Label>
+                            </StackLayout>
+
+                            <Label x:Name="UrediFormErrorLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" IsVisible="{Binding UrediFormErrorVisible}" Text="Morate promijeniti bar jedno polje!" TextColor="Red"></Label>
+                            <contentviews:CVImageButton Grid.Row="3" Grid.Column="0" x:Name="ButtonPotvrdiPromjene" VerticalOptions="Start" HorizontalOptions="StartAndExpand"
+                                            ButtonText="POTVRDI" Source="icon_accept.png" 
+                                                        BgColor="ForestGreen"
+                                                        Clicked="ButtonPotvrdiPromjene_Clicked"
+                                            />
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame x:Name="PrilogForm" Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Upload novog priloga" FontSize="20" HorizontalTextAlignment="Start" Opacity="0.7"></Label>
+                        <BoxView HeightRequest="1" WidthRequest="500" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand"></BoxView>
+
+                        <Label HorizontalOptions="Start" Text="Naziv originalne datoteke: " Opacity="0.7"></Label>
+                        <Label HorizontalOptions="Start" Text="" x:Name="PrilogOriginalniNaziv"></Label>
+                        <Label HorizontalOptions="Start" Text="Novi prilog naziv(nije obavezno): " Opacity="0.7" HorizontalTextAlignment="Start"></Label>
+                        <Entry x:Name="EntryPrilogNaziv" IsEnabled="False" WidthRequest="200" MaxLength="50"></Entry>
+
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <contentviews:CVImageButton x:Name="ButtonUploadPrilog" VerticalOptions="Start" HorizontalOptions="Start"
+                                            ButtonText="NOVI PRILOG" Source="icon_attachment.png" 
+                                                        BgColor="Purple"
+                                                        Clicked="ButtonUploadPrilog_Clicked" 
+                                            />
+                            <contentviews:CVImageButton x:Name="ButtonPotvrdiPrilog" VerticalOptions="Start" HorizontalOptions="Start"
+                                            ButtonText="POTVRDI" Source="icon_accept.png"
+                                                        BgColor="ForestGreen"
+                                                        Clicked="ButtonPotvrdiPrilogUpload_Clicked"
+                                            />
+                        </StackLayout>
+                        
+                        <Label x:Name="UploadPrilogErrorLabel" IsVisible="False" Text="Niste ništa uploadovali!" TextColor="Red"></Label>
+                    </StackLayout>
+
+            </Frame>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

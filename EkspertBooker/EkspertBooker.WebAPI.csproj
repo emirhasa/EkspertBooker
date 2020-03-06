@@ -21,6 +21,10 @@
     <Compile Remove="Migrations\20200222155917_m1.Designer.cs" />
     <Compile Remove="Migrations\20200222162941_m1.cs" />
     <Compile Remove="Migrations\20200222162941_m1.Designer.cs" />
+    <Compile Remove="Migrations\20200301184505_m7.cs" />
+    <Compile Remove="Migrations\20200301184505_m7.Designer.cs" />
+    <Compile Remove="Migrations\20200301184810_m7.cs" />
+    <Compile Remove="Migrations\20200301184810_m7.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />

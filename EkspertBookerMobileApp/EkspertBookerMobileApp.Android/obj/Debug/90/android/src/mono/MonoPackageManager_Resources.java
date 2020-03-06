@@ -9,6 +9,7 @@ public class MonoPackageManager_Resources {
 		"FormsViewGroup.dll",
 		"Newtonsoft.Json.dll",
 		"Plugin.CurrentActivity.dll",
+		"Plugin.FilePicker.dll",
 		"Plugin.Media.dll",
 		"Plugin.Permissions.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",

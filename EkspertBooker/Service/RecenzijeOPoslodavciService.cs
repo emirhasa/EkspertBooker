@@ -33,11 +33,11 @@ namespace EkspertBooker.WebAPI.Service
                 var result = base.Insert(request);
                 //update info o poslodavcu, ponovo izracunati prosjecnu ocjenu
                 var poslodavac = _context.Poslodavci.Find(result.PoslodavacId);
-                poslodavac.BrojRecenzija++;
                 if (poslodavac.BrojZavrsenihProjekata > 0)
                 {
-                    poslodavac.ProsjecnaOcjena = ((poslodavac.ProsjecnaOcjena * poslodavac.BrojRecenzija - 1) + request.Ocjena) / poslodavac.BrojRecenzija;
+                    poslodavac.ProsjecnaOcjena = ((poslodavac.ProsjecnaOcjena * poslodavac.BrojRecenzija ) + request.Ocjena) / (poslodavac.BrojRecenzija + 1);
                 }
+                poslodavac.BrojRecenzija++;
                 _context.SaveChanges();
                 return result;
             }

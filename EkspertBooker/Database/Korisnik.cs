@@ -10,7 +10,7 @@ namespace EkspertBooker.WebAPI.Database
         public Korisnik()
         {
             KorisnikUloge = new HashSet<KorisnikUloga>();
-            KorisnikKategorije = new HashSet<KorisnikKategorija>();
+            //KorisnikKategorije = new HashSet<KorisnikKategorija>();
         }
         public int KorisnikId { get; set; }
         public string Ime { get; set; }
@@ -22,7 +22,7 @@ namespace EkspertBooker.WebAPI.Database
         public string LozinkaSalt { get; set; }
         public DateTime? DatumRegistracije { get; set; }
         public ICollection<KorisnikUloga> KorisnikUloge { get; set; }
-        public ICollection<KorisnikKategorija> KorisnikKategorije { get; set; }
+        //public ICollection<KorisnikKategorija> KorisnikKategorije { get; set; }
         public KorisnikSlika KorisnikSlika { get; set; }
         public Poslodavac Poslodavac { get; set; }
         public Ekspert Ekspert { get; set; }

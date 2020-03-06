@@ -12,19 +12,22 @@ namespace EkspertBooker.WebAPI.Mappers
         {
             CreateMap<Database.Projekt, Model.Projekt>();
             CreateMap<Database.Kategorija, Model.Kategorija>();
+            CreateMap<Model.Kategorija, Database.Kategorija>();
             CreateMap<Database.Korisnik, Model.Korisnik>();
             CreateMap<Database.Uloga, Model.Uloga>();
             CreateMap<Database.KorisnikUloga, Model.KorisnikUloga>();
             CreateMap<Database.Stanje, Model.Stanje>();
             CreateMap<Database.ProjektDetalji, Model.ProjektDetalji>();
-            CreateMap<Model.Kategorija, Database.Kategorija>();
             CreateMap<Database.KorisnikSlika, Model.KorisnikSlika>();
             CreateMap<Database.Ekspert, Model.Ekspert>();
             CreateMap<Database.Poslodavac, Model.Poslodavac>();
             CreateMap<Database.RecenzijaOEkspert, Model.RecenzijaOEkspert>();
             CreateMap<Database.RecenzijaOPoslodavac, Model.RecenzijaOPoslodavac>();
-            CreateMap<Database.KorisnikKategorija, Model.KorisnikKategorija>();
+            //CreateMap<Database.KorisnikKategorija, Model.KorisnikKategorija>();
             CreateMap<Database.Ponuda, Model.Ponuda>();
+            CreateMap<Database.EkspertKategorijaPretplata, Model.EkspertKategorijaPretplata>();
+            CreateMap<Model.ProjektDetalji, Database.ProjektDetalji>();
+            CreateMap<Database.ProjektDetaljiPrilog, Model.ProjektDetaljiPrilog>();
 
             //insert update requests
             CreateMap<Model.ProjektUpsertRequest, Database.Projekt>();
@@ -38,7 +41,7 @@ namespace EkspertBooker.WebAPI.Mappers
             CreateMap<Model.Requests.RecenzijaOEkspertUpsertRequest, Database.RecenzijaOEkspert>();
             CreateMap<Model.Requests.RecenzijaOPoslodavacUpsertRequest, Database.RecenzijaOPoslodavac>();
             CreateMap<Model.Requests.PonudaUpsertRequest, Database.Ponuda>();
-            
+
         }
     }
 }

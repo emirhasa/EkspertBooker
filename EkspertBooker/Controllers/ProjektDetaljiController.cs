@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace EkspertBooker.WebAPI.Controllers
 {
     [Authorize]
-    public class ProjektDetaljiController : BaseCRUDController<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest> 
+    public class ProjektDetaljiController : BaseCRUDController<Model.ProjektDetalji, ProjektDetaljiSearchRequest, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest> 
     {
-        public ProjektDetaljiController(IBaseCRUDService<Model.ProjektDetalji, object, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest> service) : base(service)
+        public ProjektDetaljiController(IBaseCRUDService<Model.ProjektDetalji, ProjektDetaljiSearchRequest, ProjektDetaljiUpsertRequest, ProjektDetaljiUpsertRequest> service) : base(service)
         {
         }
 

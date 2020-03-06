@@ -6,7 +6,7 @@ namespace EkspertBooker.Model.Requests
 {
     public class EkspertUpsertRequest
     {
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
+        public int EkspertStrucnaKategorijaId { get; set; }
+        public Kategorija EkspertStrucnaKategorija { get; set; }
     }
 }

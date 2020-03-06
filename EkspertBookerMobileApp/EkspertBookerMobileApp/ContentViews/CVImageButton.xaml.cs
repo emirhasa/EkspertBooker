@@ -33,7 +33,7 @@ namespace EkspertBookerMobileApp.ContentViews
             set { SetValue(CommandProperty, value); }
         }
 
-    public static readonly BindableProperty CommandParameterProperty =
+        public static readonly BindableProperty CommandParameterProperty =
             BindableProperty.Create("CommandParameter", typeof(object), typeof(CVImageButton), null);
 
         public object CommandParameter
@@ -51,15 +51,6 @@ namespace EkspertBookerMobileApp.ContentViews
             set { SetValue(ImageSourceProperty, value); }
         }
 
-       /* public static readonly BindableProperty BgColorProperty =
-            BindableProperty.Create("BgColor", typeof(Color), typeof(CVImageButton), default(Color));
-
-        public Color BgColor
-        {
-            get { return (Color)GetValue(BgColorProperty); }
-            set { SetValue(BgColorProperty, value); }
-        }*/
-
         public static BindableProperty BgColorProperty =
                   BindableProperty.Create("BgColor", typeof(Color), typeof(CVImageButton), default(Color));
 
@@ -68,6 +59,7 @@ namespace EkspertBookerMobileApp.ContentViews
             get { return (Color)GetValue(BgColorProperty); }
             set { SetValue(BgColorProperty, value); }
         }
+        
 
         public CVImageButton()
         {
@@ -76,7 +68,6 @@ namespace EkspertBookerMobileApp.ContentViews
             innerLabel.SetBinding(Label.TextProperty, new Binding("ButtonText", source: this));
             innerImage.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
             CVImageButtonFrame.SetBinding(Frame.BackgroundColorProperty, new Binding("BgColor", source:this));
-
             this.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(() =>

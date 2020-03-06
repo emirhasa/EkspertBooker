@@ -23,6 +23,7 @@ namespace EkspertBooker.Model
         public int? Budzet { get; set; }
         public bool? Hitan { get; set; }
         public ProjektDetalji ProjektDetalji { get; set; }
+        public int BrojPonuda { get; set; }
 
         public ICollection<Ponuda> Ponude { get; set; }
 

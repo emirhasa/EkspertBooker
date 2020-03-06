@@ -3,6 +3,7 @@ using EkspertBooker.Model.Requests;
 using Flurl.Http;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,16 @@ namespace EkspertBookerMobileApp.ViewModels
     {
         private readonly APIService _ekspertiService = new APIService("Eksperti");
         private readonly APIService _korisniciService = new APIService("Korisnici");
+        private readonly APIService _kategorijeService = new APIService("Kategorije");
+
+        public ObservableCollection<Kategorija> KategorijeList { get; set; } = new ObservableCollection<Kategorija>();
+
+        Kategorija _selectedKategorija = null;
+        public Kategorija SelectedKategorija
+        {
+            get { return _selectedKategorija; }
+            set { SetProperty(ref _selectedKategorija, value); }
+        }
 
         Korisnik _trenutniKorisnik;
         public Korisnik TrenutniKorisnik {
@@ -57,6 +68,13 @@ namespace EkspertBookerMobileApp.ViewModels
             set { SetProperty(ref _urediTelefon, value); }
         }
 
+        bool _noStrucnaKategorija = true;
+        public bool NoStrucnaKategorija
+        {
+            get { return _noStrucnaKategorija; }
+            set { SetProperty(ref _noStrucnaKategorija, value); }
+        }
+
         public MojProfilEkspertViewModel()
         {
             InitCommand = new Command(async () => await Init());
@@ -66,8 +84,18 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public async Task Init()
         {
+            KategorijeList.Clear();
             TrenutniKorisnik = await _korisniciService.GetById<Korisnik>(LoggedUser.logovaniKorisnik.KorisnikId);
             TrenutniEkspert = await _ekspertiService.GetById<Ekspert>(TrenutniKorisnik.KorisnikId);
+            var kategorije = await _kategorijeService.Get<List<Kategorija>>(null);
+            if(TrenutniEkspert.EkspertStrucnaKategorija != null)
+            {
+                NoStrucnaKategorija = false;
+            }
+            foreach(var kategorija in kategorije)
+            {
+                KategorijeList.Add(kategorija);
+            }
         }
 
         public async Task<bool> SacuvajPromjene()
@@ -103,6 +131,14 @@ namespace EkspertBookerMobileApp.ViewModels
                 try
                 {
                     var result = await _korisniciService.Update<Korisnik>(TrenutniKorisnik.KorisnikId, request);
+                    if(SelectedKategorija.KategorijaId != TrenutniEkspert.EkspertStrucnaKategorija.KategorijaId)
+                    {
+                        EkspertUpsertRequest kategorija_request = new EkspertUpsertRequest
+                        {
+                            EkspertStrucnaKategorijaId = SelectedKategorija.KategorijaId
+                        };
+                        var kategorija_result = await _ekspertiService.Update<Ekspert>(TrenutniKorisnik.KorisnikId, kategorija_request); 
+                    }
                     if (result != null) return true;
                 }
                 catch(Exception ex)
@@ -120,6 +156,13 @@ namespace EkspertBookerMobileApp.ViewModels
         {
             get { return _urediFormErrorVisible; }
             set { SetProperty(ref _urediFormErrorVisible, value); }
+        }
+
+        string _urediErrorLabelText;
+        public string UrediErrorLabelText
+        {
+            get { return _urediErrorLabelText; }
+            set { SetProperty(ref _urediErrorLabelText, value); }
         }
 
         bool _validationTriggered = false;
@@ -149,13 +192,37 @@ namespace EkspertBookerMobileApp.ViewModels
                         return false;
                     }
                 }
+                UrediFormErrorVisible = false;
                 return true;
-            } else
-            {
-                UrediFormErrorVisible = true;
-                //Application.Current.MainPage.DisplayAlert("Greška", "Morate promijeniti bar jedno polje!", "OK...");
-                return false;
             }
+            else
+            {
+                if (SelectedKategorija == null)
+                {
+                    UrediFormErrorVisible = true;
+                    //Application.Current.MainPage.DisplayAlert("Greška", "Morate promijeniti bar jedno polje!", "OK...");
+                    return false;
+                }
+                else
+                {
+                    if (TrenutniEkspert.EkspertStrucnaKategorija == null)
+                    {
+                        UrediFormErrorVisible = false;
+                        return true;
+                    }
+                    else
+                    {
+                        if (TrenutniEkspert.EkspertStrucnaKategorija.KategorijaId == SelectedKategorija.KategorijaId)
+                        {
+                            UrediFormErrorVisible = true;
+                            return false;
+                        }
+                        UrediFormErrorVisible = false;
+                        return true;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
