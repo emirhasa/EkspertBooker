@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Title="Moje recenzije(ekspert)"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.EkspertListaRecenzijaPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            <Label Text="Lista recenzija: " FontAttributes="Bold" FontSize="18" Margin="0,0,0,20" Opacity="0.7"></Label>
+            <Label Text="Ekspert trenutno nema recenzija..." TextColor="Red" IsVisible="{Binding NemaRecenzijaTooltip}"></Label>
+            <ListView x:Name="RecenzijeListView" IsEnabled="True" SelectionMode="None" HasUnevenRows="True" ItemsSource="{Binding RecenzijeList}" IsVisible="{Binding ImaRecenzija}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Frame OutlineColor="Silver" Margin="8">
+                                <StackLayout Orientation="Vertical" Spacing="0">
+
+                                    <Label Text="{Binding Ocjena, StringFormat='Ocjena: {0}'}" FontSize="15" FontAttributes="Bold" MaxLines="1"></Label>
+
+                                    <Label Text="Komentar:" Opacity="0.7" Margin="0,15,0,0"></Label>
+                                    <Label Text="{Binding Komentar}" MaxLines="1"></Label>
+                                    
+                                    <Label Text="{Binding Vrijeme, StringFormat='Datum: {0:dd.MM.yyyy}'}" FontAttributes="Bold" FontSize="15" Margin="0,15,0,0"></Label>
+                                    
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

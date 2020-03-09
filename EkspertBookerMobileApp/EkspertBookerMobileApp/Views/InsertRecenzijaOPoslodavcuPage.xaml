@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.InsertRecenzijaOPoslodavcuPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="15" Spacing="0">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="{Binding Projekt.Naziv}" FontSize="17" VerticalOptions="End"></Label>
+                    <Label Text="{Binding Projekt.KratkiOpis}"></Label>
+                    <Label Text="{Binding Projekt.Poslodavac.Korisnik, StringFormat='Recenzija o POSLODAVCU: {0}'}"></Label>
+                </StackLayout>
+                <StackLayout HorizontalOptions="StartAndExpand" Margin="0,50,0,0">
+                    <Label Grid.Column="0" Text="Komentar"></Label>
+                    <Entry Grid.Column="1" Text="{Binding Komentar}" HorizontalOptions="StartAndExpand" WidthRequest="500" MaxLength="500"></Entry>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" Margin="0,50,0,0">
+                    <Label Text="Ocjena(5-10) - obavezno polje" HorizontalOptions="StartAndExpand"></Label>
+                    <Entry x:Name="EntryOcjena" Text="{Binding Ocjena}" Keyboard="Numeric" WidthRequest="100" TextChanged="Ocjena_TextChanged" MaxLength="2"></Entry>
+                    <Label x:Name="ErrorLabel" Text="Ocjena mora biti između 5 i 10!" IsVisible="False" TextColor="Red"></Label>
+                    <Button HorizontalOptions="FillAndExpand" Text="SUBMIT" WidthRequest="100" BackgroundColor="#1d80cf" TextColor="White" Clicked="ButtonSubmit_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

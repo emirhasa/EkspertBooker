@@ -11,7 +11,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\bin\Debug\F
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\bin\Debug\Flurl.Http.xml
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.csprojAssemblyReference.cache
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.exe.config
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.FormIndex.resources
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.Kategorija.FormKategorijePretraga.resources
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.Korisnik.FormEkspertiPretraga.resources

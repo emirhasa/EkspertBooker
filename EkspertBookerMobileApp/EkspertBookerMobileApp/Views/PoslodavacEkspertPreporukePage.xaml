@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Title="Preporuke za projekat"
+             mc:Ignorable="d"
+             x:Class="EkspertBookerMobileApp.Views.PoslodavacEkspertPreporukePage">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            <Label Text="Preporučeni eksperti - TOP 3" FontSize="17"></Label>
+            <Label Text="Pritisnite na karticu eksperta kako bi mu poslali zahtjev za ponudu!" FontAttributes="Italic"></Label>
+            <ListView x:Name="PreporukeListView" ItemSelected="PreporukeListView_ItemSelected"
+                      ItemsSource="{Binding PreporukeList}"  RowHeight="120" SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame OutlineColor="Silver" Margin="8" Padding="2">
+                                <StackLayout Orientation="Vertical" Spacing="0">
+                                    
+                                    <Label Text="{Binding Ekspert.Korisnik}" FontSize="15" FontAttributes="Bold" MaxLines="1"></Label>
+
+                                    <Label Text="{Binding Rejting, StringFormat='Rejting: {0}'}" Margin="0,5,0,0"></Label>
+                                    <Label Text="{Binding Ekspert.BrojZavrsenihProjekata,StringFormat='Broj zavrsenih projekata: {0}'}" Margin="0,5,0,0"></Label>
+                                    <Label Text="{Binding Ekspert.ProsjecnaOcjena,StringFormat='Prosjecna ocjena: {0}'}" Margin="0,5,0,0"></Label>
+                                    <Label Text="{Binding Ekspert.BrojRecenzija,StringFormat='Broj recenzija: {0}'}" Margin="0,5,0,0"></Label>
+
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
