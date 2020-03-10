@@ -1,4 +1,5 @@
 ﻿using EkspertBooker.Model;
+using EkspertBookerMobileApp.Helper;
 using EkspertBookerMobileApp.Validation;
 using EkspertBookerMobileApp.ViewModels;
 using System;
@@ -25,18 +26,25 @@ namespace EkspertBookerMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await model.Init();
-            if (model.projektId != null)
+            try
             {
-                await model.UcitajProjektInfo();
-
-                //setuj selected index pickera na onu koji odgovara projektu
-                var kategorije = KategorijaPicker.Items;
-                Kategorija selectedKategorija = model.SelectedKategorija;
-                foreach (var kategorija in kategorije)
+                await model.Init();
+                if (model.projektId != null)
                 {
-                    if (kategorija == selectedKategorija.Naziv) KategorijaPicker.SelectedIndex = KategorijaPicker.Items.IndexOf(kategorija);
+                    await model.UcitajProjektInfo();
+
+                    //setuj selected index pickera na index kat. koji odgovara projektu
+                    var kategorije = KategorijaPicker.Items;
+                    Kategorija selectedKategorija = model.SelectedKategorija;
+                    foreach (var kategorija in kategorije)
+                    {
+                        if (kategorija == selectedKategorija.Naziv) KategorijaPicker.SelectedIndex = KategorijaPicker.Items.IndexOf(kategorija);
+                    }
                 }
+            }
+            catch
+            {
+                PageExtensions.LoadPageError();
             }
         }
 

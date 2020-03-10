@@ -22,13 +22,23 @@ namespace EkspertBooker.WebAPI.Controllers
         [HttpGet]
         public ActionResult<List<Model.EkspertKategorijaPretplata>> Get([FromQuery]EkspertKategorijeSearchRequest request)
         {
-            return _service.Get(request);
+            var result = _service.Get(request);
+            if(result != null)
+            {
+                if(result.Count > 0)
+                {
+                    return result;
+                } return NoContent();
+            }
+            return NoContent();
         }
 
         [HttpGet("{id}")]
         public ActionResult<Model.EkspertKategorijaPretplata> GetById(int id)
         {
-            return _service.GetById(id);
+            var result = _service.GetById(id);
+            if (result != null) return result;
+            return NoContent();
         }
 
         [HttpPut("{id}")]

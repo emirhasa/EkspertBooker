@@ -23,10 +23,18 @@ namespace EkspertBookerMobileApp.Views
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
-            await model.Init();
-            await model.UcitajOdbijenePonude();
-            await model.UcitajAktivnePonude();
+            try
+            {
+                base.OnAppearing();
+                await model.Init();
+                await model.UcitajOdbijenePonude();
+                await model.UcitajAktivnePonude();
+            }
+            catch
+            {
+                Application.Current.MainPage.DisplayAlert("Greška", "Problem prilikom učitavanja ponuda", "OK");
+                Navigation.PopAsync();
+            }
             
             if (PonudeFilterPicker.Items.Count == 0)
             {

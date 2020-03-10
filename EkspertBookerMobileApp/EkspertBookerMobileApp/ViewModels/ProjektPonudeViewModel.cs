@@ -98,66 +98,71 @@ namespace EkspertBookerMobileApp.ViewModels
                 ProjektId = projektId,
                 Status = 2
             });
-            if (prihvacena.Count > 0)
+            ImaPrihvacena = false;
+            NemaPrihvacena = true;
+            if (prihvacena != null)
             {
-                PrihvacenaPonudaList.Clear();
-                PrihvacenaPonuda = prihvacena[0];
-                PrihvacenaPonudaList.Add(PrihvacenaPonuda);
-                ImaPrihvacena = true;
-                NemaPrihvacena = false;
-            } else
-            {
-                ImaPrihvacena = false;
-                NemaPrihvacena = true;
+                if (prihvacena.Count > 0)
+                {
+                    PrihvacenaPonudaList.Clear();
+                    PrihvacenaPonuda = prihvacena[0];
+                    PrihvacenaPonudaList.Add(PrihvacenaPonuda);
+                    ImaPrihvacena = true;
+                    NemaPrihvacena = false;
+                }
+                return;
             }
         }
 
         public async Task UcitajAktivnePonude()
         {
             AktivnePonudeList.Clear();
+            ImaAktivnih = false;
+            NemaAktivnih = true;
             var aktivne_list = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
             {
                 ProjektId = projektId,
                 Status = 1
             });
-            if (aktivne_list.Count > 0)
+            if (aktivne_list != null)
             {
-                ImaAktivnih = true;
-                NemaAktivnih = false;
-                foreach (Ponuda aktivna in aktivne_list)
+                if (aktivne_list.Count > 0)
                 {
-                    AktivnePonudeList.Add(aktivna);
+                    ImaAktivnih = true;
+                    NemaAktivnih = false;
+                    foreach (Ponuda aktivna in aktivne_list)
+                    {
+                        AktivnePonudeList.Add(aktivna);
+                    }
                 }
-            } else
-            {
-                ImaAktivnih = false;
-                NemaAktivnih = true;
+                return;
             }
         }
 
         public async Task UcitajOdbijenePonude()
         {
             OdbijenePonudeList.Clear();
+            ImaOdbijenih = false;
+            NemaOdbijenih = true;
             var odbijene_list = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
             {
                 ProjektId = projektId,
                 Status = 0
             });
-            if (odbijene_list.Count > 0)
+            if (odbijene_list != null)
             {
-                ImaOdbijenih = true;
-                NemaOdbijenih = false;
-                foreach (Ponuda odbijena in odbijene_list)
+                if (odbijene_list.Count > 0)
                 {
-                    OdbijenePonudeList.Add(odbijena);
+                    ImaOdbijenih = true;
+                    NemaOdbijenih = false;
+                    foreach (Ponuda odbijena in odbijene_list)
+                    {
+                        OdbijenePonudeList.Add(odbijena);
+                    }
                 }
-            } else
-            {
-                ImaOdbijenih = false;
-                NemaOdbijenih = true;
-            }
+                return;
+            } 
         }
-
 
     }
 }

@@ -11,6 +11,7 @@ using Xamarin.Forms;
 
 namespace EkspertBookerMobileApp
 {   
+    //TODO raise more specific exceptions on not found or bad request etc. and throw them, then catch those specific exceptions in upper layers of application
     public class APIService
     {
         private readonly string _route;
@@ -75,37 +76,73 @@ namespace EkspertBookerMobileApp
 
         public async Task<T> Insert<T>(object insert)
         {
-            var url = $"{_apiUrl}/{_route}";
-            var result = await url.WithBasicAuth(Username, Password).PostJsonAsync(insert).ReceiveJson<T>();
-            return result;
+            try
+            {
+                var url = $"{_apiUrl}/{_route}";
+                var result = await url.WithBasicAuth(Username, Password).PostJsonAsync(insert).ReceiveJson<T>();
+                return result;
+            }
+            catch
+            {
+                //todo: throw special exception to know it's failed in api communication
+                throw;
+            }
         }
 
         public async Task<T> GetById<T>(object id)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
-            return result;
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+                var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<T> Update<T>(object id, object update)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            var result = await url.WithBasicAuth(Username, Password).PutJsonAsync(update).ReceiveJson<T>();
-            return result;
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+                var result = await url.WithBasicAuth(Username, Password).PutJsonAsync(update).ReceiveJson<T>();
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<T> Delete<T>(object id)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            var result = await url.WithBasicAuth(Username, Password).SendJsonAsync(HttpMethod.Delete, id).ReceiveJson<T>();
-            return result;
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+                var result = await url.WithBasicAuth(Username, Password).SendJsonAsync(HttpMethod.Delete, id).ReceiveJson<T>();
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<string> DownloadFile(object id)
         {
-            var url = $"{_apiUrl}/{_route}/{id}";
-            var result = await url.WithBasicAuth(Username, Password).DownloadFileAsync("C:\\FIT", "test");
-            return result;
+            try
+            {
+                var url = $"{_apiUrl}/{_route}/{id}";
+                var result = await url.WithBasicAuth(Username, Password).DownloadFileAsync("C:\\FIT", "test");
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

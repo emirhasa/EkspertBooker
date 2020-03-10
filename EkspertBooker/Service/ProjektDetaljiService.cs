@@ -17,18 +17,8 @@ namespace EkspertBooker.WebAPI.Service
 
         public override List<Model.ProjektDetalji> Get(ProjektDetaljiSearchRequest search)
         {
-            if(search.ProjektId.HasValue)
-            {
-                var projekt_detalj = _context.ProjektDetalji.Where(pd => pd.ProjektId == search.ProjektId).SingleOrDefault();
-                List<Model.ProjektDetalji> list = new List<Model.ProjektDetalji>();
-                var model_projekt_detalj = _mapper.Map<Model.ProjektDetalji>(projekt_detalj);
-                list.Add(model_projekt_detalj);
-                return list;
-            } else
-            {
-                List<Model.ProjektDetalji> list = _mapper.Map<List<Model.ProjektDetalji>>(_context.ProjektDetalji.ToList());
-                return list;
-            }
+            List<Model.ProjektDetalji> list = _mapper.Map<List<Model.ProjektDetalji>>(_context.ProjektDetalji.ToList());
+            return list; 
         }
 
         public override Model.ProjektDetalji GetById(int id)

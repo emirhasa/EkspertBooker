@@ -55,18 +55,28 @@ namespace EkspertBookerMobileApp.ViewModels
         }
 
         public ICommand InitCommand { get; set; }
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            Projekt = await _projektiService.GetById<Projekt>(projektId);
-            if (Projekt.StanjeId == "Licitacija") UrediButtonVisible = true; else UrediButtonVisible = false;
-            DetaljniOpisVisible = !string.IsNullOrWhiteSpace(Projekt.DetaljniOpis);
-            DatumPocetkaVisible = !string.IsNullOrWhiteSpace(Projekt.DatumPocetka.ToString());
-            if(!DatumPocetkaVisible)
+            try
             {
-                DatumPocetkaAlternateVisible = true;
-            } else
+                Projekt = await _projektiService.GetById<Projekt>(projektId);
+                if (Projekt == null) return false;
+                if (Projekt.StanjeId == "Licitacija") UrediButtonVisible = true; else UrediButtonVisible = false;
+                DetaljniOpisVisible = !string.IsNullOrWhiteSpace(Projekt.DetaljniOpis);
+                DatumPocetkaVisible = !string.IsNullOrWhiteSpace(Projekt.DatumPocetka.ToString());
+                if (!DatumPocetkaVisible)
+                {
+                    DatumPocetkaAlternateVisible = true;
+                }
+                else
+                {
+                    DatumPocetkaAlternateVisible = false;
+                }
+                return true;
+            }
+            catch
             {
-                DatumPocetkaAlternateVisible = false;
+                return false;
             }
         }
 

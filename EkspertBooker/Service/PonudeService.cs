@@ -41,7 +41,7 @@ namespace EkspertBooker.WebAPI.Service
             }
 
             var result = query.Include(p=>p.Ekspert).ThenInclude(e=>e.Korisnik).ToList();
-
+            if (result.Count == 0) return null; else
             return _mapper.Map<List<Model.Ponuda>>(result);
         }
 

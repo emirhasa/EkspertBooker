@@ -1,4 +1,5 @@
 ﻿using EkspertBooker.Model;
+using EkspertBooker.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,16 +24,30 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            EkspertiList.Clear();
-            var list = await ekspertiService.Get<List<Ekspert>>(null);
-            if (list != null)
+            try
             {
-                foreach (var ekspert in list)
+                EkspertiList.Clear();
+                var list = await ekspertiService.Get<List<Ekspert>>(new EkspertiSearchRequest
                 {
-                    EkspertiList.Add(ekspert);
+                    BrojZavrsenihProjekata = 50
+                });
+                if (list != null)
+                {
+                    if (list.Count > 0)
+                    {
+                        foreach (var ekspert in list)
+                        {
+                            EkspertiList.Add(ekspert);
+                        }
+                    }
                 }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

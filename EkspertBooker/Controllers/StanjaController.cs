@@ -8,10 +8,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EkspertBooker.WebAPI.Controllers
 {
-    public class StanjaController : BaseGetController<Model.Stanje, object>
+    [Route("api/[controller]")]
+    [ApiController]
+    public class StanjaController : ControllerBase
     {
-        public StanjaController(IBaseGetService<Model.Stanje, object> service):base(service)
+        IStanjaService _service;
+        public StanjaController(IStanjaService service)
         {
+            _service = service;
+        }
+
+        [HttpGet]
+        public ActionResult<List<Model.Stanje>> Get()
+        {
+            var result = _service.Get();
+            if(result != null)
+            {
+                if(result.Count > 0)
+                {
+                    return result;
+                } return NoContent();
+            } return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Model.Stanje> GetById(string id)
+        {
+            return _service.GetById(id);
         }
     }
 }

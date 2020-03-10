@@ -49,22 +49,28 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            //try - catch ? if korisnik == null? throw or pop page
-            
-            //Korisnik = await _korisniciService.GetById<Korisnik>(_korisnikId);
-            Ekspert = await _ekspertiService.GetById<Ekspert>(_korisnikId);
-            if (Ekspert.EkspertStrucnaKategorija != null)
+            try
             {
-                NoStrucnaKategorija = false;
+                Ekspert = await _ekspertiService.GetById<Ekspert>(_korisnikId);
+                if (Ekspert.EkspertStrucnaKategorija != null)
+                {
+                    NoStrucnaKategorija = false;
+                }
+                if (Ekspert.Korisnik.KorisnikSlika != null)
+                {
+                    SlikaVisible = true;
+                }
+                else
+                {
+                    SlikaVisible = false;
+                }
+                return true;
             }
-            if (Ekspert.Korisnik.KorisnikSlika != null)
+            catch
             {
-                SlikaVisible = true;
-            } else
-            {
-                SlikaVisible = false;
+                return false;
             }
         }
     }

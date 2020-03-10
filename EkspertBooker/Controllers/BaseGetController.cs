@@ -22,7 +22,13 @@ namespace EkspertBooker.WebAPI.Controllers
         [HttpGet]
         public virtual ActionResult<List<TModel>> Get([FromQuery]TSearch search)
         {
-            return _service.Get(search);
+            var result = _service.Get(search);
+            if (result != null)
+            {
+                if (result.Count == 0) return null;
+                return result;
+            }
+            return null;
         }
 
         [HttpGet("{id}")]

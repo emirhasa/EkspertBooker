@@ -22,6 +22,12 @@ namespace EkspertBookerMobileApp.ViewModels
             set { SetProperty(ref _projekt, value); }
         }
 
+        public Ponuda Ponuda
+        {
+            get { return _ponuda; }
+            set { SetProperty(ref _ponuda, value); }
+        }
+
         private readonly APIService _projektiService = new APIService("Projekti");
         private readonly APIService _ponudeService = new APIService("Ponude");
 
@@ -63,45 +69,61 @@ namespace EkspertBookerMobileApp.ViewModels
         public ICommand InitCommand { get; set; }
         public ICommand SubmitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            _ponuda = await _ponudeService.GetById<Ponuda>(ponudaId);
-            Projekt = await _projektiService.GetById<Projekt>(_ponuda.ProjektId);
-            Naslov = _ponuda.Naslov;
-            OpisPonude = _ponuda.OpisPonude;
-            Cijena = _ponuda.Cijena;
+            try
+            {
+                Ponuda = await _ponudeService.GetById<Ponuda>(ponudaId);
+                Projekt = await _projektiService.GetById<Projekt>(_ponuda.ProjektId);
+                if (Ponuda == null || Projekt == null) return false;
+                Naslov = Ponuda.Naslov;
+                OpisPonude = Ponuda.OpisPonude;
+                Cijena = Ponuda.Cijena;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<bool> Submit()
         {
-            if (IsValid())
+            try
             {
-                PonudaUpsertRequest nova_ponuda = new PonudaUpsertRequest
+                if (IsValid())
                 {
-                    EkspertId = LoggedUser.logovaniKorisnik.KorisnikId,
-                    Naslov = Naslov,
-                    OpisPonude = OpisPonude,
-                    Cijena = Cijena,
-                    ProjektId = _ponuda.ProjektId,
-                    VrijemePonude = DateTime.Now,
-                    Status = _ponuda.Status
-                };
+                    PonudaUpsertRequest nova_ponuda = new PonudaUpsertRequest
+                    {
+                        EkspertId = LoggedUser.logovaniKorisnik.KorisnikId,
+                        Naslov = Naslov,
+                        OpisPonude = OpisPonude,
+                        Cijena = Cijena,
+                        ProjektId = Ponuda.ProjektId,
+                        VrijemePonude = DateTime.Now,
+                        Status = Ponuda.Status
+                    };
 
-                var result = _ponudeService.Update<Ponuda>(ponudaId, nova_ponuda);
-                if (result != null)
-                {
-                    Application.Current.MainPage.DisplayAlert("Info", "Sačuvane promjene!", "OK");
-                    return true;
+                    var result = _ponudeService.Update<Ponuda>(ponudaId, nova_ponuda);
+                    if (result != null)
+                    {
+                        Application.Current.MainPage.DisplayAlert("Info", "Sačuvane promjene!", "OK");
+                        return true;
+                    }
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert("Greška", "Greška prilikom spremanja promjena!", "Dalje...");
+                        return false;
+                    }
                 }
                 else
                 {
-                    Application.Current.MainPage.DisplayAlert("Greška", "Greška prilikom spremanja promjena!", "Dalje...");
+                    Application.Current.MainPage.DisplayAlert("Greška", "Unesite obavezna polja!", "Dalje...");
                     return false;
                 }
             }
-            else
+            catch
             {
-                Application.Current.MainPage.DisplayAlert("Greška", "Unesite obavezna polja!", "Dalje...");
                 return false;
             }
         }

@@ -7,10 +7,6 @@
              mc:Ignorable="d"
              Title="O projektu"
              x:Class="EkspertBookerMobileApp.Views.PoslodavacProjektDetailPage">
-    
-    <ContentPage.ToolbarItems>
-        <!--<ToolbarItem Text="DOSTAVI PONUDU" Clicked="DostaviPonudu_Clicked" Order="Primary" />-->
-    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <ScrollView>
@@ -35,22 +31,7 @@
                                             />
 
                 </StackLayout>
-              
 
-                
-                <!--<Grid x:Name="ToolbarEkspert" IsVisible="False">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="80"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" x:Name="ButtonDostaviPonudu" Text="DOSTAVI PONUDU" FontAttributes="Bold" BackgroundColor="#1d80cf" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True" Clicked="DostaviPonudu_Clicked"></Button>
-                    <Button Grid.Row="0" Grid.Column="1" Text="PRIKAŽI DETALJNO" FontAttributes="Bold" BackgroundColor="ForestGreen" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand"></Button>
-                </Grid>-->
-                
                 <Frame Margin="8,0,8,8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
                     <StackLayout> 
                         <StackLayout Orientation="Horizontal">

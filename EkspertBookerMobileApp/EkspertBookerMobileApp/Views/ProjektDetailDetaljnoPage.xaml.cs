@@ -1,5 +1,6 @@
 ﻿using EkspertBooker.Model;
 using EkspertBooker.Model.Requests;
+using EkspertBookerMobileApp.Helper;
 using EkspertBookerMobileApp.ViewModels;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
@@ -35,7 +36,8 @@ namespace EkspertBookerMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await model.Init();
+            bool uspio = await model.Init();
+            if (!uspio) PageExtensions.LoadPageError();
         }
 
         private async void UrediButton_Clicked(object sender, EventArgs e)

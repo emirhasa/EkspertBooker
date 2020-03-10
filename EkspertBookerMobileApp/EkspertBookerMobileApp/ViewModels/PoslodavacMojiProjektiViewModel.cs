@@ -104,13 +104,17 @@ namespace EkspertBookerMobileApp.ViewModels
                     PoslodavacId = LoggedUser.logovaniKorisnik.KorisnikId,
                     StanjeId = "Aktivan"
                 });
-                if (aktivni_projekti.Count > 0)
-                {
-                    foreach (var projekat in aktivni_projekti)
+                
+                if(aktivni_projekti != null) {
+                    if (aktivni_projekti.Count > 0)
                     {
-                        AktivniProjektiList.Add(projekat);
+                        foreach (var projekat in aktivni_projekti)
+                        {
+                            AktivniProjektiList.Add(projekat);
+                        }
+                        AktivniProjektiVisible = true;
+                        return;
                     }
-                    AktivniProjektiVisible = true;
                 } else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate aktivnih projekata! Prihvatite ponudu na projektu da postane aktivan...", "OK");
@@ -132,14 +136,19 @@ namespace EkspertBookerMobileApp.ViewModels
                     PoslodavacId = LoggedUser.logovaniKorisnik.KorisnikId,
                     StanjeId = "Licitacija"
                 });
-                if (licitacija_projekti.Count > 0)
+                if (licitacija_projekti != null)
                 {
-                    foreach (var projekat in licitacija_projekti)
+                    if (licitacija_projekti.Count > 0)
                     {
-                        LicitacijaProjektiList.Add(projekat);
+                        foreach (var projekat in licitacija_projekti)
+                        {
+                            LicitacijaProjektiList.Add(projekat);
+                        }
+                        LicitacijaProjektiVisible = true;
+                        return;
                     }
-                    LicitacijaProjektiVisible = true;
-                } else
+                }
+                else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate licitacija(bidding - ponude) projekata, sačekajte da neki ekspert dostavi ponudu...", "OK");
                 }
@@ -160,13 +169,16 @@ namespace EkspertBookerMobileApp.ViewModels
                     PoslodavacId = LoggedUser.logovaniKorisnik.KorisnikId,
                     StanjeId = "Zavrsen"
                 });
-                if (zavrseni_projekti.Count > 0)
-                {
-                    foreach (var projekat in zavrseni_projekti)
+                if(zavrseni_projekti != null) {
+                    if (zavrseni_projekti.Count > 0)
                     {
-                        ZavrseniProjektiList.Add(projekat);
+                        foreach (var projekat in zavrseni_projekti)
+                        {
+                            ZavrseniProjektiList.Add(projekat);
+                        }
+                        ZavrseniProjektiVisible = true;
+                        return;
                     }
-                    ZavrseniProjektiVisible = true;
                 } else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate završenih projekata! Označite aktivan projekt završenim...", "Dalje");

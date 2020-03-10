@@ -31,22 +31,16 @@ namespace EkspertBooker.WebAPI.Service
 
         public override Model.Poslodavac GetById(int id)
         {
-            return _mapper.Map<Model.Poslodavac>(_context.Poslodavci.Include(p => p.KorisnikUloga.Korisnik).ThenInclude(k=>k.KorisnikSlika).First(p => p.KorisnikId == id));
+            var result = _context.Poslodavci.Include(p => p.KorisnikUloga.Korisnik).ThenInclude(k=>k.KorisnikSlika).Where(p=>p.KorisnikId==id).SingleOrDefault();
+            return _mapper.Map<Model.Poslodavac>(result);        
         }
 
         public override Model.Poslodavac Update(int id, PoslodavacUpsertRequest request)
         {
-            try
-            {
-                var entity = _context.Poslodavci.Find(id);
-                entity.Notifikacije = request.Notifikacije;
-                _context.SaveChanges();
-                return _mapper.Map<Model.Poslodavac>(entity);
-            }
-            catch
-            {
-                throw new Exception();
-            }
+            var entity = _context.Poslodavci.Find(id);
+            entity.Notifikacije = request.Notifikacije;
+            _context.SaveChanges();
+            return _mapper.Map<Model.Poslodavac>(entity);
         }
     }
 }

@@ -34,18 +34,25 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            //try - catch ? if Poslodavac == null? throw or pop page
-            Poslodavac = await _poslodavciService.GetById<Poslodavac>(_korisnikId);
-
-            if (Poslodavac.Korisnik.KorisnikSlika != null)
+            try
             {
-                SlikaVisible = true;
+                Poslodavac = await _poslodavciService.GetById<Poslodavac>(_korisnikId);
+                if (Poslodavac == null) return false;
+                if (Poslodavac.Korisnik.KorisnikSlika != null)
+                {
+                    SlikaVisible = true;
+                }
+                else
+                {
+                    SlikaVisible = false;
+                }
+                return true;
             }
-            else
+            catch
             {
-                SlikaVisible = false;
+                return false;
             }
         }
     }

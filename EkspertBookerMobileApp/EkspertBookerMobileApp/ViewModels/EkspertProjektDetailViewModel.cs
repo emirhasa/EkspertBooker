@@ -60,63 +60,69 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ObservableCollection<PonudaEPDListViewModel> PrethodnePonudeList { get; set; } = new ObservableCollection<PonudaEPDListViewModel>();
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            PrethodnePonudeList.Clear();
-            //try - catch? if Projekt == null?
-            Projekt = await _projektiService.GetById<Projekt>(_projektId);
-            var ponude = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
+            try
             {
-                EkspertId = LoggedUser.logovaniKorisnik.KorisnikId,
-                ProjektId = Projekt.ProjektId
-            });
-            if (Projekt.StanjeId == "Licitacija") NovaPonudaVisible = true; else NovaPonudaVisible = false;
-            foreach (Ponuda ponuda in ponude)
-            {
-                if (ponuda.Status != 1)
+                PrethodnePonudeList.Clear();
+                Projekt = await _projektiService.GetById<Projekt>(_projektId);
+                var ponude = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
                 {
-                    PonudaEPDListViewModel model = new PonudaEPDListViewModel();
-                    model.Ponuda = ponuda;
-                    if (ponuda.Status == 0)
+                    EkspertId = LoggedUser.logovaniKorisnik.KorisnikId,
+                    ProjektId = Projekt.ProjektId
+                });
+                if (Projekt.StanjeId == "Licitacija") NovaPonudaVisible = true; else NovaPonudaVisible = false;
+                foreach (Ponuda ponuda in ponude)
+                {
+                    if (ponuda.Status != 1)
                     {
-                        model.StatusColor = "Red";
-                        model.StatusText = "Odbijena";
+                        PonudaEPDListViewModel model = new PonudaEPDListViewModel();
+                        model.Ponuda = ponuda;
+                        if (ponuda.Status == 0)
+                        {
+                            model.StatusColor = "Red";
+                            model.StatusText = "Odbijena";
+                        }
+                        else
+                        {
+                            model.StatusColor = "ForestGreen";
+                            model.StatusText = "Prihvaćena";
+                        }
+                        PrethodnePonudeList.Add(model);
                     }
-                    else
-                    {
-                        model.StatusColor = "ForestGreen";
-                        model.StatusText = "Prihvaćena";
-                    }
-                    PrethodnePonudeList.Add(model);
+                    else AktivnaEkspertPonuda = ponuda;
                 }
-                else AktivnaEkspertPonuda = ponuda;
+                if (PrethodnePonudeList.Count > 0)
+                {
+                    NemaPrijasnjihPonuda = false;
+                }
+                else NemaPrijasnjihPonuda = true;
+                if (AktivnaEkspertPonuda != null)
+                {
+                    AktivnaPonudaVisible = true;
+                    NemaPonudeVisible = false;
+                }
+                else
+                {
+                    AktivnaPonudaVisible = false;
+                    NemaPonudeVisible = true;
+                }
+                DetaljniOpisVisible = !string.IsNullOrWhiteSpace(Projekt.DetaljniOpis);
+                DatumPocetkaVisible = !string.IsNullOrWhiteSpace(Projekt.DatumPocetka.ToString());
+                if (!DatumPocetkaVisible)
+                {
+                    DatumPocetkaAlternateVisible = true;
+                }
+                else
+                {
+                    DatumPocetkaAlternateVisible = false;
+                }
+                return true;
             }
-            if (PrethodnePonudeList.Count > 0)
+            catch
             {
-                NemaPrijasnjihPonuda = false;
+                return false;
             }
-            else NemaPrijasnjihPonuda = true;
-            if (AktivnaEkspertPonuda != null)
-            {
-                AktivnaPonudaVisible = true;
-                NemaPonudeVisible = false;
-            }
-            else
-            {
-                AktivnaPonudaVisible = false;
-                NemaPonudeVisible = true;
-            }
-            DetaljniOpisVisible = !string.IsNullOrWhiteSpace(Projekt.DetaljniOpis);
-            DatumPocetkaVisible = !string.IsNullOrWhiteSpace(Projekt.DatumPocetka.ToString());
-            if (!DatumPocetkaVisible)
-            {
-                DatumPocetkaAlternateVisible = true;
-            }
-            else
-            {
-                DatumPocetkaAlternateVisible = false;
-            }
-            
         }
 
         bool _aktivnaPonudaVisible;

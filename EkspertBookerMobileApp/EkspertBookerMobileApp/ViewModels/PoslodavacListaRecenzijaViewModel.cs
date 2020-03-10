@@ -24,7 +24,7 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
             if(RecenzijeList.Count > 0) RecenzijeList.Clear();
             try
@@ -47,10 +47,11 @@ namespace EkspertBookerMobileApp.ViewModels
                     ImaRecenzija = false;
                     NemaRecenzijaTooltip = true;
                 }
+                return true;
             }
             catch
             {
-                Application.Current.MainPage.DisplayAlert("Greška", "Problem prilikom učitavanja recenzija o poslodavcu", "Ok");
+                return false;
             }
         }
 

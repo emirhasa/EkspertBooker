@@ -63,7 +63,7 @@ namespace EkspertBooker.WebAPI
             services.AddScoped<IBaseCRUDService<Model.RecenzijaOEkspert, RecenzijeOEkspertiSearchRequest, RecenzijaOEkspertUpsertRequest, RecenzijaOEkspertUpsertRequest>, RecenzijeOEkspertiService>();
             services.AddScoped<IBaseCRUDService<Model.Ponuda, PonudeSearchRequest, PonudaUpsertRequest, PonudaUpsertRequest>, PonudeService>();
 
-            services.AddScoped<IBaseGetService<Model.Stanje, object>, BaseGetService<Model.Stanje, object, Database.Stanje>>();
+            services.AddScoped<IStanjaService, StanjaService>();
             services.AddScoped<IBaseGetService<Model.Uloga, object>, BaseGetService<Model.Uloga, object, Database.Uloga>>();
             services.AddScoped<IKorisniciService, KorisniciService>();
             services.AddScoped<IEkspertiKategorijePretplateService, EkspertiKategorijePretplateService>();

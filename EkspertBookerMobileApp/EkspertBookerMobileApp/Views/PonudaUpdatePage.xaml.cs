@@ -1,4 +1,5 @@
-﻿using EkspertBookerMobileApp.Validation;
+﻿using EkspertBookerMobileApp.Helper;
+using EkspertBookerMobileApp.Validation;
 using EkspertBookerMobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace EkspertBookerMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await model.Init();
+            bool uspio = await model.Init();
+            if (!uspio) PageExtensions.LoadPageError();
         }
 
         private void Naslov_TextChanged(object sender, TextChangedEventArgs e)

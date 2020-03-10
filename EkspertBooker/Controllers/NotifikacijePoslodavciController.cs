@@ -34,10 +34,16 @@ namespace EkspertBooker.WebAPI.Controllers
                 query = query.Where(ne => ne.PoslodavacId == search.PoslodavacId);
             }
 
-            query = query.OrderByDescending(np => np.Vrijeme).Take(10);
-
             var result = query.ToList();
-            return _mapper.Map<List<Model.NotifikacijaPoslodavac>>(result);
+            if (result != null)
+            {
+                if (result.Count > 0)
+                {
+                    return _mapper.Map<List<Model.NotifikacijaPoslodavac>>(result);
+                }
+                return NoContent();
+            }
+            return NoContent(); 
         }
 
     }

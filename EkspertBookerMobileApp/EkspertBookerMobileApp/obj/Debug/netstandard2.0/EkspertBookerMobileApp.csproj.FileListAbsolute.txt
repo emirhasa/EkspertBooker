@@ -18,7 +18,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\EkspertProfilPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\EkspertProjektDetailPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\EkspertSettingsPage.xaml.g.cs
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\EkspertUrediProfilPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\InsertRecenzijaOEkspertuPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\InsertRecenzijaOPoslodavcuPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
@@ -35,7 +34,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavacProfilPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavacProjektDetailPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavacSettingsPage.xaml.g.cs
-C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavacUrediProfilPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\PoslodavciPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\ProjektDetailDetaljnoPage.xaml.g.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Debug\netstandard2.0\Views\ProjektiPage.xaml.g.cs

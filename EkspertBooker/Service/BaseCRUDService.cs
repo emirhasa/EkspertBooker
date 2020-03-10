@@ -15,23 +15,35 @@ namespace EkspertBooker.WebAPI.Service
 
         public virtual TModel Insert(TInsert request)
         {
-            var entity = _mapper.Map<TDatabase>(request);
+            try
+            {
+                var entity = _mapper.Map<TDatabase>(request);
 
-            _context.Set<TDatabase>().Add(entity);
-            _context.SaveChanges();
+                _context.Set<TDatabase>().Add(entity);
+                _context.SaveChanges();
 
-            return _mapper.Map<TModel>(entity);
+                return _mapper.Map<TModel>(entity);
+            }
+            catch {
+                throw;
+            }
         }
 
         public virtual TModel Update(int id, TUpdate request)
         {
-            var entity = _context.Set<TDatabase>().Find(id);
-           
-            _mapper.Map(request, entity);
-            _context.SaveChanges();
+            try
+            {
+                var entity = _context.Set<TDatabase>().Find(id);
 
+                _mapper.Map(request, entity);
+                _context.SaveChanges();
 
-            return _mapper.Map<TModel>(entity);
+                return _mapper.Map<TModel>(entity);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public virtual bool Delete(int id)

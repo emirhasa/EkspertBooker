@@ -24,26 +24,35 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init() {
-            if (RecenzijeList.Count > 0) RecenzijeList.Clear();
-            var recenzije_list = await _recenzijeService.Get<List<RecenzijaOEkspert>>(new RecenzijeOEkspertiSearchRequest
+        public async Task<bool> Init() {
+            try
             {
-                EkspertId = _ekspertId
-            });
-            if (recenzije_list.Count > 0)
-            {
-                ImaRecenzija = true;
-                NemaRecenzijaTooltip = false;
-                foreach (RecenzijaOEkspert recenzija in recenzije_list)
+                if (RecenzijeList.Count > 0) RecenzijeList.Clear();
+                var recenzije_list = await _recenzijeService.Get<List<RecenzijaOEkspert>>(new RecenzijeOEkspertiSearchRequest
                 {
-                    if (string.IsNullOrWhiteSpace(recenzija.Komentar)) recenzija.Komentar = "Nema komentara";
-                    RecenzijeList.Add(recenzija);
-                }
+                    EkspertId = _ekspertId
+                });
+                if (recenzije_list.Count > 0)
+                {
+                    ImaRecenzija = true;
+                    NemaRecenzijaTooltip = false;
+                    foreach (RecenzijaOEkspert recenzija in recenzije_list)
+                    {
+                        if (string.IsNullOrWhiteSpace(recenzija.Komentar)) recenzija.Komentar = "Nema komentara";
+                        RecenzijeList.Add(recenzija);
+                    }
 
-            } else
+                }
+                else
+                {
+                    ImaRecenzija = false;
+                    NemaRecenzijaTooltip = true;
+                }
+                return true;
+            }
+            catch
             {
-                ImaRecenzija = false;
-                NemaRecenzijaTooltip = true;
+                return false;
             }
         }
 

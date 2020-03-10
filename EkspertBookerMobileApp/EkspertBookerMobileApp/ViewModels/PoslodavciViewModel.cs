@@ -22,13 +22,21 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init ()
+        public async Task<bool> Init ()
         {
-            PoslodavciList.Clear();
-            var list = await _poslodavciService.Get<List<Poslodavac>>(null);
-            foreach(Poslodavac poslodavac in list)
+            try
             {
-                PoslodavciList.Add(poslodavac);
+                PoslodavciList.Clear();
+                var list = await _poslodavciService.Get<List<Poslodavac>>(null);
+                foreach (Poslodavac poslodavac in list)
+                {
+                    PoslodavciList.Add(poslodavac);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

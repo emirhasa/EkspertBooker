@@ -10,31 +10,6 @@
     <ContentPage.Content>
         <ScrollView x:Name="PageScrollView">
             <StackLayout>
-                <!--<Grid x:Name="ToolbarPoslodavacAktivanProjekt" ColumnSpacing="0" RowSpacing="0">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-                        <contentviews:CVImageButton x:Name="ButtonMojProfil" Padding="8, 0, 0, 0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                                ButtonText="MOJ PROFIL" Source="icon_profile.png" Clicked="ButtonMojProfil_Clicked"
-                                                BgColor="MediumPurple"
-                                                />
-
-                        <contentviews:CVImageButton x:Name="ButtonPonude" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                                            ButtonText="MOJE PONUDE" Source="icon_ponude.png" Clicked="ButtonPonude_Clicked"
-                                                        BgColor="#1d80cf"
-                                                />
-
-                    </StackLayout>
-
-                </Grid>-->
 
                 <Frame Margin="8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
                     <ScrollView>

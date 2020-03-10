@@ -32,26 +32,9 @@ namespace EkspertBookerMobileApp.Views
 
         protected override async void OnAppearing()
         {
-            try
-            {
-                base.OnAppearing();
-                await model.Init();
-            }
-            catch
-            {
-                Application.Current.MainPage.DisplayAlert("test", "test", "ok");
-            }
-            //if(model.TrenutniEkspert.EkspertStrucnaKategorija != null)
-            //{
-            //    Picker picker = StrucnaKategorijaPicker;
-            //    foreach(var kategorija in picker.Items)
-            //    {
-            //        if(kategorija == model.TrenutniEkspert.EkspertStrucnaKategorija.Naziv)
-            //        {
-            //            picker.SelectedIndex = picker.Items.IndexOf(kategorija);
-            //        }
-            //    }
-            //} 
+            base.OnAppearing();
+            bool uspio = await model.Init();
+            if (!uspio) PageExtensions.LoadPageError();
         }
 
         private async void Uredi_Clicked(object sender, EventArgs e)

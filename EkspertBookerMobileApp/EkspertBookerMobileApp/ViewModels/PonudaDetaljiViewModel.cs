@@ -29,46 +29,54 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            Ponuda = await _ponudeService.GetById<Ponuda>(ponudaId);
-            if (Ponuda == null)
+            try
             {
-                Application.Current.MainPage.DisplayAlert("Greška", "Greška u učitavanju ponude", "Dalje...");
-                Application.Current.MainPage = new EkspertMainPage();
-            }
-            if (Ponuda.Status == 0)
-            {
-                PonudaStanjeText = "ODBIJENA";
-                PonudaStanjeColor = Color.Red;
-                PoslodavacAkcijaText = "Vrijeme odbijanja:";
-                VrijemePoslodavacAkcije = Ponuda.VrijemeOdbijanja;
-                PoslodavacAkcijaVrijemeVisible = true;
-                if(!string.IsNullOrWhiteSpace(Ponuda.PoslodavacKomentar))
+                Ponuda = await _ponudeService.GetById<Ponuda>(ponudaId);
+                if (Ponuda == null)
                 {
-                    PoslodavacKomentarVisible = true;
+                    return false;
                 }
-            }
-            if (Ponuda.Status == 1)
-            {
-                if (LoggedUser.Role == "Poslodavac")
-                FormPrihvatiVisible = true;
-                PonudaStanjeText = "AKTIVNA";
-                PonudaStanjeColor = Color.Orange;
-                PoslodavacAkcijaVrijemeVisible = false;
-            }
-            if (Ponuda.Status == 2)
-            {
-                PonudaStanjeText = "PRIHVAĆENA";
-                PonudaStanjeColor = Color.ForestGreen;
-                PoslodavacAkcijaText = "Vrijeme prihvatanja:";
-                VrijemePoslodavacAkcije = Ponuda.VrijemePrihvatanja;
-                PoslodavacAkcijaVrijemeVisible = true;
-                if (!string.IsNullOrWhiteSpace(Ponuda.PoslodavacKomentar))
+                if (Ponuda.Status == 0)
                 {
-                    PoslodavacKomentarVisible = true;
+                    PonudaStanjeText = "ODBIJENA";
+                    PonudaStanjeColor = Color.Red;
+                    PoslodavacAkcijaText = "Vrijeme odbijanja:";
+                    VrijemePoslodavacAkcije = Ponuda.VrijemeOdbijanja;
+                    PoslodavacAkcijaVrijemeVisible = true;
+                    if (!string.IsNullOrWhiteSpace(Ponuda.PoslodavacKomentar))
+                    {
+                        PoslodavacKomentarVisible = true;
+                    }
                 }
+                if (Ponuda.Status == 1)
+                {
+                    if (LoggedUser.Role == "Poslodavac")
+                        FormPrihvatiVisible = true;
+                    PonudaStanjeText = "AKTIVNA";
+                    PonudaStanjeColor = Color.Orange;
+                    PoslodavacAkcijaVrijemeVisible = false;
+                }
+                if (Ponuda.Status == 2)
+                {
+                    PonudaStanjeText = "PRIHVAĆENA";
+                    PonudaStanjeColor = Color.ForestGreen;
+                    PoslodavacAkcijaText = "Vrijeme prihvatanja:";
+                    VrijemePoslodavacAkcije = Ponuda.VrijemePrihvatanja;
+                    PoslodavacAkcijaVrijemeVisible = true;
+                    if (!string.IsNullOrWhiteSpace(Ponuda.PoslodavacKomentar))
+                    {
+                        PoslodavacKomentarVisible = true;
+                    }
+                }
+                return true;
             }
+            catch
+            {
+                return false;
+            }
+
 
         }
 

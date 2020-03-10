@@ -68,9 +68,10 @@ namespace EkspertBookerMobileApp.ViewModels
             OdbijenePonudeCommand = new Command(async () => await OdbijenePonudeClick());
         }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
             //some logic
+            return true;
         }
 
         public async Task PrikaziObavijestiClick()
@@ -83,18 +84,24 @@ namespace EkspertBookerMobileApp.ViewModels
 
             if (!ObavijestiVisible)
             {
-                if (obavijesti_list.Count > 0)
+                if (obavijesti_list != null)
                 {
-                    foreach (var obavijest in obavijesti_list)
+                    if (obavijesti_list.Count > 0)
                     {
-                        ObavijestiList.Add(obavijest);
+                        foreach (var obavijest in obavijesti_list)
+                        {
+                            ObavijestiList.Add(obavijest);
+                        }
+                        ObavijestiVisible = !ObavijestiVisible;
+                        return;
                     }
-                    ObavijestiVisible = !ObavijestiVisible;
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate nijednu obavijest!", "OK");
+                        return;
+                    }
                 }
-                else
-                {
-                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate nijednu obavijest!", "OK");
-                }
+                Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate nijednu obavijest!", "OK");
             }
             else ObavijestiVisible = !ObavijestiVisible;
         }

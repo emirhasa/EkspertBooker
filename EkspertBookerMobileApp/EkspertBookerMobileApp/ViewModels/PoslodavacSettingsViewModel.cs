@@ -26,14 +26,23 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            var poslodavac = await _poslodavciService.GetById<Poslodavac>(LoggedUser.logovaniKorisnik.KorisnikId);
-            if (poslodavac.Notifikacije == true)
+            try
             {
-                Notifikacije = true;
+                var poslodavac = await _poslodavciService.GetById<Poslodavac>(LoggedUser.logovaniKorisnik.KorisnikId);
+                if (poslodavac == null) return false;
+                if (poslodavac.Notifikacije == true)
+                {
+                    Notifikacije = true;
+                }
+                else Notifikacije = false;
+                return true;
             }
-            else Notifikacije = false;
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task UpdateSettings()

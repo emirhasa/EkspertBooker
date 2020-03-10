@@ -74,41 +74,47 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            Projekt = await _projektiService.GetById<Projekt>(_projektId);
-            var projekt_detalji = await _projektDetaljiService.Get<List<ProjektDetalji>>(new ProjektDetaljiSearchRequest
+            try
             {
-                ProjektId = _projektId
-            });
-            if (Projekt.StanjeId == "Aktivan" && LoggedUser.Role == "Poslodavac")
-            {
-                //these kinds of things should be done on page itself methinks
-                Editable = true;
-                NotEditableTooltipVisible = false;
-            } else
-            {
-                Editable = false;
-                NotEditableTooltipVisible = true;
+                Projekt = await _projektiService.GetById<Projekt>(_projektId);
+                ProjektDetalji = await _projektDetaljiService.GetById<ProjektDetalji>(_projektId);
+                if (Projekt == null || ProjektDetalji == null) return false;
+                if (Projekt.StanjeId == "Aktivan" && LoggedUser.Role == "Poslodavac")
+                {
+                    //these kinds of things should be done on page itself methinks
+                    Editable = true;
+                    NotEditableTooltipVisible = false;
+                }
+                else
+                {
+                    Editable = false;
+                    NotEditableTooltipVisible = true;
+                }
+                AktivanDetaljanOpis = ProjektDetalji.AktivanDetaljanOpis;
+                Napomena = ProjektDetalji.Napomena;
+                var prilog_metadata = await _projektDetaljiPriloziService.Get<PrilogMetaDataDTO>(new ProjektDetaljiPrilogSearchRequest
+                {
+                    ProjektDetaljiId = ProjektDetalji.ProjektId,
+                    GetOnlyMetaData = true
+                });
+                if (prilog_metadata == null)
+                {
+                    PrilogNaziv = "Prilog još uvijek nije uploadovan!";
+                    PrilogPostoji = false;
+                }
+                else
+                {
+                    PrilogNaziv = prilog_metadata.PrilogNaziv;
+                    PrilogPostoji = true;
+                }
+                return true;
             }
-            ProjektDetalji = projekt_detalji[0];
-            AktivanDetaljanOpis = ProjektDetalji.AktivanDetaljanOpis;
-            Napomena = ProjektDetalji.Napomena;
-            var prilog_metadata = await _projektDetaljiPriloziService.Get<PrilogMetaDataDTO>(new ProjektDetaljiPrilogSearchRequest
+            catch
             {
-                ProjektDetaljiId = ProjektDetalji.ProjektId,
-                GetOnlyMetaData = true
-            });
-            if (prilog_metadata == null)
-            {
-                PrilogNaziv = "Prilog još uvijek nije uploadovan!";
-                PrilogPostoji = false;
-            } else
-            {
-                PrilogNaziv = prilog_metadata.PrilogNaziv;
-                PrilogPostoji = true;
+                return false;
             }
-
         }
 
         string _aktivanDetaljanOpis;

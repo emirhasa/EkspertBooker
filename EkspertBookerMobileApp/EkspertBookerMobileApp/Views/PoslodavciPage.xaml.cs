@@ -1,4 +1,5 @@
 ﻿using EkspertBooker.Model;
+using EkspertBookerMobileApp.Helper;
 using EkspertBookerMobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace EkspertBookerMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            await viewModel.Init();
+            bool uspio = await viewModel.Init();
+            if (!uspio) PageExtensions.LoadPageError();
         }
 
         private async void PoslodavciList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

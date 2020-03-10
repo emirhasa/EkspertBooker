@@ -31,7 +31,8 @@ namespace EkspertBookerMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await model.Init();
+            bool uspio = await model.Init();
+            if (!uspio) PageExtensions.LoadPageError();
         }
 
 

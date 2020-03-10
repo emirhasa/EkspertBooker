@@ -63,9 +63,9 @@ namespace EkspertBooker.WebAPI.Controllers
             }
             else
             {
-                if (request.ProjektDetaljiId == null) return BadRequest();
+                if (request.ProjektDetaljiId == null) return NoContent();
                 var entity = _context.ProjektDetaljiPrilozi.Include(pdp => pdp.ProjektDetalji).ThenInclude(pd => pd.Projekt).Where(pd => pd.ProjektDetaljiId == request.ProjektDetaljiId).SingleOrDefault();
-                if (entity == null) return NotFound();
+                if (entity == null) return NoContent();
                 var dataStream = new MemoryStream(entity.Prilog);
                 string fileName = entity.PrilogNaziv;
                 string fileExtension = entity.PrilogEkstenzija;
@@ -77,7 +77,7 @@ namespace EkspertBooker.WebAPI.Controllers
         public ActionResult<Model.ProjektDetaljiPrilog> Update(int id, [FromBody]ProjektDetaljiPrilogUpsertRequest request)
         {
             var provjera = _context.ProjektDetalji.Find(id);
-            if (provjera == null) return NotFound();
+            if (provjera == null) return NoContent();
 
             var temp_entity = _mapper.Map<Database.ProjektDetaljiPrilog>(request);
             if (string.IsNullOrWhiteSpace(temp_entity.PrilogNaziv))

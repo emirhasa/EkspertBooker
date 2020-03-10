@@ -22,21 +22,30 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            PreporukeList.Clear();
-            var list = await _preporukeService.GetById<List<EkspertPreporuka>>(_projektId);
-            if(list.Count > 0)
+            try
             {
-                foreach(var preporuka in list)
+                PreporukeList.Clear();
+                var list = await _preporukeService.GetById<List<EkspertPreporuka>>(_projektId);
+                if (list != null)
                 {
-                    PreporukeList.Add(preporuka);
-                }
-            }else
-            {
-                Application.Current.MainPage.DisplayAlert("Info", "Trenutno nismo mogli izračunati nijednu preporuku", "OK");
+                    if (list.Count > 0)
+                    {
+                        foreach (var preporuka in list)
+                        {
+                            PreporukeList.Add(preporuka);
+                        }
+                        return true;
+                    }
+                    Application.Current.MainPage.DisplayAlert("Nema rezultata", "Sistem trenutno ne može preporučiti ni jednog eksperta. Pokušajte kasnije?", "OK");
+                    return true;
+                } return false;
             }
-
+            catch
+            {
+                return false;
+            }
         }
     }
 }

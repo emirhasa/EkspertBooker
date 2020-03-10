@@ -16,7 +16,7 @@ namespace EkspertBookerMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PoslodavacMojiProjektiPage : ContentPage
     {
-        private PoslodavacMojiProjektiViewModel model { get; set; } 
+        private PoslodavacMojiProjektiViewModel model;
         public PoslodavacMojiProjektiPage()
         {
             InitializeComponent();

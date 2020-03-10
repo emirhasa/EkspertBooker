@@ -20,19 +20,40 @@ namespace EkspertBooker.WebAPI.Controllers
         [HttpPost]
         public virtual ActionResult<TModel> Insert(TInsert request)
         {
-            return _service.Insert(request);
+            try
+            {
+                return _service.Insert(request);
+            }
+            catch
+            {
+                return BadRequest("Insert request doesn't contain valid values");
+            }
         }
 
         [HttpPut("{id}")]
         public virtual ActionResult<TModel> Update(int id, [FromBody]TUpdate request)
         {
-            return _service.Update(id, request);
+            try
+            {
+                return _service.Update(id, request);
+            }
+            catch
+            {
+                return BadRequest("Update request doesn't contain valid values");
+            }
         }
 
         [HttpDelete("{id}")]
         public virtual ActionResult<bool> Delete(int id)
         {
-            return _service.Delete(id);
+            try
+            {
+                return _service.Delete(id);
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
     }
 }

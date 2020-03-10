@@ -82,19 +82,27 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            KategorijeList.Clear();
-            TrenutniKorisnik = await _korisniciService.GetById<Korisnik>(LoggedUser.logovaniKorisnik.KorisnikId);
-            TrenutniEkspert = await _ekspertiService.GetById<Ekspert>(TrenutniKorisnik.KorisnikId);
-            var kategorije = await _kategorijeService.Get<List<Kategorija>>(null);
-            if(TrenutniEkspert.EkspertStrucnaKategorija != null)
+            try
             {
-                NoStrucnaKategorija = false;
+                KategorijeList.Clear();
+                TrenutniKorisnik = await _korisniciService.GetById<Korisnik>(LoggedUser.logovaniKorisnik.KorisnikId);
+                TrenutniEkspert = await _ekspertiService.GetById<Ekspert>(TrenutniKorisnik.KorisnikId);
+                var kategorije = await _kategorijeService.Get<List<Kategorija>>(null);
+                if (TrenutniEkspert.EkspertStrucnaKategorija != null)
+                {
+                    NoStrucnaKategorija = false;
+                }
+                foreach (var kategorija in kategorije)
+                {
+                    KategorijeList.Add(kategorija);
+                }
+                return true;
             }
-            foreach(var kategorija in kategorije)
+            catch
             {
-                KategorijeList.Add(kategorija);
+                return false;
             }
         }
 

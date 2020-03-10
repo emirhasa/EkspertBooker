@@ -35,10 +35,22 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            TrenutniKorisnik = await _korisniciService.GetById<Korisnik>(LoggedUser.logovaniKorisnik.KorisnikId);
-            TrenutniPoslodavac = await _poslodavciService.GetById<Poslodavac>(LoggedUser.logovaniKorisnik.KorisnikId);
+            try
+            {
+                TrenutniKorisnik = await _korisniciService.GetById<Korisnik>(LoggedUser.logovaniKorisnik.KorisnikId);
+                TrenutniPoslodavac = await _poslodavciService.GetById<Poslodavac>(LoggedUser.logovaniKorisnik.KorisnikId);
+                if((TrenutniKorisnik == null) || (TrenutniPoslodavac == null))
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         string _urediIme = null;

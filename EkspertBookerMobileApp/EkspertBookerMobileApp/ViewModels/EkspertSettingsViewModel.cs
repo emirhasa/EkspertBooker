@@ -25,48 +25,56 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            KategorijeList.Clear();
-            var kategorije = await _kategorijeService.Get<List<Kategorija>>(null);
-            var custom_kategorije = new List<CustomKategorija>();
+            try
+            {
+                KategorijeList.Clear();
+                var kategorije = await _kategorijeService.Get<List<Kategorija>>(null);
+                var custom_kategorije = new List<CustomKategorija>();
 
-            foreach(Kategorija kategorija in kategorije)
-            {
-                custom_kategorije.Add(new CustomKategorija
+                foreach (Kategorija kategorija in kategorije)
                 {
-                    kategorija = kategorija,
-                    isChecked = false,
-                    checkboxColor = Color.LightSlateGray
-                });
-            }
-            //optimizovati putem sortiranja nizova, pa inkrementarnog poređenja ili putem hashset
-            var ekspert_pretplate = await _ekspertKategorijeService.Get<List<EkspertKategorijaPretplata>>(new EkspertKategorijeSearchRequest
-            {
-                EkspertId = LoggedUser.logovaniKorisnik.KorisnikId
-            });
-
-            foreach(var kategorija in custom_kategorije)
-            {
-                foreach(var pretplata in ekspert_pretplate)
-                {
-                    if (pretplata.KategorijaId == kategorija.kategorija.KategorijaId)
+                    custom_kategorije.Add(new CustomKategorija
                     {
-                        kategorija.isChecked = true;
-                        kategorija.checkboxColor = Color.Red;
-                        kategorija.EkspertPretplataId = pretplata.EkspertKategorijaPretplataId;
+                        kategorija = kategorija,
+                        isChecked = false,
+                        checkboxColor = Color.LightSlateGray
+                    });
+                }
+                //optimizovati putem sortiranja nizova, pa inkrementarnog poređenja ili putem hashset
+                var ekspert_pretplate = await _ekspertKategorijeService.Get<List<EkspertKategorijaPretplata>>(new EkspertKategorijeSearchRequest
+                {
+                    EkspertId = LoggedUser.logovaniKorisnik.KorisnikId
+                });
+
+                foreach (var kategorija in custom_kategorije)
+                {
+                    foreach (var pretplata in ekspert_pretplate)
+                    {
+                        if (pretplata.KategorijaId == kategorija.kategorija.KategorijaId)
+                        {
+                            kategorija.isChecked = true;
+                            kategorija.checkboxColor = Color.Red;
+                            kategorija.EkspertPretplataId = pretplata.EkspertKategorijaPretplataId;
+                        }
                     }
                 }
-            }
 
-            foreach(var kategorija in custom_kategorije)
+                foreach (var kategorija in custom_kategorije)
+                {
+                    KategorijeList.Add(kategorija);
+                }
+
+                var ekspert = await _ekspertiService.GetById<Ekspert>(LoggedUser.logovaniKorisnik.KorisnikId);
+
+                if (ekspert.Notifikacije == true) Notifikacije = true; else Notifikacije = false;
+                return true;
+            }
+            catch
             {
-                KategorijeList.Add(kategorija);
+                return false;
             }
-
-            var ekspert = await _ekspertiService.GetById<Ekspert>(LoggedUser.logovaniKorisnik.KorisnikId);
-
-            if (ekspert.Notifikacije == true) Notifikacije = true; else Notifikacije = false;
         }
 
         bool _notifikacije;

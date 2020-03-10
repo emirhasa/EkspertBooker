@@ -179,18 +179,26 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public async Task UcitajProjektInfo()
         {
-            Title = "UREDI PROJEKAT";
-            Projekt p = await _projektiService.GetById<Projekt>(projektId);
-            Naziv = p.Naziv;
-            KratkiOpis = p.KratkiOpis;
-            DetaljniOpis = p.DetaljniOpis;
-            Trajanje = p.TrajanjeDana;
-            Budzet = p.Budzet;
-            DatumObjave = p.DatumObjave;
-            SelectedDatumPocetka = p.DatumPocetka;
-            if (p.Hitan == true) Hitan = true; else Hitan = false;
-            SelectedKategorija = await _kategorijeService.GetById<Kategorija>(p.KategorijaId);
-            //SelectedKategorijaIndex = p.KategorijaId;
+            try
+            {
+                Title = "UREDI PROJEKAT";
+                Projekt p = await _projektiService.GetById<Projekt>(projektId);
+                if (p == null) throw new Exception();
+                Naziv = p.Naziv;
+                KratkiOpis = p.KratkiOpis;
+                DetaljniOpis = p.DetaljniOpis;
+                Trajanje = p.TrajanjeDana;
+                Budzet = p.Budzet;
+                DatumObjave = p.DatumObjave;
+                SelectedDatumPocetka = p.DatumPocetka;
+                if (p.Hitan == true) Hitan = true; else Hitan = false;
+                SelectedKategorija = await _kategorijeService.GetById<Kategorija>(p.KategorijaId);
+                //SelectedKategorijaIndex = p.KategorijaId;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<bool> SubmitProjekt()

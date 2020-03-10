@@ -28,10 +28,18 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            //try - catch, if projekt stanje != zavrsen pop page or...? etc
-            Projekt = await _projektiService.GetById<Projekt>(_projektId);
+            try
+            {
+                Projekt = await _projektiService.GetById<Projekt>(_projektId);
+                if (Projekt != null) return true;
+                else return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         string _komentar;

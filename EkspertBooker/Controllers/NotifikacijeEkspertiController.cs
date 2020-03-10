@@ -36,7 +36,13 @@ namespace EkspertBooker.WebAPI.Controllers
             query = query.OrderByDescending(ne => ne.Vrijeme).Take(10);
 
             var result = query.ToList();
-            return _mapper.Map<List<Model.NotifikacijaEkspert>>(result);
+            if (result != null)
+            {
+                if (result.Count > 0)
+                {
+                    return _mapper.Map<List<Model.NotifikacijaEkspert>>(result);
+                } return NoContent();
+            } return NoContent();
         }
 
         [HttpPost]

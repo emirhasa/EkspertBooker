@@ -39,36 +39,41 @@ namespace EkspertBookerMobileApp.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        public async Task Init()
+        public async Task<bool> Init()
         {
-            if (KategorijeList.Count == 0)
+            try
             {
-                var kategorijeList = await _kategorijeService.Get<List<Kategorija>>(null);
-                foreach (var kategorija in kategorijeList)
+                if (KategorijeList.Count == 0)
                 {
-                    KategorijeList.Add(kategorija);
+                    var kategorijeList = await _kategorijeService.Get<List<Kategorija>>(null);
+                    foreach (var kategorija in kategorijeList)
+                    {
+                        KategorijeList.Add(kategorija);
+                    }
                 }
-            }
 
-            ProjektiList.Clear();
-            List<Projekt> lista;
-            if (SelectedKategorija != null)
-            {
-                ProjektiSearchRequest search = new ProjektiSearchRequest
+                ProjektiList.Clear();
+                List<Projekt> lista;
+                if (SelectedKategorija != null)
                 {
-                    KategorijaId = SelectedKategorija.KategorijaId
-                };
+                    ProjektiSearchRequest search = new ProjektiSearchRequest
+                    {
+                        KategorijaId = SelectedKategorija.KategorijaId
+                    };
 
-                lista = await _projektiService.Get<List<Projekt>>(search);
-                foreach (var item in lista)
-                {
-                    ProjektiList.Add(item);
+                    lista = await _projektiService.Get<List<Projekt>>(search);
+                    foreach (var item in lista)
+                    {
+                        ProjektiList.Add(item);
 
+                    }
                 }
+                
+                return true;
             }
-            else
+            catch
             {
-                //lista = await _proizvodiService.Get<List<Proizvod>>(null);
+                return false;
             }
 
         }
