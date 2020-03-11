@@ -99,11 +99,20 @@ namespace EkspertBookerMobileApp.ViewModels
                             LoggedUser.logovaniKorisnik = korisnik;
                             foreach (var uloga in korisnik.KorisnikUloge)
                             {
+                                if(uloga.UlogaId == 1)
+                                {
+                                    //administrator
+                                    LoggedUser.Role = "Poslodavac";
+                                    Application.Current.MainPage = new PoslodavacMainPage();
+                                    await Application.Current.MainPage.DisplayAlert("Dobrodošli", "Dobrodošao, administrator!", "OK");
+                                    return;
+                                }
                                 if (uloga.UlogaId == 2)
                                 {
                                     //to je poslodavac
                                     LoggedUser.Role = "Poslodavac";
                                     Application.Current.MainPage = new PoslodavacMainPage();
+                                    return;
                                     //LoggedUser.logovaniPoslodavac = await PoslodavciService.Get<List<Poslodavac>>(new PoslodavciSearchRequest { })
                                 }
                                 else if (uloga.UlogaId == 3)
@@ -111,6 +120,7 @@ namespace EkspertBookerMobileApp.ViewModels
                                     //to je ekspert
                                     LoggedUser.Role = "Ekspert";
                                     Application.Current.MainPage = new EkspertMainPage();
+                                    return;
                                 }
                                 else await Application.Current.MainPage.DisplayAlert("Greška", "Pogrešan username/lozinka", "0K");
                             }

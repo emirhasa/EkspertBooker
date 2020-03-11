@@ -95,7 +95,7 @@
                         </Grid>
 
                         <StackLayout>
-                            <StackLayout Margin="0,0,0,15" Orientation="Vertical" Spacing="0">
+                            <StackLayout Margin="0,30,0,15" Orientation="Vertical" Spacing="0">
                                 <Label Text="Kratki opis:" Opacity="0.7"></Label>
                                 <Label Text="{Binding Projekt.KratkiOpis}"  HorizontalOptions="Start" LineBreakMode="WordWrap"></Label>
                             </StackLayout>

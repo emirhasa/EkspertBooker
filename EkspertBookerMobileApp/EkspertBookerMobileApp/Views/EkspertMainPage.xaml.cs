@@ -46,6 +46,8 @@ namespace EkspertBookerMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new EkspertSettingsPage()));
                         break;
                     case (int)EkspertMenuItemType.Logout:
+                        LoggedUser.logovaniKorisnik = null;
+                        LoggedUser.Role = null;
                         Application.Current.MainPage = new LoginPage();
                         break;
                 }

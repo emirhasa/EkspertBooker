@@ -23,7 +23,6 @@ namespace EkspertBooker.DesktopAppUI.Projekt
             InitializeComponent();
             comboBoxEksperti.DisplayMember = "Korisnik";
             comboBoxProjekti.DisplayMember = "Naziv";
-
         }
 
         private async void buttonSacuvaj_Click(object sender, EventArgs e)
@@ -61,12 +60,20 @@ namespace EkspertBooker.DesktopAppUI.Projekt
             }
         }
 
-        private void FormNovaPonuda_Load(object sender, EventArgs e)
+        private async void FormNovaPonuda_Load(object sender, EventArgs e)
         {
-            LoadPodaci();
+            try
+            {
+                await LoadPodaci();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + " Vjerovatno trenutno nema projekata/eksperata. Dodajte ih!");
+                Dispose(false);
+            }
         }
 
-        private async void LoadPodaci()
+        private async Task LoadPodaci()
         {
             List<Model.Projekt> lista_projekti = await _serviceProjekti.Get<List<Model.Projekt>>(null);
             List<Model.Ekspert> lista_eksperti = await _serviceEksperti.Get<List<Model.Ekspert>>(null);

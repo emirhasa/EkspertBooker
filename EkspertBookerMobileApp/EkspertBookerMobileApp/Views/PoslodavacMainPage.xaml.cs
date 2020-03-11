@@ -45,6 +45,11 @@ namespace EkspertBookerMobileApp.Views
                     case (int)PoslodavacMenuItemType.Postavke:
                         MenuPages.Add(id, new NavigationPage(new PoslodavacSettingsPage()));
                         break;
+                    case (int)PoslodavacMenuItemType.Logout:
+                        LoggedUser.logovaniKorisnik = null;
+                        LoggedUser.Role = null;
+                        Application.Current.MainPage = new LoginPage();
+                        break;
                 }
             }
 

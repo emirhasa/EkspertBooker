@@ -57,6 +57,10 @@ namespace EkspertBooker.DesktopAppUI.Security
                     else
                         MessageBox.Show("Server error!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

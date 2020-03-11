@@ -25,29 +25,53 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
 
         private async void buttonPrikazi_Click(object sender, EventArgs e)
         {
-            if(checkBoxUkljuciFilter.Checked == true)
+            try
             {
-                if (int.TryParse(numericUpDownBrojProjekata.Value.ToString(), out int broj_zavrsenih))
+                if (checkBoxUkljuciFilter.Checked == true)
                 {
-                    EkspertiSearchRequest request = new EkspertiSearchRequest
+                    if (int.TryParse(numericUpDownBrojProjekata.Value.ToString(), out int broj_zavrsenih))
                     {
-                        BrojZavrsenihProjekata = broj_zavrsenih
-                    };
-                    var result = await _serviceEksperti.Get<List<Model.Ekspert>>(request);
-                    if (result.Count > 0)
-                    {
-                        dataGridViewEksperti.DataSource = result;
+                        //probably should just instantiate a request every time and just pass a null potentially - results would be same
+                        EkspertiSearchRequest request = new EkspertiSearchRequest
+                        {
+                            BrojZavrsenihProjekata = broj_zavrsenih
+                        };
+                        var result = await _serviceEksperti.Get<List<Model.Ekspert>>(request);
+                        if (result != null)
+                        {
+                            if (result.Count > 0)
+                            {
+                                dataGridViewEksperti.DataSource = result;
+                                return;
+                            }
+                        }
+                        MessageBox.Show("Nema rezultata");
+                        Dispose(false);
                     }
+                    else MessageBox.Show("Ne moze se parsati vrijednost iz numeric up down?");
                 }
-                else MessageBox.Show("Ne moze se parsati vrijednost iz numeric up down?");
-            } else
-            {
-                var result = await _serviceEksperti.Get<List<Model.Ekspert>>(null);
-                if (result.Count > 0)
+                else
                 {
-                    dataGridViewEksperti.AutoGenerateColumns = false;
-                    dataGridViewEksperti.DataSource = result;
+                    var result = await _serviceEksperti.Get<List<Model.Ekspert>>(null);
+                    if (result != null)
+                    {
+                        if (result.Count == 0)
+                        {
+                            MessageBox.Show("Nema rezultata");
+                            return;
+                        }
+                        dataGridViewEksperti.AutoGenerateColumns = false;
+                        dataGridViewEksperti.DataSource = result;
+                        return;
+                    }
+                    MessageBox.Show("Nema rezultata");
+                    return;
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
 
@@ -64,21 +88,33 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
 
         private async void dataGridViewEksperti_Click(object sender, EventArgs e)
         {
-            if(int.TryParse(dataGridViewEksperti.SelectedRows[0].Cells[0].Value.ToString(), out int ekspert_id))
+            try
             {
-                //uspjesno parsan ekspert id, ucitaj recenzije
-
-                var recenzije_lista = await _serviceRecenzije.Get<List<Model.RecenzijaOEkspert>>(new RecenzijeOEkspertiSearchRequest
+                if (int.TryParse(dataGridViewEksperti.SelectedRows[0].Cells[0].Value.ToString(), out int ekspert_id))
                 {
-                    EkspertId = ekspert_id
-                });
-
-                if(recenzije_lista.Count == 0) 
-                {
-                    MessageBox.Show("Korisnik jos nema recenzija!");
+                    //uspjesno parsan ekspert id, ucitaj recenzije
+                    var recenzije_lista = await _serviceRecenzije.Get<List<Model.RecenzijaOEkspert>>(new RecenzijeOEkspertiSearchRequest
+                    {
+                        EkspertId = ekspert_id
+                    });
+                    if (recenzije_lista != null)
+                    {
+                        if (recenzije_lista.Count == 0)
+                        {
+                            MessageBox.Show("Korisnik trenutno nema recenzija!");
+                            return;
+                        }
+                        dataGridViewRecenzije.DataSource = recenzije_lista;
+                        return;
+                    }
+                    MessageBox.Show("Korisnik trenutno nema recenzija!");
+                    return;
                 }
-
-                dataGridViewRecenzije.DataSource = recenzije_lista;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
     }

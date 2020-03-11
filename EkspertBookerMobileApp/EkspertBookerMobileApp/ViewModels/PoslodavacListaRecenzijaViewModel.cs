@@ -33,7 +33,8 @@ namespace EkspertBookerMobileApp.ViewModels
                 {
                     PoslodavacId = _poslodavacId
                 });
-                if (recenzije_list.Count > 0)
+
+                if (recenzije_list != null)
                 {
                     ImaRecenzija = true;
                     NemaRecenzijaTooltip = false;

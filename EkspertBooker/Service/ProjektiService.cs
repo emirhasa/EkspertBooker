@@ -80,6 +80,7 @@ namespace EkspertBooker.WebAPI.Service
                         });
                     }
                 }
+                _context.SaveChanges();
             }
             catch
             {
@@ -93,6 +94,12 @@ namespace EkspertBooker.WebAPI.Service
             if(projekt.StanjeId == "Zavrsen")
             {
                 projekt.DatumZavrsetka = DateTime.Now;
+                Database.Projekt db_projekt = _context.Projekti.Find(id);
+                Database.Ekspert ekspert = _context.Eksperti.Where(e=>e.KorisnikId == db_projekt.EkspertId).SingleOrDefault();
+                Database.Poslodavac poslodavac = _context.Poslodavci.Where(e=>e.KorisnikId == db_projekt.PoslodavacId).SingleOrDefault();
+                ekspert.BrojZavrsenihProjekata++;
+                poslodavac.BrojZavrsenihProjekata++;
+                _context.SaveChanges();
             }
             return base.Update(id, projekt);
         }

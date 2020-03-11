@@ -52,17 +52,25 @@ namespace EkspertBookerMobileApp.Views
 
         private async void PrihvacenaPonuda_Clicked(object sender, EventArgs e)
         {
-            var prihvacena_ponuda = await _ponudeService.Get<Ponuda>(new PonudeSearchRequest
+            try
             {
-                ProjektId = model.Projekt.ProjektId,
-                Status = 2
-            });
-            if (prihvacena_ponuda == null)
+                var prihvacena_ponuda = await _ponudeService.Get<List<Ponuda>>(new PonudeSearchRequest
+                {
+                    ProjektId = model.Projekt.ProjektId,
+                    Status = 2
+                });
+                if (prihvacena_ponuda == null)
+                {
+                    Application.Current.MainPage.DisplayAlert("Greška", "Problem prilikom učitavanja prihvaćene ponude za projekt", "OK");
+                }
+                else
+                {
+                    Navigation.PushAsync(new PonudaDetaljiPage(prihvacena_ponuda[0].PonudaId));
+                }
+            }
+            catch(Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert("Greška", "Problem prilikom učitavanja prihvaćene ponude za projekt", "OK");
-            } else
-            {
-                Navigation.PushAsync(new PonudaDetaljiPage(prihvacena_ponuda.PonudaId));
+                PageExtensions.LoadPageError();
             }
         }
 

@@ -54,23 +54,31 @@ namespace EkspertBooker.DesktopAppUI.Projekt
 
         private async void buttonSacuvaj_Click(object sender, EventArgs e)
         {
-            PonudaUpsertRequest request = new PonudaUpsertRequest
+            try
             {
-                Cijena = int.Parse(numericUpDownCijena.Value.ToString()),
-                EkspertId = ekspert.KorisnikId,
-                OpisPonude = textBoxOpis.Text,
-                ProjektId = ponuda.ProjektId,
-                VrijemePonude = ponuda.VrijemePonude,
-                Status = ponuda.Status
-            };
+                PonudaUpsertRequest request = new PonudaUpsertRequest
+                {
+                    Cijena = int.Parse(numericUpDownCijena.Value.ToString()),
+                    EkspertId = ekspert.KorisnikId,
+                    OpisPonude = textBoxOpis.Text,
+                    ProjektId = ponuda.ProjektId,
+                    VrijemePonude = ponuda.VrijemePonude,
+                    Status = ponuda.Status
+                };
 
-            var result = await _servicePonude.Update<Model.Ponuda>(ponuda.PonudaId, request);
-            if(result != null)
+                var result = await _servicePonude.Update<Model.Ponuda>(ponuda.PonudaId, request);
+                if (result != null)
+                {
+                    MessageBox.Show("Promjene sacuvane!");
+                }
+                else
+                {
+                    MessageBox.Show("Problem prilikom spasavanja promjena!");
+                }
+            }
+            catch(Exception ex)
             {
-                MessageBox.Show("Promjene sacuvane!");
-            } else
-            {
-                MessageBox.Show("Problem prilikom spasavanja promjena!");
+                MessageBox.Show("Problem prilikom spremanja promjena. " + ex.Message);
             }
         }
     }

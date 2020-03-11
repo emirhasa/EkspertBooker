@@ -74,7 +74,7 @@ namespace EkspertBookerMobileApp.ViewModels
 
             if (!ObavijestiVisible)
             {
-                if (obavijesti_list.Count > 0)
+                if (obavijesti_list != null)
                 {
                     foreach (var obavijest in obavijesti_list)
                     {
@@ -115,6 +115,8 @@ namespace EkspertBookerMobileApp.ViewModels
                         AktivniProjektiVisible = true;
                         return;
                     }
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate aktivnih projekata! Prihvatite ponudu na projektu da postane aktivan...", "OK");
+                    return;
                 } else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate aktivnih projekata! Prihvatite ponudu na projektu da postane aktivan...", "OK");
@@ -147,10 +149,13 @@ namespace EkspertBookerMobileApp.ViewModels
                         LicitacijaProjektiVisible = true;
                         return;
                     }
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate licitacija(bidding - ponude) projekata, sačekajte da neki ekspert dostavi ponudu...", "OK");
+                    return;
                 }
                 else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate licitacija(bidding - ponude) projekata, sačekajte da neki ekspert dostavi ponudu...", "OK");
+                    return;
                 }
             }
         }
@@ -179,9 +184,12 @@ namespace EkspertBookerMobileApp.ViewModels
                         ZavrseniProjektiVisible = true;
                         return;
                     }
+                    Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate završenih projekata! Označite aktivan projekt završenim...", "Dalje");
+                    return;
                 } else
                 {
                     Application.Current.MainPage.DisplayAlert("Info", "Trenutno nemate završenih projekata! Označite aktivan projekt završenim...", "Dalje");
+                    return;
                 }
             }
         }

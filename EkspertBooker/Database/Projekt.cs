@@ -10,6 +10,8 @@ namespace EkspertBooker.WebAPI.Database
         public Projekt()
         {
             Ponude = new HashSet<Ponuda>();
+            NotifikacijePoslodavac = new HashSet<NotifikacijaPoslodavac>();
+            NotifikacijeEksperti = new HashSet<NotifikacijaEkspert>();
         }
         public int ProjektId { get; set; }
         public int PoslodavacId { get; set; }
@@ -41,5 +43,8 @@ namespace EkspertBooker.WebAPI.Database
         public RecenzijaOPoslodavac RecenzijaOPoslodavac { get; set; }
 
         public ICollection<Ponuda> Ponude { get; set; }
+
+        public ICollection<NotifikacijaPoslodavac> NotifikacijePoslodavac { get; set; }
+        public ICollection<NotifikacijaEkspert> NotifikacijeEksperti { get; set; }
     }
 }

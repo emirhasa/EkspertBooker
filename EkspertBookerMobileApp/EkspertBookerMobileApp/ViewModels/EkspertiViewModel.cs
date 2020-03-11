@@ -29,10 +29,7 @@ namespace EkspertBookerMobileApp.ViewModels
             try
             {
                 EkspertiList.Clear();
-                var list = await ekspertiService.Get<List<Ekspert>>(new EkspertiSearchRequest
-                {
-                    BrojZavrsenihProjekata = 50
-                });
+                var list = await ekspertiService.Get<List<Ekspert>>(null);
                 if (list != null)
                 {
                     if (list.Count > 0)

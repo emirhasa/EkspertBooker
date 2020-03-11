@@ -236,16 +236,18 @@ namespace EkspertBooker.WebAPI.Database
 
             modelBuilder.Entity<NotifikacijaEkspert>(entity =>
             {
-
-                entity.HasOne(e => e.Projekt);
-                entity.HasOne(e => e.Ekspert);
+                //notifikacije za eksperte
+                //imena kolekcija : reflektivna o vrsti odnosa, npr. jedan projekt moze imati vise notifikacija za vise eksperata = notifikacijeeksperti
+                //jedan ekspert moze imati vise notifikacija, ali kolekcija notifikacijeekspert je vezana za jedan entitet eksperta, te se uvijek odnosi na jednog eksperta pa je to notifikacijeekspert
+                entity.HasOne(e => e.Projekt).WithMany(e => e.NotifikacijeEksperti).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Ekspert).WithMany(e => e.NotifikacijeEkspert).OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<NotifikacijaPoslodavac>(entity =>
             {
-
-                entity.HasOne(e => e.Projekt);
-                entity.HasOne(e => e.Ekspert);
+                //notifikacije za poslodavce
+                entity.HasOne(e => e.Projekt).WithMany(e => e.NotifikacijePoslodavac).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Ekspert).WithMany(e => e.NotifikacijePoslodavci).OnDelete(DeleteBehavior.Restrict);
             });
         } 
 

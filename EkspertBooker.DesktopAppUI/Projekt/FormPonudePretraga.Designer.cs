@@ -102,7 +102,6 @@
             this.dataGridViewPonude.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPonude.Size = new System.Drawing.Size(582, 402);
             this.dataGridViewPonude.TabIndex = 10;
-            this.dataGridViewPonude.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.D);
             this.dataGridViewPonude.Click += new System.EventHandler(this.dataGridViewPonude_Click);
             // 
             // Ponude

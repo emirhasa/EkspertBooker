@@ -86,7 +86,6 @@
             this.comboBoxEksperti.Name = "comboBoxEksperti";
             this.comboBoxEksperti.Size = new System.Drawing.Size(178, 21);
             this.comboBoxEksperti.TabIndex = 4;
-            this.comboBoxEksperti.SelectedValueChanged += new System.EventHandler(this.comboBoxEksperti_SelectedValueChanged);
             this.comboBoxEksperti.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEksperti_Validating);
             // 
             // comboBoxPoslodavci

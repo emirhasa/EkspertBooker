@@ -14,6 +14,8 @@ namespace EkspertBooker.WebAPI.Database
             RecenzijeOPoslodavci = new HashSet<RecenzijaOPoslodavac>();
             Ponude = new HashSet<Ponuda>();
             EkspertKategorijePretplate = new HashSet<EkspertKategorijaPretplata>();
+            NotifikacijePoslodavci = new HashSet<NotifikacijaPoslodavac>();
+            NotifikacijeEkspert = new HashSet<NotifikacijaEkspert>();
         }
         public int KorisnikId { get; set; }
         public Korisnik Korisnik { get; set; }
@@ -34,5 +36,10 @@ namespace EkspertBooker.WebAPI.Database
         public ICollection<EkspertKategorijaPretplata> EkspertKategorijePretplate { get; set; }
         public bool? Notifikacije { get; set; }
 
+        //za mapiranje relacije -> prilikom notifikacije poslodavaca o dobijanju nove ponude od eksperta
+        public ICollection<NotifikacijaPoslodavac> NotifikacijePoslodavci { get; set; }
+
+        //kolekcija notifikacija za datog eksperta
+        public ICollection<NotifikacijaEkspert> NotifikacijeEkspert { get; set; }
     }
 }

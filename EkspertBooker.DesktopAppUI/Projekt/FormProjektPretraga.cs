@@ -30,7 +30,7 @@ namespace EkspertBooker.DesktopAppUI.Projekt
                 request.Naziv = textBoxNaziv.Text;
             }
 
-            if(comboBoxKategorija.SelectedIndex != 0)
+           if(comboBoxKategorija.SelectedIndex != 0)
             {
                 int _selectedKategorijaId = 0;
                 if (comboBoxKategorija.SelectedIndex > 0)
@@ -87,11 +87,19 @@ namespace EkspertBooker.DesktopAppUI.Projekt
 
         private async Task LoadKategorije()
         {
-            var result = await _serviceKategorije.Get<List<Model.Kategorija>>(null);
-            result.Insert(0, new Model.Kategorija());
-            comboBoxKategorija.DataSource = result;
-            comboBoxKategorija.DisplayMember = "Naziv";
-            comboBoxKategorija.ValueMember = "KategorijaId";
+            try
+            {
+                var result = await _serviceKategorije.Get<List<Model.Kategorija>>(null);
+                result.Insert(0, new Model.Kategorija());
+                comboBoxKategorija.DataSource = result;
+                comboBoxKategorija.DisplayMember = "Naziv";
+                comboBoxKategorija.ValueMember = "KategorijaId";
+            }
+            catch(Exception eX)
+            {
+                MessageBox.Show(eX.Message);
+                Dispose(false);
+            }
         }
 
 

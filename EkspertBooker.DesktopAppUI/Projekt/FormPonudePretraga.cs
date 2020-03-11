@@ -26,58 +26,84 @@ namespace EkspertBooker.DesktopAppUI.Projekt
 
         private async void FormPonudePretraga_Load(object sender, EventArgs e)
         {
-
-            dataGridViewProjekti.DataSource = await _serviceProjekti.Get<List<Model.Projekt>>(new ProjektiSearchRequest
+            try
             {
-                StanjeId = "Licitacija"
-            });
+                dataGridViewProjekti.DataSource = await _serviceProjekti.Get<List<Model.Projekt>>(new ProjektiSearchRequest
+                {
+                    StanjeId = "Licitacija"
+                });
 
-
+                if (dataGridViewProjekti.DataSource == null)
+                {
+                    MessageBox.Show("Trenutno nema projekata");
+                    Dispose(false);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
+            }
         }
 
         private async void dataGridViewProjekti_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(dataGridViewProjekti.CurrentRow.Cells[0].Value.ToString(), out int projekt_id))
+            try
             {
-                //uspjesno parsan ekspert id, ucitaj recenzije
-
-                var ponude_lista = await _servicePonude.Get<List<Model.Ponuda>>(new PonudeSearchRequest
+                if (int.TryParse(dataGridViewProjekti.CurrentRow.Cells[0].Value.ToString(), out int projekt_id))
                 {
-                    ProjektId = projekt_id
-                });
+                    //uspjesno parsan ekspert id, ucitaj recenzije
+                    var ponude_lista = await _servicePonude.Get<List<Model.Ponuda>>(new PonudeSearchRequest
+                    {
+                        ProjektId = projekt_id
+                    });
 
-                if (ponude_lista.Count == 0)
-                {
-                    MessageBox.Show("Projekt nema ponuda!");
+                    if (ponude_lista != null)
+                    {
+                        if (ponude_lista.Count > 0)
+                        {
+                            dataGridViewPonude.DataSource = ponude_lista;
+                            return;
+                        }
+                        MessageBox.Show("Projekt nema ponuda!");
+                        return;
+                    }
+                    MessageBox.Show("Projekt nema ponuda");
                 }
-
-                dataGridViewPonude.DataSource = ponude_lista;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
 
         private async void dataGridViewPonude_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(dataGridViewPonude.CurrentRow.Cells[0].Value.ToString(), out int ponuda_id))
+            try
             {
-                //uspjesno parsan ekspert id, ucitaj recenzije
-
-                var ponuda = await _servicePonude.GetById<Model.Ponuda>(ponuda_id);
-
-                if (ponuda == null)
+                if (int.TryParse(dataGridViewPonude.CurrentRow.Cells[0].Value.ToString(), out int ponuda_id))
                 {
-                    MessageBox.Show("Greska u ucitanju ponude!");
+                    //uspjesno parsan ekspert id, ucitaj recenzije
+
+                    var ponuda = await _servicePonude.GetById<Model.Ponuda>(ponuda_id);
+
+                    if (ponuda == null)
+                    {
+                        MessageBox.Show("Greska u ucitanju ponude!");
+                    }
+                    else
+                    {
+                        FormUrediPonudu forma = new FormUrediPonudu(ponuda_id);
+                        forma.Show();
+                    }
                 }
-                else
-                {
-                    FormUrediPonudu forma = new FormUrediPonudu(ponuda_id);
-                    forma.Show();
-                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        private void D(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

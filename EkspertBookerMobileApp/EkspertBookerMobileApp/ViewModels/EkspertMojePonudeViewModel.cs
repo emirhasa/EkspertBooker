@@ -86,7 +86,7 @@ namespace EkspertBookerMobileApp.ViewModels
             {
                 if (obavijesti_list != null)
                 {
-                    if (obavijesti_list.Count > 0)
+                    if (obavijesti_list != null)
                     {
                         foreach (var obavijest in obavijesti_list)
                         {
@@ -115,7 +115,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 Status = 2
             });
 
-            if (prihvacene_ponude_list.Count > 0)
+            if (prihvacene_ponude_list != null)
             {
                 foreach (var ponuda in prihvacene_ponude_list)
                 {
@@ -137,7 +137,7 @@ namespace EkspertBookerMobileApp.ViewModels
                 Status = 1
             });
 
-            if (aktivne_ponude_list.Count > 0) 
+            if (aktivne_ponude_list != null) 
             {
                 foreach (var ponuda in aktivne_ponude_list)
                 {

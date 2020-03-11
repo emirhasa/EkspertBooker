@@ -72,25 +72,28 @@ namespace EkspertBookerMobileApp.ViewModels
                     ProjektId = Projekt.ProjektId
                 });
                 if (Projekt.StanjeId == "Licitacija") NovaPonudaVisible = true; else NovaPonudaVisible = false;
-                foreach (Ponuda ponuda in ponude)
+                if (ponude != null)
                 {
-                    if (ponuda.Status != 1)
+                    foreach (Ponuda ponuda in ponude)
                     {
-                        PonudaEPDListViewModel model = new PonudaEPDListViewModel();
-                        model.Ponuda = ponuda;
-                        if (ponuda.Status == 0)
+                        if (ponuda.Status != 1)
                         {
-                            model.StatusColor = "Red";
-                            model.StatusText = "Odbijena";
+                            PonudaEPDListViewModel model = new PonudaEPDListViewModel();
+                            model.Ponuda = ponuda;
+                            if (ponuda.Status == 0)
+                            {
+                                model.StatusColor = "Red";
+                                model.StatusText = "Odbijena";
+                            }
+                            else
+                            {
+                                model.StatusColor = "ForestGreen";
+                                model.StatusText = "Prihvaćena";
+                            }
+                            PrethodnePonudeList.Add(model);
                         }
-                        else
-                        {
-                            model.StatusColor = "ForestGreen";
-                            model.StatusText = "Prihvaćena";
-                        }
-                        PrethodnePonudeList.Add(model);
+                        else AktivnaEkspertPonuda = ponuda;
                     }
-                    else AktivnaEkspertPonuda = ponuda;
                 }
                 if (PrethodnePonudeList.Count > 0)
                 {

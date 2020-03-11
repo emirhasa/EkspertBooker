@@ -28,7 +28,7 @@ namespace EkspertBooker.Model
         public RecenzijaOEkspert RecenzijaOEkspert { get; set; }
         public RecenzijaOPoslodavac RecenzijaOPoslodavac { get; set; }
 
-        public ICollection<Ponuda> Ponude { get; set; }
+        //public ICollection<Ponuda> Ponude { get; set; }
 
         public override string ToString()
         {

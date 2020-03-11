@@ -141,12 +141,19 @@ namespace EkspertBookerMobileApp.ViewModels
                     var result = await _korisniciService.Update<Korisnik>(TrenutniKorisnik.KorisnikId, request);
                     if (SelectedKategorija != null)
                     {
-                        if (SelectedKategorija.KategorijaId != TrenutniEkspert.EkspertStrucnaKategorija.KategorijaId)
+                        EkspertUpsertRequest kategorija_request = new EkspertUpsertRequest
                         {
-                            EkspertUpsertRequest kategorija_request = new EkspertUpsertRequest
+                            EkspertStrucnaKategorijaId = SelectedKategorija.KategorijaId
+                        };
+                        if (TrenutniEkspert.EkspertStrucnaKategorija != null)
+                        {
+                            if (SelectedKategorija.KategorijaId != TrenutniEkspert.EkspertStrucnaKategorija.KategorijaId)
                             {
-                                EkspertStrucnaKategorijaId = SelectedKategorija.KategorijaId
-                            };
+
+                                var kategorija_result = await _ekspertiService.Update<Ekspert>(TrenutniKorisnik.KorisnikId, kategorija_request);
+                            }
+                        } else
+                        {
                             var kategorija_result = await _ekspertiService.Update<Ekspert>(TrenutniKorisnik.KorisnikId, kategorija_request);
                         }
                     }

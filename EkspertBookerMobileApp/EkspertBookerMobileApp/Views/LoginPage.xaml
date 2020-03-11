@@ -19,7 +19,7 @@
                 <Label x:Name="UsernameErrorLabel" Text="Polje je obavezno!" IsVisible="{Binding UsernameErrorVisible}" TextColor="Red" FontSize="10"></Label>
                 
                 <Label Text="Password"></Label>
-                <Entry Text="{Binding Password}" TextChanged="Password_TextChanged"></Entry>
+                <Entry Text="{Binding Password}" TextChanged="Password_TextChanged" IsPassword="True"></Entry>
                 <Label x:Name="PasswordErrorLabel" Text="Polje je obavezno!" IsVisible="{Binding PasswordErrorVisible}" TextColor="Red" FontSize="10"></Label>
                 
                 <Button Command="{Binding LoginCommand}" Text="Login" BackgroundColor="LightSkyBlue"></Button>

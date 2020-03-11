@@ -28,53 +28,60 @@ namespace EkspertBooker.DesktopAppUI.Projekt
         }
         private async void FormDodajProjekt_Load(object sender, EventArgs e)
         {
-            await LoadKategorije();
-            dateTimePickerDatumPocetka.Value = DateTime.Now;
-            if (_id != null)
+            try
             {
-                projekt = await _serviceProjekti.GetById<Model.Projekt>(_id);
-                decimal _trajanje, _budzet;
-                //ucitaj vrijednosti u polja(edit)
-                textBoxNazivProjekta.Text = projekt.Naziv;
-                textBoxKratkiOpis.Text = projekt.KratkiOpis;
-                textBoxDetaljniOpis.Text = projekt.DetaljniOpis;
-                if (projekt.DatumPocetka.HasValue)
+                await LoadKategorije();
+                dateTimePickerDatumPocetka.Value = DateTime.Now;
+                if (_id != null)
                 {
-                    dateTimePickerDatumPocetka.Value = projekt.DatumPocetka.Value;
-                }
-                decimal.TryParse(projekt.TrajanjeDana.ToString(), out _trajanje);
-                numericUpDownTrajanje.Value = _trajanje;
-                decimal.TryParse(projekt.Budzet.ToString(), out _budzet);
-                numericUpDownBudzet.Value = _budzet;
-                int selected_index = 0;
-                foreach(Model.Kategorija item in comboBoxKategorija.Items)
-                {
-                    if(item.KategorijaId == projekt.KategorijaId)
+                    projekt = await _serviceProjekti.GetById<Model.Projekt>(_id);
+                    decimal _trajanje, _budzet;
+                    //ucitaj vrijednosti u polja(edit)
+                    textBoxNazivProjekta.Text = projekt.Naziv;
+                    textBoxKratkiOpis.Text = projekt.KratkiOpis;
+                    textBoxDetaljniOpis.Text = projekt.DetaljniOpis;
+                    if (projekt.DatumPocetka.HasValue)
                     {
-                        selected_index = comboBoxKategorija.Items.IndexOf(item);
-                        break;
+                        dateTimePickerDatumPocetka.Value = projekt.DatumPocetka.Value;
                     }
-                }
-                comboBoxKategorija.SelectedIndex = selected_index;
-                if(projekt.Hitan == true)
-                {
-                    checkBoxHitan.CheckState = CheckState.Checked;
-                }
+                    decimal.TryParse(projekt.TrajanjeDana.ToString(), out _trajanje);
+                    numericUpDownTrajanje.Value = _trajanje;
+                    decimal.TryParse(projekt.Budzet.ToString(), out _budzet);
+                    numericUpDownBudzet.Value = _budzet;
+                    int selected_index = 0;
+                    foreach (Model.Kategorija item in comboBoxKategorija.Items)
+                    {
+                        if (item.KategorijaId == projekt.KategorijaId)
+                        {
+                            selected_index = comboBoxKategorija.Items.IndexOf(item);
+                            break;
+                        }
+                    }
+                    comboBoxKategorija.SelectedIndex = selected_index;
+                    if (projekt.Hitan == true)
+                    {
+                        checkBoxHitan.CheckState = CheckState.Checked;
+                    }
 
-                if (projekt.StanjeId == "Aktivan")
-                {
-                    label10.Visible = false;
-                    label11.Text = "Detalji aktivan projekat";
-                    textBoxAktivanDetaljanOpis.Enabled = true;
-                    textBoxNapomena.Enabled = true;
-                    if(projekt.ProjektDetalji != null)
+                    if (projekt.StanjeId == "Aktivan")
                     {
-                        textBoxAktivanDetaljanOpis.Text = projekt.ProjektDetalji.AktivanDetaljanOpis;
-                        textBoxNapomena.Text = projekt.ProjektDetalji.Napomena;
+                        label10.Visible = false;
+                        label11.Text = "Detalji aktivan projekat";
+                        textBoxAktivanDetaljanOpis.Enabled = true;
+                        textBoxNapomena.Enabled = true;
+                        if (projekt.ProjektDetalji != null)
+                        {
+                            textBoxAktivanDetaljanOpis.Text = projekt.ProjektDetalji.AktivanDetaljanOpis;
+                            textBoxNapomena.Text = projekt.ProjektDetalji.Napomena;
+                        }
+                        buttonSacuvajDetalji.Enabled = true;
                     }
-                    buttonSacuvajDetalji.Enabled = true;
                 }
-                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + " Vjerovatno greška pri učitanju kategorija!");
+                Dispose(false);
             }
         }
 
@@ -179,82 +186,103 @@ namespace EkspertBooker.DesktopAppUI.Projekt
 
         private async void buttonDodajProjekat_Click(object sender, EventArgs e)
         {
-
-            if (ValidateChildren())
+            try
             {
-                var insert = new ProjektUpsertRequest
+                if (ValidateChildren())
                 {
-                    Naziv = textBoxNazivProjekta.Text,
-                    KratkiOpis = textBoxKratkiOpis.Text,
-                    DetaljniOpis = textBoxDetaljniOpis.Text,
-                    DatumObjave = DateTime.Now,
-                    DatumPocetka = dateTimePickerDatumPocetka.Value,
-                    TrajanjeDana = int.Parse(numericUpDownTrajanje.Value.ToString()),
-                    KategorijaId = int.Parse(comboBoxKategorija.SelectedValue.ToString()),
-                    Budzet = int.Parse(numericUpDownBudzet.Value.ToString()),
-                    Hitan = checkBoxHitan.Checked,
-                    StanjeId = "Licitacija",
-                };
-                if(_id == null )
-                {
-                    //insert
-                    //default Poslodavac
-                    insert.PoslodavacId = 2;
-                    try
+                    var insert = new ProjektUpsertRequest
                     {
-                        var result = await _serviceProjekti.Insert<Model.Projekt>(insert);
-                        if (result.ProjektId > 0)
+                        Naziv = textBoxNazivProjekta.Text,
+                        KratkiOpis = textBoxKratkiOpis.Text,
+                        DetaljniOpis = textBoxDetaljniOpis.Text,
+                        DatumObjave = DateTime.Now,
+                        DatumPocetka = dateTimePickerDatumPocetka.Value,
+                        TrajanjeDana = int.Parse(numericUpDownTrajanje.Value.ToString()),
+                        KategorijaId = int.Parse(comboBoxKategorija.SelectedValue.ToString()),
+                        Budzet = int.Parse(numericUpDownBudzet.Value.ToString()),
+                        Hitan = checkBoxHitan.Checked,
+                        StanjeId = "Licitacija",
+                    };
+                    if (_id == null)
+                    {
+                        //insert
+                        //default Poslodavac
+                        insert.PoslodavacId = 2;
+                        try
                         {
-                            MessageBox.Show("Operacija uspješna!");
-                        } else
+                            var result = await _serviceProjekti.Insert<Model.Projekt>(insert);
+                            if (result.ProjektId > 0)
+                            {
+                                MessageBox.Show("Operacija uspješna!");
+                                _id = result.ProjektId;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Greska! Jeste li dobro podesili localhost/port?");
+                            }
+                        }
+                        catch (FlurlHttpException ex)
                         {
-                            MessageBox.Show("Greska! Jeste li dobro podesili localhost/port?");
+                            MessageBox.Show(ex.Message);
                         }
                     }
-                    catch (FlurlHttpException ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                } else
-                {
-                    //edit
-                    insert.PoslodavacId = projekt.PoslodavacId;
-                    try
-                    {
-                        var result = await _serviceProjekti.Update<Model.Projekt>(_id, insert);
-                        if (result.ProjektId > 0)
+                        //edit
+                        insert.PoslodavacId = projekt.PoslodavacId;
+                        try
                         {
-                            MessageBox.Show("Operacija uspješna!");
-                            Dispose(false);
-                        } else
-                        {
-                            MessageBox.Show("Greska! Jeste li dobro podesili localhost/port?");
+                            var result = await _serviceProjekti.Update<Model.Projekt>(_id, insert);
+                            if (result.ProjektId > 0)
+                            {
+                                MessageBox.Show("Operacija uspješna!");
+                                Dispose(false);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Greska! Jeste li dobro podesili localhost/port?");
+                            }
                         }
-                    }
-                    catch (FlurlHttpException ex)
-                    {
-                        MessageBox.Show(ex.Message);
+                        catch (FlurlHttpException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
-            } 
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
+            }
         }
 
         private async void buttonBrisiProjekat_Click(object sender, EventArgs e)
         {
-            if(_id != null)
+            try
             {
-                var result = await _serviceProjekti.Delete<bool>(_id);
-                if(result == true)
+                if (_id != null)
                 {
-                    MessageBox.Show("Projekt izbrisan!");
-                    Dispose(false);
-                } else
-                {
-                    MessageBox.Show("Greska prilikom brisanja");
+                    var result = await _serviceProjekti.Delete<bool>(_id);
+                    if (result == true)
+                    {
+                        MessageBox.Show("Projekt izbrisan!");
+                        Dispose(false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Greska prilikom brisanja");
+                    }
                 }
-            } else
+                else
+                {
+                    MessageBox.Show("Operacija uspješna!");
+                    Dispose(false);
+                }
+            }
+            catch(Exception ex)
             {
-                MessageBox.Show("Operacija uspješna!");
+                MessageBox.Show(ex.Message);
                 Dispose(false);
             }
         }
@@ -266,21 +294,22 @@ namespace EkspertBooker.DesktopAppUI.Projekt
 
         private async void buttonSacuvajDetalji_Click(object sender, EventArgs e)
         {
-            ProjektDetaljiUpsertRequest request = new ProjektDetaljiUpsertRequest
-            {
-                AktivanDetaljanOpis = textBoxAktivanDetaljanOpis.Text,
-                Napomena = textBoxNapomena.Text,
-                ProjektId = projekt.ProjektId
-            };
-
             try
             {
+                ProjektDetaljiUpsertRequest request = new ProjektDetaljiUpsertRequest
+                {
+                    AktivanDetaljanOpis = textBoxAktivanDetaljanOpis.Text,
+                    Napomena = textBoxNapomena.Text,
+                    ProjektId = projekt.ProjektId
+                };
+
                 var result = await _serviceProjektDetalji.Update<Model.ProjektDetalji>(projekt.ProjektId, request);
-                MessageBox.Show("Operacija uspjesna!");
-            } 
-            catch(FlurlHttpException ex)
+                MessageBox.Show("Operacija uspjesna!");              
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
     }

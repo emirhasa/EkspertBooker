@@ -15,7 +15,7 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition> 
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -40,18 +40,7 @@
                     </StackLayout>
 
                 </Grid>
-                <!--<Grid x:Name="ToolbarEkspertProjekt" IsVisible="False">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="80"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Text="DOSTAVI PONUDU" FontAttributes="Bold" BackgroundColor="#1d80cf" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True" Clicked="DostaviPonudu_Clicked"></Button>
-                    <Button Grid.Row="0" Grid.Column="1" Text="PRIKAŽI DETALJNO" FontAttributes="Bold" BackgroundColor="ForestGreen" TextColor="White" WidthRequest="150" HorizontalOptions="CenterAndExpand" IsVisible="True"></Button>
-                </Grid>-->
+                
                 <Frame Margin="8,0,8,8" HasShadow="True" CornerRadius="4" OutlineColor="#DEDEDE">
 
                     <StackLayout>
@@ -113,7 +102,7 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
                             <Label Text="Prilog" Grid.Row="0" Grid.Column="0" FontSize="20" HorizontalTextAlignment="Start" Margin="0,25,0,10"></Label>

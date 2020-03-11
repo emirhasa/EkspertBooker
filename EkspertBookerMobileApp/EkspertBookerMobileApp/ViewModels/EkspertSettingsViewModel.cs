@@ -48,15 +48,18 @@ namespace EkspertBookerMobileApp.ViewModels
                     EkspertId = LoggedUser.logovaniKorisnik.KorisnikId
                 });
 
-                foreach (var kategorija in custom_kategorije)
+                if (ekspert_pretplate != null)
                 {
-                    foreach (var pretplata in ekspert_pretplate)
+                    foreach (var kategorija in custom_kategorije)
                     {
-                        if (pretplata.KategorijaId == kategorija.kategorija.KategorijaId)
+                        foreach (var pretplata in ekspert_pretplate)
                         {
-                            kategorija.isChecked = true;
-                            kategorija.checkboxColor = Color.Red;
-                            kategorija.EkspertPretplataId = pretplata.EkspertKategorijaPretplataId;
+                            if (pretplata.KategorijaId == kategorija.kategorija.KategorijaId)
+                            {
+                                kategorija.isChecked = true;
+                                kategorija.checkboxColor = Color.Red;
+                                kategorija.EkspertPretplataId = pretplata.EkspertKategorijaPretplataId;
+                            }
                         }
                     }
                 }

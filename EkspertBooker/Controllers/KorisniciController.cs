@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EkspertBooker.WebAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class KorisniciController : BaseCRUDController<Model.Korisnik, KorisniciSearchRequest, KorisnikUpsertRequest, KorisnikUpsertRequest>
     {
         public KorisniciController(IKorisniciService service) : base(service)
         {
         }
 
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public override ActionResult<Model.Korisnik> Insert(KorisnikUpsertRequest request)
         {
             try
@@ -30,13 +30,13 @@ namespace EkspertBooker.WebAPI.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         public override ActionResult<Model.Korisnik> Update(int id, KorisnikUpsertRequest request)
         {
             return _service.Update(id, request);
         }
 
-        [Authorize]
+        //[Authorize]
         public override ActionResult<bool> Delete(int id)
         {
             return _service.Delete(id);

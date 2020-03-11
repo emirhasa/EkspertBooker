@@ -21,7 +21,7 @@
                 </StackLayout>
 
                 <Label Text="Nijedna ponuda još nije prihvaćena!" TextColor="Red" FontSize="15" FontAttributes="Bold"  IsVisible="{Binding NemaPrihvacena}"></Label>
-                <ListView x:Name="PrihvacenaPonudaListView" ItemsSource="{Binding PrihvacenaPonudaList}" HeightRequest="150" HasUnevenRows="True" ItemSelected="PrihvacenaPonuda_ItemSelected" IsVisible="{Binding ImaPrihvacena}">
+                <ListView x:Name="PrihvacenaPonudaListView" ItemsSource="{Binding PrihvacenaPonudaList}" HeightRequest="230" HasUnevenRows="True" ItemSelected="PrihvacenaPonuda_ItemSelected" IsVisible="{Binding ImaPrihvacena}">
                     <ListView.ItemTemplate> 
                         <DataTemplate>
                             <ViewCell>
@@ -32,7 +32,7 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="23"></RowDefinition>
                                                 <RowDefinition Height="33"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="80"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="3*"></ColumnDefinition>

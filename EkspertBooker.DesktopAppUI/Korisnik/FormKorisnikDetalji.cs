@@ -25,18 +25,34 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
         KorisnikUpsertRequest request = new KorisnikUpsertRequest();
         public FormKorisnikDetalji(int? id = null)
         {
-            InitializeComponent();
-            if (id != null) _selected_id = id;
-            LoadUloge();
+            try
+            {
+                InitializeComponent();
+                if (id != null) _selected_id = id;
+                LoadUloge();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Problem prilikom ucitavanja uloga");
+                Dispose(false);
+            }
         }
 
         private async void LoadUloge()
         {
-            var result = await _serviceUloge.Get<List<Model.Uloga>>(null);
-            clbRole.DisplayMember = "Naziv";
-            foreach (var role in result)
+            try
             {
-                clbRole.Items.Add(role);
+                var result = await _serviceUloge.Get<List<Model.Uloga>>(null);
+                clbRole.DisplayMember = "Naziv";
+                foreach (var role in result)
+                {
+                    clbRole.Items.Add(role);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
 
@@ -44,6 +60,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
         {
             if (ValidateChildren())
             {
+                //TODO: optimize this, separate tasks into functions and simplify logic
                 request.Ime = textBoxIme.Text;
                 request.Prezime = textBoxPrezime.Text;
                 request.Email = textBoxEmail.Text;
@@ -67,53 +84,53 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                             bool isti_mail = false;
                             bool isti_username = false;
                             var provjera = await _service.Get<List<Model.Korisnik>>(null);
-                            foreach (Model.Korisnik korisnik in provjera)
+                            if (provjera != null)
                             {
-                                if (request.KorisnickoIme == korisnik.KorisnickoIme)
+                                foreach (Model.Korisnik korisnik in provjera)
                                 {
-                                    isti_username = true;
-                                    break;
-                                }
-                                if (request.Email == korisnik.Email)
-                                {
-                                    isti_mail = true;
-                                    break;
-                                }
-                            }
-                            if ((isti_mail || isti_username) == true)
-                            {
-                                if (isti_mail)
-                                {
-                                    MessageBox.Show("Korisnik nije unesen, vec postoji korisnik sa datim mailom!");
-                                } else
-                                {
-                                    MessageBox.Show("Korsisnik nije unesen, vec postoji korisnik sa istim username!");
-                                }
-                            }
-                            else
-                            {
-                                var response = await _service.Insert<Model.Korisnik>(request);
-                                if (response.KorisnikId > 0)
-                                {
-                                    MessageBox.Show("Korisnik unesen!");
-                                    Dispose(false);
-                                    FormKorisniciPretraga forma = new FormKorisniciPretraga();
-                                    forma.Show();
-                                    //upload slike
-                                    if (request.Slika != null)
+                                    if (request.KorisnickoIme == korisnik.KorisnickoIme)
                                     {
-                                        var result = await _serviceSlike.Insert<Model.KorisnikSlika>(new KorisnikSlikaUpsertRequest
-                                        {
-                                            KorisnikId = response.KorisnikId,
-                                            ProfilnaSlika = request.Slika
-                                        });
+                                        isti_username = true;
+                                        break;
+                                    }
+                                    if (request.Email == korisnik.Email)
+                                    {
+                                        isti_mail = true;
+                                        break;
+                                    }
+                                }
+                                if ((isti_mail || isti_username) == true)
+                                {
+                                    if (isti_mail)
+                                    {
+                                        MessageBox.Show("Korisnik nije unesen, vec postoji korisnik sa datim mailom!");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Korsisnik nije unesen, vec postoji korisnik sa istim username!");
                                     }
                                 }
                             }
+                            var response = await _service.Insert<Model.Korisnik>(request);
+                            if (response.KorisnikId > 0)
+                            {
+                                MessageBox.Show("Korisnik unesen!");
+                                //upload slike
+                                if (request.Slika != null)
+                                {
+                                    var result = await _serviceSlike.Insert<Model.KorisnikSlika>(new KorisnikSlikaUpsertRequest
+                                    {
+                                        KorisnikId = response.KorisnikId,
+                                        ProfilnaSlika = request.Slika
+                                    });
+                                }
+                                _selected_id = response.KorisnikId;
+                            }
                         }
-                        catch (FlurlHttpException ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
+                            Dispose(false);
 
                         }
                     } else
@@ -154,9 +171,10 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                                     MessageBox.Show("Korisnik info sacuvan, password promijenjen!");
                                 }
                             }
-                            catch (FlurlHttpException ex)
+                            catch (Exception ex)
                             {
                                 MessageBox.Show(ex.Message);
+                                Dispose(false);
                             }
                         } else
                         {
@@ -171,8 +189,6 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                             var response = await _service.Update<Model.Korisnik>(_selected_id, request);
                             if (response.KorisnikId > 0)
                             {
-                                FormKorisniciPretraga forma = new FormKorisniciPretraga();
-                                forma.Show();
                                 //upload slika //ugraditi f-ju
                                 if (request.Slika != null)
                                 {
@@ -207,9 +223,10 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                                 }
                             }
                         }
-                        catch (FlurlHttpException ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message);
+                            Dispose(false);
                         }
                     }
 
@@ -220,50 +237,67 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
 
         private async void FormKorisnikDetalji_Load(object sender, EventArgs e)
         {
-            if (_selected_id.HasValue)
+            try
             {
-                korisnik = await _service.GetById<Model.Korisnik>(_selected_id);
-                if (korisnik.KorisnikId != 0)
+                if (_selected_id.HasValue)
                 {
-                    textBoxIme.Text = korisnik.Ime;
-                    textBoxPrezime.Text = korisnik.Prezime;
-                    textBoxEmail.Text = korisnik.Email;
-                    textBoxTelefon.Text = korisnik.Telefon;
-                    textBoxUsername.Text = korisnik.KorisnickoIme;
-                    textBoxUsername.Enabled = false;
-                    List<int> indexi = new List<int>();
-                    foreach (Model.KorisnikUloga uloga in korisnik.KorisnikUloge)
+                    korisnik = await _service.GetById<Model.Korisnik>(_selected_id);
+                    if (korisnik.KorisnikId != 0)
                     {
-                        foreach (Model.Uloga item in clbRole.Items)
+                        textBoxIme.Text = korisnik.Ime;
+                        textBoxPrezime.Text = korisnik.Prezime;
+                        textBoxEmail.Text = korisnik.Email;
+                        textBoxTelefon.Text = korisnik.Telefon;
+                        textBoxUsername.Text = korisnik.KorisnickoIme;
+                        textBoxUsername.Enabled = false;
+                        List<int> indexi = new List<int>();
+                        foreach (Model.KorisnikUloga uloga in korisnik.KorisnikUloge)
                         {
-                            if (item.UlogaId == uloga.UlogaId) indexi.Add(clbRole.Items.IndexOf(item));
+                            foreach (Model.Uloga item in clbRole.Items)
+                            {
+                                if (item.UlogaId == uloga.UlogaId) indexi.Add(clbRole.Items.IndexOf(item));
+                            }
+                        }
+
+                        foreach (int index in indexi)
+                        {
+                            clbRole.SetItemChecked(index, true);
+                        }
+                        clbRole.Enabled = false;
+                        //load slika
+
+                        if (korisnik.KorisnikSlika != null)
+                        {
+                            Image image = ByteToImage(korisnik.KorisnikSlika.ProfilnaSlika);
+                            pictureBox.Image = image;
                         }
                     }
-
-                    foreach (int index in indexi)
-                    {
-                        clbRole.SetItemChecked(index, true);
-                    }
-                    clbRole.Enabled = false;
-                    //load slika
-
-                    if (korisnik.KorisnikSlika != null)
-                    {
-                        Image image = ByteToImage(korisnik.KorisnikSlika.ProfilnaSlika);
-                        pictureBox.Image = image;
-                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Problem prilikom učitavanja korisnika");
+                Dispose(false);
             }
         }
 
         private Bitmap ByteToImage(byte[] blob)
         {
-            MemoryStream mStream = new MemoryStream();
-            byte[] pData = blob;
-            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
-            Bitmap bm = new Bitmap(mStream, false);
-            mStream.Dispose();
-            return bm;
+            try
+            {
+                MemoryStream mStream = new MemoryStream();
+                byte[] pData = blob;
+                mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+                Bitmap bm = new Bitmap(mStream, false);
+                mStream.Dispose();
+                return bm;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Dispose(false);
+                return null;
+            }
         }
 
         private void buttonSlika_Click(object sender, EventArgs e)
@@ -286,6 +320,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Dispose(false);
             }
         }
 

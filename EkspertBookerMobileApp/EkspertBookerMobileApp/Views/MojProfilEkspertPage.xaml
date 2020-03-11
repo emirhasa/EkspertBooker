@@ -136,8 +136,8 @@
                             <StackLayout  Grid.Row="1" Grid.Column="1" Spacing="0" HorizontalOptions="StartAndExpand" Margin="0,8,0,0">
                                 <Label HorizontalOptions="Start" Text="Kategorija stručnosti: " Opacity="0.7"  MaxLines="1" HorizontalTextAlignment="Start"></Label>
                                 <Label IsVisible="True" HorizontalOptions="Start" FontAttributes="Bold" Text="{Binding TrenutniEkspert.EkspertStrucnaKategorija.Naziv}" MaxLines="3" Margin="0" Padding="0" HorizontalTextAlignment="Start"></Label>
-                                <Label HorizontalOptions="Start" Text="Nije izabrana!" TextColor="Red" IsVisible="{Binding NoStrucnaKategorija}"></Label>
                             </StackLayout>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" Text="Nije izabrana!" TextColor="Red" IsVisible="{Binding NoStrucnaKategorija}" Margin="0,30,0,0"></Label>
                         </Grid>
 
                     </StackLayout>
