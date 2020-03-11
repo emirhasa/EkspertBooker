@@ -19,6 +19,7 @@ namespace EkspertBookerMobileApp
         public static string Username { get; set; }
         public static string Password { get; set; }
 
+
 #if DEBUG
         public static string _apiUrl = _apiUrl = Properties.Resources.API_URL_localhost;
 #endif
@@ -29,7 +30,7 @@ namespace EkspertBookerMobileApp
         public APIService(string route)
         {
             _route = route;
-            if(DeviceInfo.Platform == DevicePlatform.Android)
+            if (DeviceInfo.Platform == DevicePlatform.Android)
             {
                 if (DeviceInfo.DeviceType == DeviceType.Physical)
                 {

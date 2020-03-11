@@ -3,10 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="APIUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://brodev.info/api</Value>
+      <Value Profile="(Default)">http://localhost:55518/api</Value>
     </Setting>
     <Setting Name="Setting" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="APIUrl_TestRelease" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://brodev.info/api</Value>
     </Setting>
   </Settings>
 </SettingsFile>

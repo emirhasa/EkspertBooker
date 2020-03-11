@@ -18,8 +18,11 @@ namespace EkspertBooker.WebAPI.Controllers
     {
         private EkspertBookerContext _context;
         private IMapper _mapper;
+
+        //implementirati putem interfejsa
         public PoslodavacPreporukeController(EkspertBookerContext context, IMapper mapper)
         {
+
             _context = context;
             _mapper = mapper;
         }
@@ -27,6 +30,7 @@ namespace EkspertBooker.WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<List<EkspertPreporuka>> GetPreporuke(int id)
         {
+            //implementirati putem interfejsa
             var projekt = _context.Projekti.Find(id);
             if (projekt == null) return NoContent();
             var eksperti = _context.Eksperti.Include(e=>e.Korisnik).Select(e => new Database.Ekspert

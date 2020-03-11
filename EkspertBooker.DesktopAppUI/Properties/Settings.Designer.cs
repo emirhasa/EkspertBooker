@@ -25,7 +25,7 @@ namespace EkspertBooker.DesktopAppUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://brodev.info/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:55518/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));
@@ -41,6 +41,18 @@ namespace EkspertBooker.DesktopAppUI.Properties {
             }
             set {
                 this["Setting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://brodev.info/api")]
+        public string APIUrl_TestRelease {
+            get {
+                return ((string)(this["APIUrl_TestRelease"]));
+            }
+            set {
+                this["APIUrl_TestRelease"] = value;
             }
         }
     }

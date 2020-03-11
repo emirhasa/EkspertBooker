@@ -1,10 +1,10 @@
-BundleAssemblies=false
-AotAssemblies=false
+BundleAssemblies=False
+AotAssemblies=False
 AndroidAotMode=
-AndroidEnableProfiledAot=false
+AndroidEnableProfiledAot=
 ExplicitCrunch=false
 AndroidDexTool=dx
-AndroidLinkTool=proguard
+AndroidLinkTool=
 AndroidPackageFormat=apk
 UseSharedRuntime=false
 EmbedAssembliesIntoApk=True

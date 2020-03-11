@@ -34,6 +34,7 @@ namespace EkspertBooker.WebAPI.Controllers
         public async Task<IActionResult> Get([FromQuery]ProjektDetaljiPrilogSearchRequest request)
         {
             //todo: try catch blockovi, return helper metode u slucaju exceptiona
+            //implementirati putem interfejsa
             if (request.GetOnlyMetaData)
             {
                 if (request.ProjektDetaljiId.HasValue)
@@ -76,6 +77,7 @@ namespace EkspertBooker.WebAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult<Model.ProjektDetaljiPrilog> Update(int id, [FromBody]ProjektDetaljiPrilogUpsertRequest request)
         {
+            //implementirati putem interfejsa
             var provjera = _context.ProjektDetalji.Find(id);
             if (provjera == null) return NoContent();
 

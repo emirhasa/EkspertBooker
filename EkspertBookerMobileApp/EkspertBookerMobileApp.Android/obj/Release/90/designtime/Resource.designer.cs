@@ -5845,9 +5845,6 @@ namespace EkspertBookerMobileApp.Droid
 			// aapt resource value: 0x7F070080
 			public const int xamarin_logo = 2131165312;
 			
-			// aapt resource value: 0x7F070081
-			public const int xb_icon = 2131165313;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

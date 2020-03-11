@@ -1,6 +1,7 @@
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\bin\Release\netstandard2.0\EkspertBooker.Model.deps.json
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\bin\Release\netstandard2.0\EkspertBooker.Model.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\bin\Release\netstandard2.0\EkspertBooker.Model.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\obj\Release\netstandard2.0\EkspertBooker.Model.csprojAssemblyReference.cache
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\obj\Release\netstandard2.0\EkspertBooker.Model.AssemblyInfoInputs.cache
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\obj\Release\netstandard2.0\EkspertBooker.Model.AssemblyInfo.cs
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.Model\obj\Release\netstandard2.0\EkspertBooker.Model.dll
