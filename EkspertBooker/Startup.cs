@@ -36,12 +36,17 @@ namespace EkspertBooker.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            string connection = @"Server=.;Database=EkspertBooker;Trusted_Connection=true;";
+
+           
             services.AddMvc(x => x.Filters.Add<ErrorFilter>()).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            string connection = @"Server=plesk3800.is.cc;Database=brodev_ExpertBooker;PersistSecurityInfo=False;User=master;Password=W*v1f48d;MultipleActiveResultSets=False;";
             services.AddDbContext<EkspertBookerContext>(options => options.UseSqlServer(connection));
+            
+            
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "EkspertBooker API", Version = "v0.5" });
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "EkspertBooker API", Version = "v0.7" });
                 c.AddSecurityDefinition("basic", new BasicAuthScheme() { Type = "basic" });
                 c.DocumentFilter<BasicAuthDocumentFilter>();
             });
@@ -90,7 +95,7 @@ namespace EkspertBooker.WebAPI
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "EkspertBooker API v0.5");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "EkspertBooker API v0.7");
             });
         }
     }

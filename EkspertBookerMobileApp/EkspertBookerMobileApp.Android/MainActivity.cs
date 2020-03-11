@@ -31,14 +31,19 @@ namespace EkspertBookerMobileApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
             Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) == (int)Permission.Granted && ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted)
-            {
-                // We have permission, go ahead and use camera & gallery
-            }
-            else
+            if (!(ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) == (int)Permission.Granted && ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted))
             {
                 ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage }, 1);
             }
+
+            //check permissions for read external storage and internet
+            //these permissions are enabled by default in debug mode. for release, this needs to be explicitly requested
+
+            //if (!(ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == (int)Permission.Granted))
+            //{
+            //    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.ReadExternalStorage }, 2);
+            //}
+
 
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

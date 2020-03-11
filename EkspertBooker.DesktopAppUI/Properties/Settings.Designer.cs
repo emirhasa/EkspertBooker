@@ -25,7 +25,7 @@ namespace EkspertBooker.DesktopAppUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:55518/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://brodev.info/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));

@@ -23,7 +23,7 @@ namespace EkspertBookerMobileApp
         public static string _apiUrl = _apiUrl = Properties.Resources.API_URL_localhost;
 #endif
 #if RELEASE
-    private string _apiUrl = "https://test.com";
+        public static string _apiUrl = _apiUrl = Properties.Resources.API_URL_TestRelease;
 #endif
 
         public APIService(string route)
@@ -35,12 +35,22 @@ namespace EkspertBookerMobileApp
                 {
                     //android device
                     //setovati u properties - resources
+#if DEBUG
                     _apiUrl = Properties.Resources.API_URL_AndroidDevice;
+#endif
+#if RELEASE
+                    _apiUrl = Properties.Resources.API_URL_TestRelease;
+#endif
                 }
                 else
                 {
                     //android emulator
+#if DEBUG
                     _apiUrl = Properties.Resources.API_URL_AndroidEmulator;
+#endif
+#if RELEASE
+                    _apiUrl = Properties.Resources.API_URL_TestRelease;
+#endif
                 }
             }
         }

@@ -86,5 +86,14 @@ namespace EkspertBookerMobileApp.Properties {
                 return ResourceManager.GetString("API_URL_localhost", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://brodev.info/api.
+        /// </summary>
+        internal static string API_URL_TestRelease {
+            get {
+                return ResourceManager.GetString("API_URL_TestRelease", resourceCulture);
+            }
+        }
     }
 }

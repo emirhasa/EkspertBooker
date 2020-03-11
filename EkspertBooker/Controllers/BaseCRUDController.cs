@@ -30,7 +30,7 @@ namespace EkspertBooker.WebAPI.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public virtual ActionResult<TModel> Update(int id, [FromBody]TUpdate request)
         {
             try

@@ -126,4 +126,7 @@
   <data name="API_URL_localhost" xml:space="preserve">
     <value>http://localhost:55518/api</value>
   </data>
+  <data name="API_URL_TestRelease" xml:space="preserve">
+    <value>https://brodev.info/api</value>
+  </data>
 </root>

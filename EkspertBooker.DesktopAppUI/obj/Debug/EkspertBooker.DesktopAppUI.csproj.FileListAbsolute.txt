@@ -30,3 +30,7 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\E
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.csproj.CopyComplete
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.exe
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\bin\Debug\EkspertBooker.DesktopAppUI.exe.manifest
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\bin\Debug\EkspertBooker.DesktopAppUI.application
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.exe.manifest
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker.DesktopAppUI\obj\Debug\EkspertBooker.DesktopAppUI.application
