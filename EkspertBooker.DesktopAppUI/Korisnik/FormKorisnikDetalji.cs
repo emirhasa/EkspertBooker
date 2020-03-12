@@ -310,6 +310,7 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
                 {
                     var fileName = openFileDialog1.FileName;
                     var file = File.ReadAllBytes(fileName);
+                    if (file.Length > (1024 * 512)) throw new Exception("Prevelika slika, molimo upload slike manji od ~ 500kb");
                     request.Slika = file;
                     textBoxSlika.Text = fileName;
 
@@ -320,7 +321,8 @@ namespace EkspertBooker.DesktopAppUI.Korisnik
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Dispose(false);
+                request.Slika = null;
+                textBoxSlika.Text = null;
             }
         }
 

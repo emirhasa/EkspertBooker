@@ -44,15 +44,12 @@ namespace EkspertBooker.DesktopAppUI.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://brodev.info/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.expertbooker.brodev.info")]
         public string APIUrl_TestRelease {
             get {
                 return ((string)(this["APIUrl_TestRelease"]));
-            }
-            set {
-                this["APIUrl_TestRelease"] = value;
             }
         }
     }

@@ -31,13 +31,22 @@ namespace EkspertBookerMobileApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
             Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) == (int)Permission.Granted && ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted)
+            //if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) == (int)Permission.Granted && ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted)
+            //{
+            //    // We have permission, go ahead and use camera & gallery
+            //}
+            //else
+            //{
+            //    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage }, 1);
+            //}
+
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == (int)Permission.Granted)
             {
                 // We have permission, go ahead and use camera & gallery
             }
             else
             {
-                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage }, 1);
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 1);
             }
 
         }
@@ -51,16 +60,16 @@ namespace EkspertBookerMobileApp.Droid
                 string poruka = null;
                 // Received permission result for camera & storage permission.
 
-                if (grantResults[0] == Permission.Granted)
-                {
-                    //kamera odobrena
-                    poruka+= "Kamera permisija odobrena, možete koristiti kameru za novu profilnu sliku! ";
-                } else
-                {
-                    poruka += "Kamera permisija nije odobrena, NE možete koristiti kameru za novu profilnu sliku! ";
-                }
+                //if (grantResults[0] == Permission.Granted)
+                //{
+                //    //kamera odobrena
+                //    poruka+= "Kamera permisija odobrena, možete koristiti kameru za novu profilnu sliku! ";
+                //} else
+                //{
+                //    poruka += "Kamera permisija nije odobrena, NE možete koristiti kameru za novu profilnu sliku! ";
+                //}
 
-                if (grantResults[1] == Permission.Granted)
+                if (grantResults[0] == Permission.Granted)
                 {
                     //galerija odobrena
                     poruka += "Storage permisija odobrena, možete učitati profilnu sliku iz galerije! ";
@@ -78,11 +87,11 @@ namespace EkspertBookerMobileApp.Droid
                 {
                     // Ok button click task  
                 });
-                if (grantResults[0] == Permission.Denied || grantResults[1] == Permission.Denied)
+                if (grantResults[0] == Permission.Denied /*|| grantResults[1] == Permission.Denied*/)
                 {
                     alert.SetButton2("Odobri permisije opet?", (c, ev) =>
                     {
-                        ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage }, 1);
+                        ActivityCompat.RequestPermissions(this, new String[] { /*Manifest.Permission.Camera,*/ Manifest.Permission.WriteExternalStorage }, 1);
                     });
                     alert.Show();
                 } else

@@ -46,3 +46,6 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMo
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Release\netstandard2.0\EkspertBookerMobileApp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Release\netstandard2.0\ref\EkspertBookerMobileApp.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\obj\Release\netstandard2.0\EkspertBookerMobileApp.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\bin\Release\netstandard2.0\Mono.Android.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\bin\Release\netstandard2.0\Mono.Android.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBookerMobileApp\EkspertBookerMobileApp\bin\Release\netstandard2.0\Mono.Android.xml

@@ -12,12 +12,13 @@ namespace EkspertBooker.DesktopAppUI
     public class APIService
     {
         private string _route = null;
-#if DEBUG
-        private readonly string _URL = Properties.Settings.Default.APIUrl;
-#endif
-#if RELEASE
+
+
+        //private readonly string _URL = Properties.Settings.Default.APIUrl;
+
         private readonly string _URL = Properties.Settings.Default.APIUrl_TestRelease;
-#endif
+
+
         public static string Username { get; set; }
         public static string Password { get; set; }
 
@@ -28,7 +29,7 @@ namespace EkspertBooker.DesktopAppUI
 
         public async Task<T> Get<T>(object search)
         {
-            var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
+            var url = $"{_URL}/{_route}";
 
             if (search != null)
             {

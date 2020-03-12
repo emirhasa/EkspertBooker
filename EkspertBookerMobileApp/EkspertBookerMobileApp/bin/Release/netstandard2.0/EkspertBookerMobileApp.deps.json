@@ -16,7 +16,8 @@
           "Xam.Plugin.Media": "4.0.1.5",
           "Xamarin.Essentials": "1.3.1",
           "Xamarin.Forms": "4.4.0.991537",
-          "Xamarin.Plugin.FilePicker": "2.1.34"
+          "Xamarin.Plugin.FilePicker": "2.1.34",
+          "Mono.Android": "0.0.0.0"
         },
         "runtime": {
           "EkspertBookerMobileApp.dll": {}
@@ -166,6 +167,14 @@
         "runtime": {
           "EkspertBooker.Model.dll": {}
         }
+      },
+      "Mono.Android/0.0.0.0": {
+        "runtime": {
+          "Mono.Android.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
       }
     }
   },
@@ -310,6 +319,11 @@
     },
     "EkspertBooker.Model/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mono.Android/0.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

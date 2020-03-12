@@ -33,6 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\VisualStudio2019\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="ContentViews\CVImageButtonAlt.xaml.cs">
       <DependentUpon>CVImageButtonAlt.xaml</DependentUpon>
     </Compile>

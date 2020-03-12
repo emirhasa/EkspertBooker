@@ -88,7 +88,7 @@ namespace EkspertBookerMobileApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://brodev.info/api.
+        ///   Looks up a localized string similar to https://api.expertbooker.brodev.info/.
         /// </summary>
         internal static string API_URL_TestRelease {
             get {

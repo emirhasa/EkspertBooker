@@ -17,3 +17,11 @@ C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.csproj.CopyComplete
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.dll
 C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\bin\Debug\netcoreapp2.1\EkspertBooker.WebAPI.Views.dll
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\bin\Debug\netcoreapp2.1\EkspertBooker.WebAPI.Views.pdb
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.TagHelpers.input.cache
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.TagHelpers.output.cache
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.RazorCoreGenerate.cache
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\Razor\Views\Index\Home.cshtml.g.cs
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.RazorTargetAssemblyInfo.cs
+C:\Users\pacma\source\repos\EkspertBooker\EkspertBooker\obj\Debug\netcoreapp2.1\EkspertBooker.WebAPI.Views.pdb

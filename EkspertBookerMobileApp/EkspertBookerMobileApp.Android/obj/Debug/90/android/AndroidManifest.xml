@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="EkspertBooker v1" package="com.companyname.ekspertbookermobileapp" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="3" android:versionName="EkspertBooker v0.65" package="com.companyname.ekspertbookermobileapp" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-feature android:name="android.hardware.camera" android:required="false" />
   <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="EkspertBookerMobileApp.Android" android:icon="@drawable/icon_accept" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+  <application android:label="EkspertBookerMobileApp.Android" android:icon="@drawable/xb_icon" android:debuggable="true" android:name="android.app.Application" android:allowBackup="true">
     <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.companyname.ekspertbookermobileapp.fileprovider" android:exported="false" android:grantUriPermissions="true">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
     </provider>
